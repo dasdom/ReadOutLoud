@@ -7,6 +7,7 @@ import UIKit
 class NightDayViewController: UIViewController {
   
   var timer: Timer?
+  var timeSettings: [TimeSetting] = []
   
   var contentView: NightDayView {
     return view as! NightDayView
@@ -23,13 +24,15 @@ class NightDayViewController: UIViewController {
     
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settings(sender:)))
     
-    timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
+    timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
     
+    loadTimeSettings()
     updateView()
     
     UIScreen.main.brightness = 0.1
     
     NotificationCenter.default.addObserver(self, selector: #selector(updateButton), name: hideRaggitButtonChangeNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(loadTimeSettings), name: timeSettingChangeNotification, object: nil)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -51,23 +54,15 @@ class NightDayViewController: UIViewController {
   
   @objc func updateView() {
     
-    do {
-      let url = FileManager.settingsPath()
-      let data = try Data(contentsOf: url)
-      let timeSettings = try JSONDecoder().decode([TimeSetting].self, from: data)
-      if let start = timeSettings.first, let end = timeSettings.last {
-        let timePeriod = TimePeriod(date: Date(), start: start.time, end: end.time)
-        switch timePeriod {
-        case .day:
-          contentView.imageView.image = UIImage(named: "day")
-        case .night:
-          contentView.imageView.image = UIImage(named: "night")
-        }
+    if let start = timeSettings.first, let end = timeSettings.last {
+      let timePeriod = TimePeriod(date: Date(), start: start.time, end: end.time)
+      switch timePeriod {
+      case .day:
+        contentView.imageView.image = UIImage(named: "day")
+      case .night:
+        contentView.imageView.image = UIImage(named: "night")
       }
-    } catch {
-      print("error: \(error)")
     }
-    
   }
   
   @objc func openMusic() {
@@ -76,5 +71,16 @@ class NightDayViewController: UIViewController {
   
   @objc func updateButton() {
     contentView.button.isHidden = UserDefaults.standard.bool(forKey: hideRabbitButtonKey)
+  }
+  
+  @objc func loadTimeSettings() {
+    do {
+      let url = FileManager.settingsPath()
+      let data = try Data(contentsOf: url)
+      timeSettings = try JSONDecoder().decode([TimeSetting].self, from: data)
+    } catch {
+      timeSettings = [TimeSetting(name: "Beginning of night", time: Time(hour: 19, minute: 0)),
+                      TimeSetting(name: "End of night", time: Time(hour: 7, minute: 0))]
+    }
   }
 }

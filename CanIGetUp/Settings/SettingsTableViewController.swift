@@ -6,6 +6,7 @@ import UIKit
 
 let hideRabbitButtonKey = "hideRabbitButtonKey"
 let hideRaggitButtonChangeNotification = Notification.Name(rawValue: "hideRaggitButtonChangeNotification")
+let timeSettingChangeNotification = Notification.Name(rawValue: "timeSettingChangeNotification")
 
 private enum SettingsSection : Int, CaseIterable {
   case time
@@ -26,7 +27,7 @@ class SettingsTableViewController: UITableViewController {
       NotificationCenter.default.post(name: hideRaggitButtonChangeNotification, object: self)
     }
   }
-  lazy var timeSettings : [TimeSetting] = {
+  var timeSettings : [TimeSetting] = {
     let tempTimeSettings: [TimeSetting]
     do {
       let url = FileManager.settingsPath()
@@ -56,13 +57,6 @@ class SettingsTableViewController: UITableViewController {
   }
   
   @objc func done(sender: UIBarButtonItem) {
-    do {
-      let url = FileManager.settingsPath()
-      let data = try JSONEncoder().encode(timeSettings)
-      try data.write(to: url)
-    } catch {
-      print("error: \(error)")
-    }
     dismiss(animated: true, completion: nil)
   }
 }
@@ -112,6 +106,7 @@ extension SettingsTableViewController {
       timeCell.update(timeSetting: timeSetting) { date, error in
         if let date = date {
           timeSetting.time = Time(date: date)
+          self.writeTimeSettings()
           tableView.reloadRows(at: [indexPath], with: .none)
         }
       }
@@ -202,6 +197,18 @@ extension SettingsTableViewController {
         let next = AboutTableViewController()
         navigationController?.pushViewController(next, animated: true)
       }
+    }
+  }
+  
+  func writeTimeSettings() {
+    do {
+      let url = FileManager.settingsPath()
+      let data = try JSONEncoder().encode(timeSettings)
+      try data.write(to: url)
+      NotificationCenter.default.post(name: timeSettingChangeNotification, object: self)
+      print("did write times")
+    } catch {
+      print("error: \(error)")
     }
   }
 }
