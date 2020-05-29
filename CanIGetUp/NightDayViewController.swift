@@ -15,7 +15,10 @@ class NightDayViewController: UIViewController {
   
   override func loadView() {
     let contentView = NightDayView(frame: UIScreen.main.bounds)
-    contentView.button.addTarget(self, action: #selector(openMusic), for: .touchUpInside)
+    
+    contentView.rabbitButton.addTarget(self, action: #selector(openMusic), for: .touchUpInside)
+    contentView.booksButton.addTarget(self, action: #selector(openBooks), for: .touchUpInside)
+
     view = contentView
   }
   
@@ -38,7 +41,7 @@ class NightDayViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    contentView.button.isHidden = UserDefaults.standard.bool(forKey: hideRabbitButtonKey)
+    contentView.rabbitButton.isHidden = UserDefaults.standard.bool(forKey: hideRabbitButtonKey)
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -69,13 +72,18 @@ class NightDayViewController: UIViewController {
     UIApplication.shared.openURL(URL(string: "music://")!)
   }
   
+  @objc func openBooks() {
+    let next = BookPageInputViewController()
+    navigationController?.pushViewController(next, animated: true)
+  }
+  
   @objc func updateButton() {
-    contentView.button.isHidden = UserDefaults.standard.bool(forKey: hideRabbitButtonKey)
+    contentView.rabbitButton.isHidden = UserDefaults.standard.bool(forKey: hideRabbitButtonKey)
   }
   
   @objc func loadTimeSettings() {
     do {
-      let url = FileManager.settingsPath()
+      let url = FileManager.default.settingsPath()
       let data = try Data(contentsOf: url)
       timeSettings = try JSONDecoder().decode([TimeSetting].self, from: data)
     } catch {

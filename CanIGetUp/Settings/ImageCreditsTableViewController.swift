@@ -10,6 +10,7 @@ class ImageCreditsTableViewController: UITableViewController {
     ImageCredit(imageName: "day", creditText: "Photo by Gustavo Quepón on Unsplash"),
     ImageCredit(imageName: "night", creditText: "Photo by eberhard grossgasteiger on Unsplash"),
     ImageCredit(imageName: "rabbit", creditText: "Photo by Emiliano Vittoriosi on Unsplash"),
+    ImageCredit(imageName: "books", creditText: "Photo by Alfons Morales on Unsplash"),
   ]
   
   override func viewDidLoad() {

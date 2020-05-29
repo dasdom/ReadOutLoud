@@ -7,7 +7,8 @@ import UIKit
 class NightDayView: UIView {
   
   let imageView: UIImageView
-  let button: UIButton
+  let rabbitButton: UIButton
+  let booksButton: UIButton
   
   override init(frame: CGRect) {
     
@@ -16,15 +17,21 @@ class NightDayView: UIView {
     imageView.image = UIImage(named: "day")
     imageView.contentMode = .scaleAspectFill
     
-    button = UIButton(type: .custom)
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.setImage(UIImage(named: "rabbit"), for: .normal)
-    button.imageView?.contentMode = .scaleAspectFill
+    rabbitButton = UIButton(type: .custom)
+    rabbitButton.translatesAutoresizingMaskIntoConstraints = false
+    rabbitButton.setImage(UIImage(named: "rabbit"), for: .normal)
+    rabbitButton.imageView?.contentMode = .scaleAspectFill
+    
+    booksButton = UIButton(type: .custom)
+    booksButton.translatesAutoresizingMaskIntoConstraints = false
+    booksButton.setImage(UIImage(named: "books"), for: .normal)
+    booksButton.imageView?.contentMode = .scaleAspectFill
     
     super.init(frame: frame)
     
     addSubview(imageView)
-    addSubview(button)
+    addSubview(booksButton)
+    addSubview(rabbitButton)
     
     NSLayoutConstraint.activate([
       imageView.topAnchor.constraint(equalTo: topAnchor),
@@ -32,10 +39,15 @@ class NightDayView: UIView {
       imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
       imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
       
-      button.bottomAnchor.constraint(equalTo: bottomAnchor),
-      button.trailingAnchor.constraint(equalTo: trailingAnchor),
-      button.widthAnchor.constraint(equalToConstant: 150),
-      button.heightAnchor.constraint(equalTo: button.widthAnchor),
+      rabbitButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+      rabbitButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+      rabbitButton.widthAnchor.constraint(equalToConstant: 150),
+      rabbitButton.heightAnchor.constraint(equalTo: rabbitButton.widthAnchor),
+      
+      booksButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+      booksButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+      booksButton.widthAnchor.constraint(equalToConstant: 150),
+      booksButton.heightAnchor.constraint(equalTo: booksButton.widthAnchor),
     ])
   }
   

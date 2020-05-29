@@ -30,7 +30,7 @@ class SettingsTableViewController: UITableViewController {
   var timeSettings : [TimeSetting] = {
     let tempTimeSettings: [TimeSetting]
     do {
-      let url = FileManager.settingsPath()
+      let url = FileManager.default.settingsPath()
       let data = try Data(contentsOf: url)
       tempTimeSettings = try JSONDecoder().decode([TimeSetting].self, from: data)
     } catch {
@@ -202,7 +202,7 @@ extension SettingsTableViewController {
   
   func writeTimeSettings() {
     do {
-      let url = FileManager.settingsPath()
+      let url = FileManager.default.settingsPath()
       let data = try JSONEncoder().encode(timeSettings)
       try data.write(to: url)
       NotificationCenter.default.post(name: timeSettingChangeNotification, object: self)

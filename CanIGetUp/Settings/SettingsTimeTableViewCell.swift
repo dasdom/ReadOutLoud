@@ -27,6 +27,8 @@ class SettingsTimeTableViewCell: UITableViewCell {
     
     datePicker.addTarget(self, action: #selector(datePickerChanged(sender:)), for: .valueChanged)
 
+    timeLabel.setContentHuggingPriority(.required, for: .horizontal)
+    
     let labelStackViews = UIStackView(arrangedSubviews: [nameLabel, timeLabel])
     
     let stackView = UIStackView(arrangedSubviews: [labelStackViews, datePicker])

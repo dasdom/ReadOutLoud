@@ -5,12 +5,16 @@
 import Foundation
 
 extension FileManager {
-  static func documentsURL() -> URL {
+  func documentsURL() -> URL {
     guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { fatalError() }
     return url
   }
   
-  static func settingsPath() -> URL {
+  func settingsPath() -> URL {
     return documentsURL().appendingPathComponent("settings.json")
+  }
+  
+  func audioTestPath() -> URL {
+    return documentsURL().appendingPathComponent("test_record.m4a")
   }
 }
