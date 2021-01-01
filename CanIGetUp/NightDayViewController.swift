@@ -51,8 +51,16 @@ class NightDayViewController: UIViewController {
   }
   
   @objc func settings(sender: UIBarButtonItem) {
-    let next = UINavigationController(rootViewController: SettingsTableViewController())
-    present(next, animated: true, completion: nil)
+    
+    let alert = UIAlertController(title: "Access control", message: "Answer to the Ultimate Question of Life, The Universe, and Everything\n(Let blank for cancel)", preferredStyle: .alert)
+    alert.addTextField()
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+      if let textField = alert.textFields?.first, textField.text == "42" || textField.text == "fourty two" {
+        let next = UINavigationController(rootViewController: SettingsTableViewController())
+        self.present(next, animated: true)
+      }
+    }))
+    present(alert, animated: true)
   }
   
   @objc func updateView() {
