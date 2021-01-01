@@ -30,7 +30,7 @@ class NightDayView: UIView {
     super.init(frame: frame)
     
     addSubview(imageView)
-//    addSubview(booksButton)
+    addSubview(booksButton)
     addSubview(rabbitButton)
     
     NSLayoutConstraint.activate([
@@ -44,10 +44,10 @@ class NightDayView: UIView {
       rabbitButton.widthAnchor.constraint(equalToConstant: 150),
       rabbitButton.heightAnchor.constraint(equalTo: rabbitButton.widthAnchor),
       
-//      booksButton.bottomAnchor.constraint(equalTo: bottomAnchor),
-//      booksButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-//      booksButton.widthAnchor.constraint(equalToConstant: 150),
-//      booksButton.heightAnchor.constraint(equalTo: booksButton.widthAnchor),
+      booksButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+      booksButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+      booksButton.widthAnchor.constraint(equalToConstant: 150),
+      booksButton.heightAnchor.constraint(equalTo: booksButton.widthAnchor),
     ])
   }
   

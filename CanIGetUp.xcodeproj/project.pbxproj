@@ -25,6 +25,12 @@
 		F28272A52332B6B4004E94E0 /* TimeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28272A42332B6B4004E94E0 /* TimeSetting.swift */; };
 		F28272A72332C350004E94E0 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28272A62332C350004E94E0 /* FileManagerExtension.swift */; };
 		F28272A92332CB22004E94E0 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28272A82332CB22004E94E0 /* Time.swift */; };
+		F2B73A37259F248800F5CA3F /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A36259F248700F5CA3F /* Book.swift */; };
+		F2B73A3A259F251D00F5CA3F /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A39259F251D00F5CA3F /* Page.swift */; };
+		F2B73A3D259F25ED00F5CA3F /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A3C259F25ED00F5CA3F /* BookCell.swift */; };
+		F2B73A40259F414800F5CA3F /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A3F259F414800F5CA3F /* PageCell.swift */; };
+		F2B73A43259F434A00F5CA3F /* BookDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A42259F434A00F5CA3F /* BookDetailsViewController.swift */; };
+		F2B73A46259F437A00F5CA3F /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A45259F437A00F5CA3F /* BookDetailsView.swift */; };
 		F2CDF78A2440585C00A05AD2 /* ImageCreditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF7892440585C00A05AD2 /* ImageCreditCell.swift */; };
 		F2CDF7902440927C00A05AD2 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF78F2440927C00A05AD2 /* AboutTableViewController.swift */; };
 		F2CDF792244092B100A05AD2 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF791244092B100A05AD2 /* AboutCell.swift */; };
@@ -52,6 +58,12 @@
 		F28272A42332B6B4004E94E0 /* TimeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSetting.swift; sourceTree = "<group>"; };
 		F28272A62332C350004E94E0 /* FileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
 		F28272A82332CB22004E94E0 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		F2B73A36259F248700F5CA3F /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		F2B73A39259F251D00F5CA3F /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		F2B73A3C259F25ED00F5CA3F /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		F2B73A3F259F414800F5CA3F /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		F2B73A42259F434A00F5CA3F /* BookDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewController.swift; sourceTree = "<group>"; };
+		F2B73A45259F437A00F5CA3F /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
 		F2CDF7892440585C00A05AD2 /* ImageCreditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreditCell.swift; sourceTree = "<group>"; };
 		F2CDF78F2440927C00A05AD2 /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
 		F2CDF791244092B100A05AD2 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
@@ -89,9 +101,15 @@
 			isa = PBXGroup;
 			children = (
 				F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */,
+				F2B73A3C259F25ED00F5CA3F /* BookCell.swift */,
+				F2B73A42259F434A00F5CA3F /* BookDetailsViewController.swift */,
+				F2B73A45259F437A00F5CA3F /* BookDetailsView.swift */,
 				F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */,
+				F2B73A3F259F414800F5CA3F /* PageCell.swift */,
 				F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */,
 				F26CE4A024815ECB00B63124 /* BookPageInputView.swift */,
+				F2B73A36259F248700F5CA3F /* Book.swift */,
+				F2B73A39259F251D00F5CA3F /* Page.swift */,
 			);
 			path = Books;
 			sourceTree = "<group>";
@@ -204,18 +222,24 @@
 			files = (
 				F20F0E9724405484005412B7 /* ImageCreditsTableViewController.swift in Sources */,
 				F2CDF7902440927C00A05AD2 /* AboutTableViewController.swift in Sources */,
+				F2B73A3D259F25ED00F5CA3F /* BookCell.swift in Sources */,
 				F282729F23329DD4004E94E0 /* NightDayView.swift in Sources */,
 				F26CE49F24815DC700B63124 /* BookPageInputViewController.swift in Sources */,
 				F2CDF78A2440585C00A05AD2 /* ImageCreditCell.swift in Sources */,
 				F28272A12332B48A004E94E0 /* SettingsTableViewController.swift in Sources */,
 				F28272A72332C350004E94E0 /* FileManagerExtension.swift in Sources */,
 				F28272A32332B4B9004E94E0 /* SettingsTimeTableViewCell.swift in Sources */,
+				F2B73A40259F414800F5CA3F /* PageCell.swift in Sources */,
+				F2B73A43259F434A00F5CA3F /* BookDetailsViewController.swift in Sources */,
+				F2B73A37259F248800F5CA3F /* Book.swift in Sources */,
 				F28272A92332CB22004E94E0 /* Time.swift in Sources */,
 				F27FA765233952C400F3CD61 /* TimePeriod.swift in Sources */,
+				F2B73A3A259F251D00F5CA3F /* Page.swift in Sources */,
 				F28272A52332B6B4004E94E0 /* TimeSetting.swift in Sources */,
 				F2827289233299F0004E94E0 /* AppDelegate.swift in Sources */,
 				F26CE49D24815C8700B63124 /* BookPagesTableViewController.swift in Sources */,
 				F282729D23329D61004E94E0 /* NightDayViewController.swift in Sources */,
+				F2B73A46259F437A00F5CA3F /* BookDetailsView.swift in Sources */,
 				F2CDF7942440944800A05AD2 /* AboutItem.swift in Sources */,
 				F20F0E99244054BA005412B7 /* ImageCredit.swift in Sources */,
 				F2CDF792244092B100A05AD2 /* AboutCell.swift in Sources */,

@@ -81,7 +81,7 @@ class NightDayViewController: UIViewController {
   }
   
   @objc func openBooks() {
-    let next = BookPageInputViewController()
+    let next = BooksCollectionViewController()
     navigationController?.pushViewController(next, animated: true)
   }
   

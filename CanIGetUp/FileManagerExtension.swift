@@ -17,4 +17,10 @@ extension FileManager {
   func audioTestPath() -> URL {
     return documentsURL().appendingPathComponent("test_record.m4a")
   }
+  
+  func bookCover(for book: Book) -> URL {
+    let bookURL = documentsURL().appendingPathComponent("\(book.id)")
+    let coverURL = bookURL.appendingPathComponent("cover")
+    return coverURL
+  }
 }
