@@ -22,6 +22,10 @@ class BooksCollectionViewController: UICollectionViewController {
     
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add(_:)))
     navigationItem.rightBarButtonItem = addButton
+    
+    books = BooksProvider.loadBooks()
+    
+    title = "Books"
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -52,41 +56,21 @@ class BooksCollectionViewController: UICollectionViewController {
   }
   
   // MARK: UICollectionViewDelegate
-  
-  /*
-   // Uncomment this method to specify if the specified item should be highlighted during tracking
-   override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-   return true
-   }
-   */
-  
-  /*
-   // Uncomment this method to specify if the specified item should be selected
-   override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-   return true
-   }
-   */
-  
-  /*
-   // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-   override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-   return false
-   }
-   
-   override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-   return false
-   }
-   
-   override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-   
-   }
-   */
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let book = books[indexPath.row]
+    let next = BookPagesTableViewController(book: book)
+    navigationController?.pushViewController(next, animated: true)
+  }
 }
 
 // MARK: - Actions
 extension BooksCollectionViewController {
   @objc func add(_ sender: UIBarButtonItem) {
-    let next = BookDetailsViewController()
+    let next = BookDetailsViewController { book in
+      self.books.append(book)
+      self.collectionView.reloadData()
+      BooksProvider.save(books: self.books)
+    }
     let navigationController = UINavigationController(rootViewController: next)
     present(navigationController, animated: true)
   }

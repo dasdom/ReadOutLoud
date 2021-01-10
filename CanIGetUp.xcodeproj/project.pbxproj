@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		F20F0E9724405484005412B7 /* ImageCreditsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E9624405484005412B7 /* ImageCreditsTableViewController.swift */; };
 		F20F0E99244054BA005412B7 /* ImageCredit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E98244054BA005412B7 /* ImageCredit.swift */; };
+		F224F38425A8FE8F005F0220 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F38325A8FE8F005F0220 /* BooksProvider.swift */; };
 		F26CE49A24815C1200B63124 /* BooksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */; };
 		F26CE49D24815C8700B63124 /* BookPagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */; };
 		F26CE49F24815DC700B63124 /* BookPageInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */; };
 		F26CE4A124815ECB00B63124 /* BookPageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE4A024815ECB00B63124 /* BookPageInputView.swift */; };
 		F27FA765233952C400F3CD61 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27FA764233952C400F3CD61 /* TimePeriod.swift */; };
 		F2827289233299F0004E94E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2827288233299F0004E94E0 /* AppDelegate.swift */; };
-		F282728E233299F1004E94E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F282728C233299F1004E94E0 /* Main.storyboard */; };
 		F2827290233299F8004E94E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F282728F233299F8004E94E0 /* Assets.xcassets */; };
 		F2827293233299F8004E94E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2827291233299F8004E94E0 /* LaunchScreen.storyboard */; };
 		F282729D23329D61004E94E0 /* NightDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282729C23329D61004E94E0 /* NightDayViewController.swift */; };
@@ -40,6 +40,7 @@
 /* Begin PBXFileReference section */
 		F20F0E9624405484005412B7 /* ImageCreditsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreditsTableViewController.swift; sourceTree = "<group>"; };
 		F20F0E98244054BA005412B7 /* ImageCredit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCredit.swift; sourceTree = "<group>"; };
+		F224F38325A8FE8F005F0220 /* BooksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProvider.swift; sourceTree = "<group>"; };
 		F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewController.swift; sourceTree = "<group>"; };
 		F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPagesTableViewController.swift; sourceTree = "<group>"; };
 		F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPageInputViewController.swift; sourceTree = "<group>"; };
@@ -47,7 +48,6 @@
 		F27FA764233952C400F3CD61 /* TimePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
 		F2827285233299F0004E94E0 /* CanIGetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanIGetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2827288233299F0004E94E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F282728D233299F1004E94E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F282728F233299F8004E94E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2827292233299F8004E94E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2827294233299F8004E94E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -140,8 +140,8 @@
 				F26CE49B24815C1900B63124 /* Books */,
 				F20F0E9524405453005412B7 /* Settings */,
 				F28272A82332CB22004E94E0 /* Time.swift */,
+				F224F38325A8FE8F005F0220 /* BooksProvider.swift */,
 				F28272A62332C350004E94E0 /* FileManagerExtension.swift */,
-				F282728C233299F1004E94E0 /* Main.storyboard */,
 				F282728F233299F8004E94E0 /* Assets.xcassets */,
 				F2827291233299F8004E94E0 /* LaunchScreen.storyboard */,
 				F2827294233299F8004E94E0 /* Info.plist */,
@@ -176,7 +176,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = dasdom;
 				TargetAttributes = {
 					F2827284233299F0004E94E0 = {
@@ -209,7 +209,6 @@
 			files = (
 				F2827293233299F8004E94E0 /* LaunchScreen.storyboard in Resources */,
 				F2827290233299F8004E94E0 /* Assets.xcassets in Resources */,
-				F282728E233299F1004E94E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +238,7 @@
 				F2827289233299F0004E94E0 /* AppDelegate.swift in Sources */,
 				F26CE49D24815C8700B63124 /* BookPagesTableViewController.swift in Sources */,
 				F282729D23329D61004E94E0 /* NightDayViewController.swift in Sources */,
+				F224F38425A8FE8F005F0220 /* BooksProvider.swift in Sources */,
 				F2B73A46259F437A00F5CA3F /* BookDetailsView.swift in Sources */,
 				F2CDF7942440944800A05AD2 /* AboutItem.swift in Sources */,
 				F20F0E99244054BA005412B7 /* ImageCredit.swift in Sources */,
@@ -251,14 +251,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F282728C233299F1004E94E0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F282728D233299F1004E94E0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F2827291233299F8004E94E0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,6 +288,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -357,6 +350,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

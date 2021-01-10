@@ -8,6 +8,12 @@ class PageCell: UITableViewCell {
   
   let pageImageView: UIImageView
   
+  static var identifier: String {
+    let identifier = self.description()
+    print(identifier)
+    return identifier
+  }
+  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     
     pageImageView = UIImageView()

@@ -5,5 +5,5 @@
 import Foundation
 
 struct Page: Codable {
-  let id: UUID
+  let index: Int
 }

@@ -18,9 +18,29 @@ extension FileManager {
     return documentsURL().appendingPathComponent("test_record.m4a")
   }
   
-  func bookCover(for book: Book) -> URL {
+  func createBooksDiretory(for book: Book) {
+    let bookURL = documentsURL().appendingPathComponent("\(book.id)")
+    do {
+      try self.createDirectory(at: bookURL, withIntermediateDirectories: false, attributes: nil)
+    } catch {
+      print("error: \(error)")
+    }
+  }
+  
+  func bookCoverURL(for book: Book) -> URL {
     let bookURL = documentsURL().appendingPathComponent("\(book.id)")
     let coverURL = bookURL.appendingPathComponent("cover")
     return coverURL
+  }
+  
+  func booksURL() -> URL {
+    let booksURL = documentsURL().appendingPathComponent("books.json")
+    return booksURL
+  }
+  
+  func pageURL(for book: Book, pageIndex: Int) -> URL {
+    let bookURL = documentsURL().appendingPathComponent("\(book.id)")
+    let pageURL = bookURL.appendingPathComponent("\(pageIndex)")
+    return pageURL
   }
 }

@@ -17,16 +17,20 @@ class BookCell: UICollectionViewCell {
   override init(frame: CGRect) {
     
     imageView = UIImageView()
+    imageView.contentMode = .scaleAspectFit
     
     titleLabel = UILabel()
     titleLabel.numberOfLines = 2
     titleLabel.textAlignment = .center
+    titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
     
     let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel])
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
     
     super.init(frame: frame)
+    
+    contentView.backgroundColor = .white
     
     contentView.addSubview(stackView)
     
@@ -41,7 +45,7 @@ class BookCell: UICollectionViewCell {
   required init?(coder: NSCoder) { fatalError() }
   
   func update(with book: Book) {
-    let coverURL = FileManager.default.bookCover(for: book)
+    let coverURL = FileManager.default.bookCoverURL(for: book)
     let image = UIImage(contentsOfFile: coverURL.path)
     imageView.image = image
     

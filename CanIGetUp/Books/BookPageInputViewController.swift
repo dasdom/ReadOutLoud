@@ -7,13 +7,16 @@ import AVFoundation
 
 class BookPageInputViewController: UIViewController {
   
-  let recorder: AVAudioRecorder
-  var player: AVAudioPlayer?
-  var contentView: BookPageInputView {
+  private let book: Book
+  private let recorder: AVAudioRecorder
+  private var player: AVAudioPlayer?
+  private var contentView: BookPageInputView {
     return view as! BookPageInputView
   }
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+  init(book: Book) {
+    
+    self.book = book
     
     do {
       try AVAudioSession.sharedInstance().setCategory(.playAndRecord)
@@ -31,9 +34,7 @@ class BookPageInputViewController: UIViewController {
     recorder.prepareToRecord()
   }
   
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  required init?(coder: NSCoder) { fatalError() }
   
   override func loadView() {
     let contentView = BookPageInputView()
@@ -53,6 +54,10 @@ class BookPageInputViewController: UIViewController {
       contentView.stackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
       contentView.stackView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
     ])
+    
+    let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save(_:)))
+    navigationItem.rightBarButtonItem = saveButton
+
   }
   
   @objc func addImage(_ sender: UIButton) {
@@ -130,4 +135,17 @@ extension BookPageInputViewController: AVAudioRecorderDelegate {
 
 extension BookPageInputViewController: AVAudioPlayerDelegate {
   
+}
+
+extension BookPageInputViewController {
+  @objc func save(_ sender: UIBarButtonItem) {
+    
+    guard let image = contentView.imageView.image, let data = image.jpegData(compressionQuality: 0.8) else {
+      return
+    }
+    
+    BooksProvider.save(imageData: data, inBook: book, forPageIndex: book.pages.count)
+    
+    dismiss(animated: true)
+  }
 }

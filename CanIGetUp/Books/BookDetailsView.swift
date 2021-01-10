@@ -9,6 +9,7 @@ class BookDetailsView: UIView {
   let titleTextField: UITextField
   let authorTextField: UITextField
   let coverImageView: UIImageView
+  let addImageButton: UIButton
   let stackView: UIStackView
   
   override init(frame: CGRect) {
@@ -22,6 +23,13 @@ class BookDetailsView: UIView {
     authorTextField.placeholder = "Author"
     
     coverImageView = UIImageView()
+    coverImageView.isUserInteractionEnabled = true
+    coverImageView.contentMode = .scaleAspectFit
+    
+    addImageButton = UIButton(type: .system)
+    addImageButton.translatesAutoresizingMaskIntoConstraints = false
+    addImageButton.setTitle("Add Image", for: .normal)
+    coverImageView.addSubview(addImageButton)
     
     stackView = UIStackView(arrangedSubviews: [titleTextField, authorTextField, coverImageView])
     stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +45,10 @@ class BookDetailsView: UIView {
     NSLayoutConstraint.activate([
       stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
       stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-      stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+      stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+      
+      addImageButton.centerXAnchor.constraint(equalTo: coverImageView.centerXAnchor),
+      addImageButton.centerYAnchor.constraint(equalTo: coverImageView.centerYAnchor),
     ])
   }
   

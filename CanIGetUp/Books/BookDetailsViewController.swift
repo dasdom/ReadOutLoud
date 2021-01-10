@@ -10,9 +10,31 @@ class BookDetailsViewController: UIViewController {
   private var contentView: BookDetailsView {
     return view as! BookDetailsView
   }
+  private var titleTextField: UITextField {
+    return contentView.titleTextField
+  }
+  private var authorTextField: UITextField {
+    return contentView.authorTextField
+  }
+  private let addCompletion: (Book) -> Void
+  
+  init(addCompletion: @escaping (Book) -> Void) {
+    
+    self.addCompletion = addCompletion
+    
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) { fatalError() }
   
   override func loadView() {
     let contentView = BookDetailsView()
+    
+    contentView.addImageButton.addTarget(self, action: #selector(addImage(_:)), for: .touchUpInside)
+    
+    contentView.titleTextField.delegate = self
+    contentView.authorTextField.delegate = self
+    
     view = contentView
   }
   
@@ -48,6 +70,41 @@ class BookDetailsViewController: UIViewController {
   
 }
 
+// MARK: - Actions
+extension BookDetailsViewController {
+  @objc func save(_ sender: UIBarButtonItem) {
+    guard let title = titleTextField.text, let author = authorTextField.text else {
+      return
+    }
+    
+    let book = Book(title: title, author: author)
+    
+    FileManager.default.createBooksDiretory(for: book)
+    guard let image = contentView.coverImageView.image, let data = image.jpegData(compressionQuality: 0.8) else {
+      return
+    }
+    do {
+      try data.write(to: FileManager.default.bookCoverURL(for: book))
+    } catch {
+      print("error: \(error)")
+    }
+    
+    addCompletion(book)
+    dismiss(animated: true)
+  }
+  
+  @objc func dismiss(_ sender: UIBarButtonItem) {
+    dismiss(animated: true)
+  }
+  
+  @objc func addImage(_ sender: UIButton) {
+    let imagePicker = UIImagePickerController()
+    imagePicker.sourceType = .photoLibrary
+    imagePicker.delegate = self
+    present(imagePicker, animated: true)
+  }
+}
+
 extension BookDetailsViewController: UITextFieldDelegate {
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     
@@ -59,34 +116,41 @@ extension BookDetailsViewController: UITextFieldDelegate {
     
     let title: String?
     let author: String?
-    if textField == contentView.titleTextField {
+    if textField == titleTextField {
       title = finalText
-      author = contentView.authorTextField.text
-    } else if textField == contentView.authorTextField {
-      title = contentView.titleTextField.text
+      author = authorTextField.text
+    } else if textField == authorTextField {
+      title = titleTextField.text
       author = finalText
     } else {
       title = nil
       author = nil
     }
     
-    if let title = title, let author = author, !title.isEmpty, !author.isEmpty {
+    updateSaveButton(title: title, author: author)
+    
+    return true
+  }
+  
+  func updateSaveButton(title: String?, author: String?) {
+    if let title = title, !title.isEmpty,
+       let author = author, !author.isEmpty,
+       contentView.coverImageView.image != nil {
       saveButton?.isEnabled = true
     } else {
       saveButton?.isEnabled = false
     }
-    
-    return true
   }
 }
 
-// MARK: - Actions
-extension BookDetailsViewController {
-  @objc func save(_ sender: UIBarButtonItem) {
+extension BookDetailsViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     
-  }
-  
-  @objc func dismiss(_ sender: UIBarButtonItem) {
     dismiss(animated: true)
+        
+    contentView.coverImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+    
+    updateSaveButton(title: titleTextField.text, author: authorTextField.text)
   }
 }
+
