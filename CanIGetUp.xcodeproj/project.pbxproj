@@ -10,10 +10,13 @@
 		F20F0E9724405484005412B7 /* ImageCreditsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E9624405484005412B7 /* ImageCreditsTableViewController.swift */; };
 		F20F0E99244054BA005412B7 /* ImageCredit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E98244054BA005412B7 /* ImageCredit.swift */; };
 		F224F38425A8FE8F005F0220 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F38325A8FE8F005F0220 /* BooksProvider.swift */; };
+		F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */; };
 		F26CE49A24815C1200B63124 /* BooksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */; };
 		F26CE49D24815C8700B63124 /* BookPagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */; };
 		F26CE49F24815DC700B63124 /* BookPageInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */; };
 		F26CE4A124815ECB00B63124 /* BookPageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE4A024815ECB00B63124 /* BookPageInputView.swift */; };
+		F26D5FED25B4B9F10087686F /* BookCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26D5FEC25B4B9F10087686F /* BookCellProtocol.swift */; };
+		F26D5FF125B4DB160087686F /* MockBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26D5FF025B4DB150087686F /* MockBookCell.swift */; };
 		F27FA765233952C400F3CD61 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27FA764233952C400F3CD61 /* TimePeriod.swift */; };
 		F2827289233299F0004E94E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2827288233299F0004E94E0 /* AppDelegate.swift */; };
 		F2827290233299F8004E94E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F282728F233299F8004E94E0 /* Assets.xcassets */; };
@@ -37,14 +40,29 @@
 		F2CDF7942440944800A05AD2 /* AboutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF7932440944800A05AD2 /* AboutItem.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F224F39025AB2774005F0220 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F282727D233299F0004E94E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2827284233299F0004E94E0;
+			remoteInfo = CanIGetUp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		F20F0E9624405484005412B7 /* ImageCreditsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreditsTableViewController.swift; sourceTree = "<group>"; };
 		F20F0E98244054BA005412B7 /* ImageCredit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCredit.swift; sourceTree = "<group>"; };
 		F224F38325A8FE8F005F0220 /* BooksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProvider.swift; sourceTree = "<group>"; };
+		F224F38B25AB2774005F0220 /* CanIGetUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanIGetUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F224F38F25AB2774005F0220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewController.swift; sourceTree = "<group>"; };
 		F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPagesTableViewController.swift; sourceTree = "<group>"; };
 		F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPageInputViewController.swift; sourceTree = "<group>"; };
 		F26CE4A024815ECB00B63124 /* BookPageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPageInputView.swift; sourceTree = "<group>"; };
+		F26D5FEC25B4B9F10087686F /* BookCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCellProtocol.swift; sourceTree = "<group>"; };
+		F26D5FF025B4DB150087686F /* MockBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBookCell.swift; sourceTree = "<group>"; };
 		F27FA764233952C400F3CD61 /* TimePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
 		F2827285233299F0004E94E0 /* CanIGetUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CanIGetUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2827288233299F0004E94E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +89,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F224F38825AB2774005F0220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F2827282233299F0004E94E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -97,11 +122,22 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		F224F38C25AB2774005F0220 /* CanIGetUpTests */ = {
+			isa = PBXGroup;
+			children = (
+				F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */,
+				F26D5FF425B4DB790087686F /* Mocks */,
+				F224F38F25AB2774005F0220 /* Info.plist */,
+			);
+			path = CanIGetUpTests;
+			sourceTree = "<group>";
+		};
 		F26CE49B24815C1900B63124 /* Books */ = {
 			isa = PBXGroup;
 			children = (
 				F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */,
 				F2B73A3C259F25ED00F5CA3F /* BookCell.swift */,
+				F26D5FEC25B4B9F10087686F /* BookCellProtocol.swift */,
 				F2B73A42259F434A00F5CA3F /* BookDetailsViewController.swift */,
 				F2B73A45259F437A00F5CA3F /* BookDetailsView.swift */,
 				F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */,
@@ -114,10 +150,19 @@
 			path = Books;
 			sourceTree = "<group>";
 		};
+		F26D5FF425B4DB790087686F /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F26D5FF025B4DB150087686F /* MockBookCell.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		F282727C233299F0004E94E0 = {
 			isa = PBXGroup;
 			children = (
 				F2827287233299F0004E94E0 /* CanIGetUp */,
+				F224F38C25AB2774005F0220 /* CanIGetUpTests */,
 				F2827286233299F0004E94E0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				F2827285233299F0004E94E0 /* CanIGetUp.app */,
+				F224F38B25AB2774005F0220 /* CanIGetUpTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +198,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F224F38A25AB2774005F0220 /* CanIGetUpTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F224F39225AB2775005F0220 /* Build configuration list for PBXNativeTarget "CanIGetUpTests" */;
+			buildPhases = (
+				F224F38725AB2774005F0220 /* Sources */,
+				F224F38825AB2774005F0220 /* Frameworks */,
+				F224F38925AB2774005F0220 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F224F39125AB2774005F0220 /* PBXTargetDependency */,
+			);
+			name = CanIGetUpTests;
+			productName = CanIGetUpTests;
+			productReference = F224F38B25AB2774005F0220 /* CanIGetUpTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F2827284233299F0004E94E0 /* CanIGetUp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F2827297233299F8004E94E0 /* Build configuration list for PBXNativeTarget "CanIGetUp" */;
@@ -175,10 +239,14 @@
 		F282727D233299F0004E94E0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1030;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = dasdom;
 				TargetAttributes = {
+					F224F38A25AB2774005F0220 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = F2827284233299F0004E94E0;
+					};
 					F2827284233299F0004E94E0 = {
 						CreatedOnToolsVersion = 10.3;
 					};
@@ -198,11 +266,19 @@
 			projectRoot = "";
 			targets = (
 				F2827284233299F0004E94E0 /* CanIGetUp */,
+				F224F38A25AB2774005F0220 /* CanIGetUpTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F224F38925AB2774005F0220 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F2827283233299F0004E94E0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,6 +291,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F224F38725AB2774005F0220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F26D5FF125B4DB160087686F /* MockBookCell.swift in Sources */,
+				F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F2827281233299F0004E94E0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,6 +313,7 @@
 				F28272A12332B48A004E94E0 /* SettingsTableViewController.swift in Sources */,
 				F28272A72332C350004E94E0 /* FileManagerExtension.swift in Sources */,
 				F28272A32332B4B9004E94E0 /* SettingsTimeTableViewCell.swift in Sources */,
+				F26D5FED25B4B9F10087686F /* BookCellProtocol.swift in Sources */,
 				F2B73A40259F414800F5CA3F /* PageCell.swift in Sources */,
 				F2B73A43259F434A00F5CA3F /* BookDetailsViewController.swift in Sources */,
 				F2B73A37259F248800F5CA3F /* Book.swift in Sources */,
@@ -250,6 +336,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F224F39125AB2774005F0220 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2827284233299F0004E94E0 /* CanIGetUp */;
+			targetProxy = F224F39025AB2774005F0220 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		F2827291233299F8004E94E0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -262,6 +356,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F224F39325AB2775005F0220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q6PD97MRX4;
+				INFOPLIST_FILE = CanIGetUpTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.CanIGetUpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CanIGetUp.app/CanIGetUp";
+			};
+			name = Debug;
+		};
+		F224F39425AB2775005F0220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q6PD97MRX4;
+				INFOPLIST_FILE = CanIGetUpTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.dasdom.CanIGetUpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CanIGetUp.app/CanIGetUp";
+			};
+			name = Release;
+		};
 		F2827295233299F8004E94E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -425,6 +561,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F224F39225AB2775005F0220 /* Build configuration list for PBXNativeTarget "CanIGetUpTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F224F39325AB2775005F0220 /* Debug */,
+				F224F39425AB2775005F0220 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F2827280233299F0004E94E0 /* Build configuration list for PBXProject "CanIGetUp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -43,7 +43,9 @@ class BookCell: UICollectionViewCell {
   }
   
   required init?(coder: NSCoder) { fatalError() }
-  
+}
+
+extension BookCell: BookCellProtocol {
   func update(with book: Book) {
     let coverURL = FileManager.default.bookCoverURL(for: book)
     let image = UIImage(contentsOfFile: coverURL.path)

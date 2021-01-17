@@ -6,10 +6,13 @@ import UIKit
 
 class BooksCollectionViewController: UICollectionViewController {
   
-  var books: [Book] = []
+  var books: [Book]
   
   init() {
     let flowLayout = UICollectionViewFlowLayout()
+    
+    books = BooksProvider.loadBooks()
+    
     super.init(collectionViewLayout: flowLayout)
   }
   
@@ -22,9 +25,7 @@ class BooksCollectionViewController: UICollectionViewController {
     
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add(_:)))
     navigationItem.rightBarButtonItem = addButton
-    
-    books = BooksProvider.loadBooks()
-    
+        
     title = "Books"
   }
   
@@ -45,12 +46,12 @@ class BooksCollectionViewController: UICollectionViewController {
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.identifier, for: indexPath) as? BookCell else {
-      return UICollectionViewCell()
-    }
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.identifier, for: indexPath)
     
     let book = books[indexPath.row]
-    cell.update(with: book)
+    if let cell = cell as? BookCellProtocol {
+      cell.update(with: book)
+    }
     
     return cell
   }

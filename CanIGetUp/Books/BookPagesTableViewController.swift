@@ -36,14 +36,14 @@ class BookPagesTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: PageCell.identifier, for: indexPath)
     
-    
+    return cell
   }
 }
 
 // MARK: - Actions
 extension BookPagesTableViewController {
   @objc func add(_ sender: UIBarButtonItem) {
-    let next = BookPageInputViewController()
+    let next = BookPageInputViewController(book: book)
     let navigationController = UINavigationController(rootViewController: next)
     present(navigationController, animated: true)
   }
