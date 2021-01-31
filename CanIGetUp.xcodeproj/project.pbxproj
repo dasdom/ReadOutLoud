@@ -38,6 +38,10 @@
 		F2CDF7902440927C00A05AD2 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF78F2440927C00A05AD2 /* AboutTableViewController.swift */; };
 		F2CDF792244092B100A05AD2 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF791244092B100A05AD2 /* AboutCell.swift */; };
 		F2CDF7942440944800A05AD2 /* AboutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF7932440944800A05AD2 /* AboutItem.swift */; };
+		F2FB3AEE25B4E11E00D60597 /* BookCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3AED25B4E11E00D60597 /* BookCellTests.swift */; };
+		F2FB3AF625B4E2F500D60597 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3AF525B4E2F500D60597 /* ImageProvider.swift */; };
+		F2FB3AFE25B4E39200D60597 /* ImageProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3AFD25B4E39200D60597 /* ImageProviderProtocol.swift */; };
+		F2FB3B0225B4E46B00D60597 /* MockImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3B0125B4E46B00D60597 /* MockImageProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +90,10 @@
 		F2CDF78F2440927C00A05AD2 /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
 		F2CDF791244092B100A05AD2 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
 		F2CDF7932440944800A05AD2 /* AboutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutItem.swift; sourceTree = "<group>"; };
+		F2FB3AED25B4E11E00D60597 /* BookCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCellTests.swift; sourceTree = "<group>"; };
+		F2FB3AF525B4E2F500D60597 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
+		F2FB3AFD25B4E39200D60597 /* ImageProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProviderProtocol.swift; sourceTree = "<group>"; };
+		F2FB3B0125B4E46B00D60597 /* MockImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */,
+				F2FB3AED25B4E11E00D60597 /* BookCellTests.swift */,
 				F26D5FF425B4DB790087686F /* Mocks */,
 				F224F38F25AB2774005F0220 /* Info.plist */,
 			);
@@ -154,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				F26D5FF025B4DB150087686F /* MockBookCell.swift */,
+				F2FB3B0125B4E46B00D60597 /* MockImageProvider.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -188,6 +198,8 @@
 				F28272A82332CB22004E94E0 /* Time.swift */,
 				F224F38325A8FE8F005F0220 /* BooksProvider.swift */,
 				F28272A62332C350004E94E0 /* FileManagerExtension.swift */,
+				F2FB3AF525B4E2F500D60597 /* ImageProvider.swift */,
+				F2FB3AFD25B4E39200D60597 /* ImageProviderProtocol.swift */,
 				F282728F233299F8004E94E0 /* Assets.xcassets */,
 				F2827291233299F8004E94E0 /* LaunchScreen.storyboard */,
 				F2827294233299F8004E94E0 /* Info.plist */,
@@ -295,7 +307,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2FB3AEE25B4E11E00D60597 /* BookCellTests.swift in Sources */,
 				F26D5FF125B4DB160087686F /* MockBookCell.swift in Sources */,
+				F2FB3B0225B4E46B00D60597 /* MockImageProvider.swift in Sources */,
 				F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +322,7 @@
 				F2CDF7902440927C00A05AD2 /* AboutTableViewController.swift in Sources */,
 				F2B73A3D259F25ED00F5CA3F /* BookCell.swift in Sources */,
 				F282729F23329DD4004E94E0 /* NightDayView.swift in Sources */,
+				F2FB3AFE25B4E39200D60597 /* ImageProviderProtocol.swift in Sources */,
 				F26CE49F24815DC700B63124 /* BookPageInputViewController.swift in Sources */,
 				F2CDF78A2440585C00A05AD2 /* ImageCreditCell.swift in Sources */,
 				F28272A12332B48A004E94E0 /* SettingsTableViewController.swift in Sources */,
@@ -320,6 +335,7 @@
 				F28272A92332CB22004E94E0 /* Time.swift in Sources */,
 				F27FA765233952C400F3CD61 /* TimePeriod.swift in Sources */,
 				F2B73A3A259F251D00F5CA3F /* Page.swift in Sources */,
+				F2FB3AF625B4E2F500D60597 /* ImageProvider.swift in Sources */,
 				F28272A52332B6B4004E94E0 /* TimeSetting.swift in Sources */,
 				F2827289233299F0004E94E0 /* AppDelegate.swift in Sources */,
 				F26CE49D24815C8700B63124 /* BookPagesTableViewController.swift in Sources */,

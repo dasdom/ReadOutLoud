@@ -7,6 +7,7 @@ import UIKit
 class BookCell: UICollectionViewCell {
   let imageView: UIImageView
   let titleLabel: UILabel
+  lazy var imageProvider: ImageProviderProtocol = ImageProvider.shared
   
   static var identifier: String {
     let identifier = self.description()
@@ -47,9 +48,8 @@ class BookCell: UICollectionViewCell {
 
 extension BookCell: BookCellProtocol {
   func update(with book: Book) {
-    let coverURL = FileManager.default.bookCoverURL(for: book)
-    let image = UIImage(contentsOfFile: coverURL.path)
-    imageView.image = image
+    
+    imageView.image = imageProvider.cover(for: book)
     
     titleLabel.text = book.title
   }
