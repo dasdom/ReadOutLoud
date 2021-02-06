@@ -34,6 +34,8 @@
 		F2B73A40259F414800F5CA3F /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A3F259F414800F5CA3F /* PageCell.swift */; };
 		F2B73A43259F434A00F5CA3F /* BookDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A42259F434A00F5CA3F /* BookDetailsViewController.swift */; };
 		F2B73A46259F437A00F5CA3F /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A45259F437A00F5CA3F /* BookDetailsView.swift */; };
+		F2BF899725C74D31007A8433 /* MockNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BF899625C74D31007A8433 /* MockNavigationController.swift */; };
+		F2BF899B25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BF899A25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift */; };
 		F2CDF78A2440585C00A05AD2 /* ImageCreditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF7892440585C00A05AD2 /* ImageCreditCell.swift */; };
 		F2CDF7902440927C00A05AD2 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF78F2440927C00A05AD2 /* AboutTableViewController.swift */; };
 		F2CDF792244092B100A05AD2 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF791244092B100A05AD2 /* AboutCell.swift */; };
@@ -86,6 +88,8 @@
 		F2B73A3F259F414800F5CA3F /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
 		F2B73A42259F434A00F5CA3F /* BookDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewController.swift; sourceTree = "<group>"; };
 		F2B73A45259F437A00F5CA3F /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
+		F2BF899625C74D31007A8433 /* MockNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNavigationController.swift; sourceTree = "<group>"; };
+		F2BF899A25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPagesTableViewControllerTests.swift; sourceTree = "<group>"; };
 		F2CDF7892440585C00A05AD2 /* ImageCreditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreditCell.swift; sourceTree = "<group>"; };
 		F2CDF78F2440927C00A05AD2 /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
 		F2CDF791244092B100A05AD2 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 			children = (
 				F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */,
 				F2FB3AED25B4E11E00D60597 /* BookCellTests.swift */,
+				F2BF899A25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift */,
 				F26D5FF425B4DB790087686F /* Mocks */,
 				F224F38F25AB2774005F0220 /* Info.plist */,
 			);
@@ -164,6 +169,7 @@
 			children = (
 				F26D5FF025B4DB150087686F /* MockBookCell.swift */,
 				F2FB3B0125B4E46B00D60597 /* MockImageProvider.swift */,
+				F2BF899625C74D31007A8433 /* MockNavigationController.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -308,9 +314,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2FB3AEE25B4E11E00D60597 /* BookCellTests.swift in Sources */,
+				F2BF899725C74D31007A8433 /* MockNavigationController.swift in Sources */,
 				F26D5FF125B4DB160087686F /* MockBookCell.swift in Sources */,
 				F2FB3B0225B4E46B00D60597 /* MockImageProvider.swift in Sources */,
 				F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */,
+				F2BF899B25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

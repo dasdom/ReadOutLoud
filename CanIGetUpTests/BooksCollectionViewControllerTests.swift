@@ -14,7 +14,7 @@ class BooksCollectionViewControllerTests: XCTestCase {
   }
   
   override func tearDownWithError() throws {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    sut = nil
   }
  
   func test_numberOfCells_whenOnBookIsAdded() {
@@ -48,5 +48,15 @@ class BooksCollectionViewControllerTests: XCTestCase {
     let cell = sut.collectionView.dataSource?.collectionView(sut.collectionView, cellForItemAt: indexPath) as! MockBookCell
     
     XCTAssertEqual(cell.updateCallCount, 1)
+  }
+  
+  func test_selectItem_pushesPagesViewController() {
+    let mockNavigationController = MockNavigationController(rootViewController: sut)
+    sut.books = [Book(title: "Foo", author: "Bar")]
+
+    let indexPath = IndexPath(item: 0, section: 0)
+    sut.collectionView.delegate?.collectionView?(sut.collectionView, didSelectItemAt: indexPath)
+    
+    XCTAssertTrue(mockNavigationController.pushedViewController is BookPagesTableViewController)
   }
 }

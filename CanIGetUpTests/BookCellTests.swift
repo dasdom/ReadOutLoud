@@ -14,13 +14,19 @@ class BookCellTests: XCTestCase {
   }
   
   override func tearDownWithError() throws {
-    
+    sut = nil
   }
   
   func test_update_setsImage() {
     sut.imageProvider = MockImageProvider()
     sut.update(with: Book(title: "Foo", author: "Bar"))
     
-    XCTFail("implement rest of this test")
+    XCTAssertNotNil(sut.imageView.image)
+  }
+  
+  func test_update_setsTitle() {
+    sut.update(with: Book(title: "Foo", author: "Bar"))
+    
+    XCTAssertEqual(sut.titleLabel.text, "Foo")
   }
 }
