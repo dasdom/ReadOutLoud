@@ -144,7 +144,7 @@ extension BookPageInputViewController {
       return
     }
     
-    BooksProvider.save(imageData: data, inBook: book, forPageIndex: book.pages.count)
+    BooksProvider.save(imageData: data, inBook: book, forPageIndex: book.pageCount)
     
     dismiss(animated: true)
   }

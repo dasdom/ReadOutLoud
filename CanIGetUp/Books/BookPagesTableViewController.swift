@@ -30,7 +30,7 @@ class BookPagesTableViewController: UITableViewController {
   
   // MARK: - Table view data source
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return book.pages.count
+    return book.pageCount
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -6,4 +6,6 @@ import Foundation
 
 struct Page: Codable {
   let index: Int
+  let imageURL: URL
+  let audioURL: URL
 }

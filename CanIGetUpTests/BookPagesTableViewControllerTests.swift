@@ -8,14 +8,27 @@ import XCTest
 class BookPagesTableViewControllerTests: XCTestCase {
   
   var sut: BookPagesTableViewController!
+  private var book: Book!
   
   override func setUpWithError() throws {
-    let book = Book(title: "Foo", author: "Bar")
+    book = Book(title: "Foo", author: "Bar")
+    let imageURL = URL(string: "imageURL")!
+    let audioURL = URL(string: "audioURL")!
+    book.addPageWith(index: 0, imageURL: imageURL, audioURL: audioURL)
+    book.addPageWith(index: 1, imageURL: imageURL, audioURL: audioURL)
+    
     sut = BookPagesTableViewController(book: book)
   }
   
   override func tearDownWithError() throws {
     sut = nil
+    book = nil
+  }
+  
+  func test_title_isBookTitle() {
+    sut.loadViewIfNeeded()
+    
+    XCTAssertEqual(sut.title, "Foo")
   }
   
   func test_registers_pageCell() {
@@ -25,5 +38,12 @@ class BookPagesTableViewControllerTests: XCTestCase {
     let cell = sut.tableView.dequeueReusableCell(withIdentifier: PageCell.identifier, for: indexPath)
     
     XCTAssertTrue(cell is PageCell)
+  }
+  
+  func test_numberOfRows_isNumberOfPages() {
+    
+    let numberOfRows = sut.tableView.numberOfRows(inSection: 0)
+    
+    XCTAssertEqual(numberOfRows, book.pageCount)
   }
 }

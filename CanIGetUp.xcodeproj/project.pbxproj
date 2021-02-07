@@ -40,6 +40,9 @@
 		F2CDF7902440927C00A05AD2 /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF78F2440927C00A05AD2 /* AboutTableViewController.swift */; };
 		F2CDF792244092B100A05AD2 /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF791244092B100A05AD2 /* AboutCell.swift */; };
 		F2CDF7942440944800A05AD2 /* AboutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDF7932440944800A05AD2 /* AboutItem.swift */; };
+		F2F289B325CF362000F2A7F3 /* BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F289B225CF362000F2A7F3 /* BookTests.swift */; };
+		F2F289B725CF3BF400F2A7F3 /* PageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F289B625CF3BF400F2A7F3 /* PageTests.swift */; };
+		F2F289BB25CF3EA200F2A7F3 /* BooksProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F289BA25CF3EA200F2A7F3 /* BooksProviderTests.swift */; };
 		F2FB3AEE25B4E11E00D60597 /* BookCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3AED25B4E11E00D60597 /* BookCellTests.swift */; };
 		F2FB3AF625B4E2F500D60597 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3AF525B4E2F500D60597 /* ImageProvider.swift */; };
 		F2FB3AFE25B4E39200D60597 /* ImageProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3AFD25B4E39200D60597 /* ImageProviderProtocol.swift */; };
@@ -94,6 +97,9 @@
 		F2CDF78F2440927C00A05AD2 /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
 		F2CDF791244092B100A05AD2 /* AboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
 		F2CDF7932440944800A05AD2 /* AboutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutItem.swift; sourceTree = "<group>"; };
+		F2F289B225CF362000F2A7F3 /* BookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTests.swift; sourceTree = "<group>"; };
+		F2F289B625CF3BF400F2A7F3 /* PageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTests.swift; sourceTree = "<group>"; };
+		F2F289BA25CF3EA200F2A7F3 /* BooksProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProviderTests.swift; sourceTree = "<group>"; };
 		F2FB3AED25B4E11E00D60597 /* BookCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCellTests.swift; sourceTree = "<group>"; };
 		F2FB3AF525B4E2F500D60597 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		F2FB3AFD25B4E39200D60597 /* ImageProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProviderProtocol.swift; sourceTree = "<group>"; };
@@ -140,6 +146,9 @@
 				F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */,
 				F2FB3AED25B4E11E00D60597 /* BookCellTests.swift */,
 				F2BF899A25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift */,
+				F2F289B225CF362000F2A7F3 /* BookTests.swift */,
+				F2F289B625CF3BF400F2A7F3 /* PageTests.swift */,
+				F2F289BA25CF3EA200F2A7F3 /* BooksProviderTests.swift */,
 				F26D5FF425B4DB790087686F /* Mocks */,
 				F224F38F25AB2774005F0220 /* Info.plist */,
 			);
@@ -314,11 +323,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2FB3AEE25B4E11E00D60597 /* BookCellTests.swift in Sources */,
+				F2F289B325CF362000F2A7F3 /* BookTests.swift in Sources */,
+				F2F289B725CF3BF400F2A7F3 /* PageTests.swift in Sources */,
 				F2BF899725C74D31007A8433 /* MockNavigationController.swift in Sources */,
 				F26D5FF125B4DB160087686F /* MockBookCell.swift in Sources */,
 				F2FB3B0225B4E46B00D60597 /* MockImageProvider.swift in Sources */,
 				F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */,
 				F2BF899B25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift in Sources */,
+				F2F289BB25CF3EA200F2A7F3 /* BooksProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
