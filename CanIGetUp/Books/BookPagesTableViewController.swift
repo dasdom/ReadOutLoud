@@ -34,7 +34,12 @@ class BookPagesTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
     let cell = tableView.dequeueReusableCell(withIdentifier: PageCell.identifier, for: indexPath)
+    
+    if let page = book.pageForIndex(indexPath.row), let cell = cell as? PageCellProtocol {
+      cell.update(with: page)
+    }
     
     return cell
   }

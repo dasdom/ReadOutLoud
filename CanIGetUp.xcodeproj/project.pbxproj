@@ -11,6 +11,8 @@
 		F20F0E99244054BA005412B7 /* ImageCredit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E98244054BA005412B7 /* ImageCredit.swift */; };
 		F224F38425A8FE8F005F0220 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F38325A8FE8F005F0220 /* BooksProvider.swift */; };
 		F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */; };
+		F24E67CB25D1DFB900A6B1A3 /* PageCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E67CA25D1DFB900A6B1A3 /* PageCellProtocol.swift */; };
+		F24E67CF25D1E06C00A6B1A3 /* MockPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E67CE25D1E06C00A6B1A3 /* MockPageCell.swift */; };
 		F26CE49A24815C1200B63124 /* BooksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */; };
 		F26CE49D24815C8700B63124 /* BookPagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */; };
 		F26CE49F24815DC700B63124 /* BookPageInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */; };
@@ -66,6 +68,8 @@
 		F224F38B25AB2774005F0220 /* CanIGetUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanIGetUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F224F38F25AB2774005F0220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewControllerTests.swift; sourceTree = "<group>"; };
+		F24E67CA25D1DFB900A6B1A3 /* PageCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCellProtocol.swift; sourceTree = "<group>"; };
+		F24E67CE25D1E06C00A6B1A3 /* MockPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPageCell.swift; sourceTree = "<group>"; };
 		F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewController.swift; sourceTree = "<group>"; };
 		F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPagesTableViewController.swift; sourceTree = "<group>"; };
 		F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPageInputViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				F2B73A45259F437A00F5CA3F /* BookDetailsView.swift */,
 				F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */,
 				F2B73A3F259F414800F5CA3F /* PageCell.swift */,
+				F24E67CA25D1DFB900A6B1A3 /* PageCellProtocol.swift */,
 				F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */,
 				F26CE4A024815ECB00B63124 /* BookPageInputView.swift */,
 				F2B73A36259F248700F5CA3F /* Book.swift */,
@@ -177,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				F26D5FF025B4DB150087686F /* MockBookCell.swift */,
+				F24E67CE25D1E06C00A6B1A3 /* MockPageCell.swift */,
 				F2FB3B0125B4E46B00D60597 /* MockImageProvider.swift */,
 				F2BF899625C74D31007A8433 /* MockNavigationController.swift */,
 			);
@@ -330,6 +336,7 @@
 				F2FB3B0225B4E46B00D60597 /* MockImageProvider.swift in Sources */,
 				F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */,
 				F2BF899B25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift in Sources */,
+				F24E67CF25D1E06C00A6B1A3 /* MockPageCell.swift in Sources */,
 				F2F289BB25CF3EA200F2A7F3 /* BooksProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,6 +373,7 @@
 				F20F0E99244054BA005412B7 /* ImageCredit.swift in Sources */,
 				F2CDF792244092B100A05AD2 /* AboutCell.swift in Sources */,
 				F26CE49A24815C1200B63124 /* BooksCollectionViewController.swift in Sources */,
+				F24E67CB25D1DFB900A6B1A3 /* PageCellProtocol.swift in Sources */,
 				F26CE4A124815ECB00B63124 /* BookPageInputView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

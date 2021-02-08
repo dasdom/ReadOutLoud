@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct Page: Codable {
+struct Page: Codable, Equatable {
   let index: Int
   let imageURL: URL
   let audioURL: URL

@@ -23,11 +23,15 @@ class Book: Codable {
     self.pages = []
   }
   
-  func addPageWith(index: Int, imageURL: URL, audioURL: URL) {
+  func add(_ page: Page) {
     
     let indices = pages.map({ $0.index })
-    assert(false == indices.contains(index), "Page with this index already in the book")
+    assert(false == indices.contains(page.index), "Page with this index already in the book")
     
-    pages.append(Page(index: index, imageURL: imageURL, audioURL: audioURL))
+    pages.append(page)
+  }
+  
+  func pageForIndex(_ index: Int) -> Page? {
+    return pages.first(where: { $0.index == index })
   }
 }

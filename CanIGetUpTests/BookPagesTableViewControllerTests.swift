@@ -14,8 +14,8 @@ class BookPagesTableViewControllerTests: XCTestCase {
     book = Book(title: "Foo", author: "Bar")
     let imageURL = URL(string: "imageURL")!
     let audioURL = URL(string: "audioURL")!
-    book.addPageWith(index: 0, imageURL: imageURL, audioURL: audioURL)
-    book.addPageWith(index: 1, imageURL: imageURL, audioURL: audioURL)
+    book.add(Page(index: 0, imageURL: imageURL, audioURL: audioURL))
+    book.add(Page(index: 1, imageURL: imageURL, audioURL: audioURL))
     
     sut = BookPagesTableViewController(book: book)
   }
@@ -45,5 +45,24 @@ class BookPagesTableViewControllerTests: XCTestCase {
     let numberOfRows = sut.tableView.numberOfRows(inSection: 0)
     
     XCTAssertEqual(numberOfRows, book.pageCount)
+  }
+  
+  func test_cellForRow_returnsPageCell() {
+    
+    let indexPath = IndexPath(row: 0, section: 0)
+    let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath)
+    
+    XCTAssertTrue(cell is PageCell)
+  }
+  
+  func test_cellForRow_callsUpdate() {
+    
+    sut.tableView.register(MockPageCell.self, forCellReuseIdentifier: PageCell.identifier)
+    
+    let indexPath = IndexPath(row: 0, section: 0)
+    let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath) as! MockPageCell
+    
+    XCTAssertNotNil(cell.lastPageFromUpdate)
+    XCTAssertEqual(cell.lastPageFromUpdate, book.pageForIndex(0))
   }
 }
