@@ -27,6 +27,15 @@ extension FileManager {
     }
   }
   
+  func removeBooksDirectory(for book: Book) {
+    let bookURL = documentsURL().appendingPathComponent("\(book.id)")
+    do {
+      try removeItem(at: bookURL)
+    } catch {
+      print("error: \(error)")
+    }
+  }
+  
   func bookCoverURL(for book: Book) -> URL {
     let bookURL = documentsURL().appendingPathComponent("\(book.id)")
     let coverURL = bookURL.appendingPathComponent("cover")
@@ -38,9 +47,15 @@ extension FileManager {
     return booksURL
   }
   
-  func pageURL(for book: Book, pageIndex: Int) -> URL {
+  func pageImageURL(for book: Book, pageIndex: Int) -> URL {
     let bookURL = documentsURL().appendingPathComponent("\(book.id)")
-    let pageURL = bookURL.appendingPathComponent("\(pageIndex)")
+    let pageURL = bookURL.appendingPathComponent("\(pageIndex)_image")
+    return pageURL
+  }
+  
+  func pageAudioURL(for book: Book, pageIndex: Int) -> URL {
+    let bookURL = documentsURL().appendingPathComponent("\(book.id)")
+    let pageURL = bookURL.appendingPathComponent("\(pageIndex)_audio")
     return pageURL
   }
 }

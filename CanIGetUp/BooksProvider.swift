@@ -25,11 +25,18 @@ struct BooksProvider {
     return []
   }
   
-  static func save(imageData: Data, inBook book: Book, forPageIndex pageIndex: Int) {
+  static func save(imageData: Data, audioData: Data, inBook book: Book, forPageIndex pageIndex: Int) -> Page? {
     do {
-      try imageData.write(to: FileManager.default.pageURL(for: book, pageIndex: pageIndex))
+      let imageURL = FileManager.default.pageImageURL(for: book, pageIndex: pageIndex)
+      try imageData.write(to: imageURL)
+      
+      let audioURL = FileManager.default.pageAudioURL(for: book, pageIndex: pageIndex)
+      try audioData.write(to: audioURL)
+      
+      return Page(index: pageIndex, imageURL: imageURL, audioURL: audioURL)
     } catch {
       print("error: \(error)")
     }
+    return nil
   }
 }

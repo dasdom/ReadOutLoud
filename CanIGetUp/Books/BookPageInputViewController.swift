@@ -144,7 +144,11 @@ extension BookPageInputViewController {
       return
     }
     
-    BooksProvider.save(imageData: data, inBook: book, forPageIndex: book.pageCount)
+    guard let audioData = try? Data(contentsOf: FileManager.default.audioTestPath()) else {
+      return
+    }
+    
+    BooksProvider.save(imageData: data, audioData: audioData, inBook: book, forPageIndex: book.pageCount)
     
     dismiss(animated: true)
   }
