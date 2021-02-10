@@ -12,12 +12,10 @@ class BookPagesTableViewControllerTests: XCTestCase {
   
   override func setUpWithError() throws {
     book = Book(title: "Foo", author: "Bar")
-    let imageURL = URL(string: "imageURL")!
-    let audioURL = URL(string: "audioURL")!
-    book.add(Page(index: 0, imageURL: imageURL, audioURL: audioURL))
-    book.add(Page(index: 1, imageURL: imageURL, audioURL: audioURL))
+    book.add(Page(index: 0))
+    book.add(Page(index: 1))
     
-    sut = BookPagesTableViewController(book: book)
+    sut = BookPagesTableViewController(book: book, allBooks: [book])
   }
   
   override func tearDownWithError() throws {
@@ -62,7 +60,6 @@ class BookPagesTableViewControllerTests: XCTestCase {
     let indexPath = IndexPath(row: 0, section: 0)
     let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath) as! MockPageCell
     
-    XCTAssertNotNil(cell.lastPageFromUpdate)
-    XCTAssertEqual(cell.lastPageFromUpdate, book.pageForIndex(0))
+    XCTAssertNotNil(cell.lastImageFromUpdate)
   }
 }

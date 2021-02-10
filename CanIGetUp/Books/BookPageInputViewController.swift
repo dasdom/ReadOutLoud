@@ -8,15 +8,17 @@ import AVFoundation
 class BookPageInputViewController: UIViewController {
   
   private let book: Book
+  private let completion: () -> Void
   private let recorder: AVAudioRecorder
   private var player: AVAudioPlayer?
   private var contentView: BookPageInputView {
     return view as! BookPageInputView
   }
   
-  init(book: Book) {
+  init(book: Book, completion: @escaping () -> Void) {
     
     self.book = book
+    self.completion = completion
     
     do {
       try AVAudioSession.sharedInstance().setCategory(.playAndRecord)
@@ -148,7 +150,10 @@ extension BookPageInputViewController {
       return
     }
     
-    _ = BooksProvider.save(imageData: data, audioData: audioData, inBook: book, forPageIndex: book.pageCount)
+    if let page = BooksProvider.save(imageData: data, audioData: audioData, inBook: book, forPageIndex: book.pageCount) {
+      book.add(page)
+      completion()
+    }
     
     dismiss(animated: true)
   }

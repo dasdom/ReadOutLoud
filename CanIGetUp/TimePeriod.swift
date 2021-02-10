@@ -10,7 +10,7 @@ enum TimePeriod {
   
   init(date: Date, start: Time, end: Time) {
     let dateTime = Time(date: date)
-    print("\(dateTime), \(start), \(end)")
+//    print("\(dateTime), \(start), \(end)")
     if start > end {
       if start <= dateTime || dateTime < end {
         self = .night

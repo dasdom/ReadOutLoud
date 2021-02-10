@@ -49,6 +49,8 @@
 		F2FB3AF625B4E2F500D60597 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3AF525B4E2F500D60597 /* ImageProvider.swift */; };
 		F2FB3AFE25B4E39200D60597 /* ImageProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3AFD25B4E39200D60597 /* ImageProviderProtocol.swift */; };
 		F2FB3B0225B4E46B00D60597 /* MockImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FB3B0125B4E46B00D60597 /* MockImageProvider.swift */; };
+		F2FE584825D334400080362B /* PageCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE584725D334400080362B /* PageCellTests.swift */; };
+		F2FE584E25D336760080362B /* blume.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F2FE584B25D334E30080362B /* blume.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		F2FB3AF525B4E2F500D60597 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		F2FB3AFD25B4E39200D60597 /* ImageProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProviderProtocol.swift; sourceTree = "<group>"; };
 		F2FB3B0125B4E46B00D60597 /* MockImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageProvider.swift; sourceTree = "<group>"; };
+		F2FE584725D334400080362B /* PageCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCellTests.swift; sourceTree = "<group>"; };
+		F2FE584B25D334E30080362B /* blume.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blume.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 				F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */,
 				F2FB3AED25B4E11E00D60597 /* BookCellTests.swift */,
 				F2BF899A25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift */,
+				F2FE584725D334400080362B /* PageCellTests.swift */,
+				F2FE584B25D334E30080362B /* blume.jpg */,
 				F2F289B225CF362000F2A7F3 /* BookTests.swift */,
 				F2F289B625CF3BF400F2A7F3 /* PageTests.swift */,
 				F2F289BA25CF3EA200F2A7F3 /* BooksProviderTests.swift */,
@@ -309,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2FE584E25D336760080362B /* blume.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +338,7 @@
 				F2FB3AEE25B4E11E00D60597 /* BookCellTests.swift in Sources */,
 				F2F289B325CF362000F2A7F3 /* BookTests.swift in Sources */,
 				F2F289B725CF3BF400F2A7F3 /* PageTests.swift in Sources */,
+				F2FE584825D334400080362B /* PageCellTests.swift in Sources */,
 				F2BF899725C74D31007A8433 /* MockNavigationController.swift in Sources */,
 				F26D5FF125B4DB160087686F /* MockBookCell.swift in Sources */,
 				F2FB3B0225B4E46B00D60597 /* MockImageProvider.swift in Sources */,

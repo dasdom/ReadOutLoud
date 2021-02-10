@@ -33,7 +33,7 @@ struct BooksProvider {
       let audioURL = FileManager.default.pageAudioURL(for: book, pageIndex: pageIndex)
       try audioData.write(to: audioURL)
       
-      return Page(index: pageIndex, imageURL: imageURL, audioURL: audioURL)
+      return Page(index: pageIndex)
     } catch {
       print("error: \(error)")
     }

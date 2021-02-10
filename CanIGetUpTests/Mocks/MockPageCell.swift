@@ -7,9 +7,9 @@ import UIKit
 
 class MockPageCell: UITableViewCell, PageCellProtocol {
   
-  var lastPageFromUpdate: Page?
+  var lastImageFromUpdate: UIImage?
   
-  func update(with page: Page) {
-    lastPageFromUpdate = page
+  func update(with image: UIImage) {
+    lastImageFromUpdate = image
   }
 }

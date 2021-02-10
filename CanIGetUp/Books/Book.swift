@@ -34,4 +34,12 @@ class Book: Codable {
   func pageForIndex(_ index: Int) -> Page? {
     return pages.first(where: { $0.index == index })
   }
+  
+  func pageImageURL(index: Int) -> URL {
+    return FileManager.default.pageImageURL(for: self, pageIndex: index)
+  }
+  
+  func pageAudioURL(index: Int) -> URL {
+    return FileManager.default.pageAudioURL(for: self, pageIndex: index)
+  }
 }

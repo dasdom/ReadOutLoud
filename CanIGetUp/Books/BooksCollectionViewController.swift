@@ -33,7 +33,7 @@ class BooksCollectionViewController: UICollectionViewController {
     super.viewWillAppear(animated)
     
     if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-      let itemWidth = collectionView.frame.size.width / 2 - 20
+      let itemWidth = collectionView.frame.size.width / 2 - 5
       let itemHeight = itemWidth
       flowLayout.itemSize = CGSize(width: itemWidth, height: itemHeight)
     }
@@ -49,6 +49,7 @@ class BooksCollectionViewController: UICollectionViewController {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.identifier, for: indexPath)
     
     let book = books[indexPath.row]
+    print("book.id: \(book.id)")
     if let cell = cell as? BookCellProtocol {
       cell.update(with: book)
     }
@@ -59,7 +60,7 @@ class BooksCollectionViewController: UICollectionViewController {
   // MARK: UICollectionViewDelegate
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let book = books[indexPath.row]
-    let next = BookPagesTableViewController(book: book)
+    let next = BookPagesTableViewController(book: book, allBooks: books)
     navigationController?.pushViewController(next, animated: true)
   }
 }

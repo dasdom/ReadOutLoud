@@ -18,6 +18,7 @@ class PageCell: UITableViewCell {
     
     pageImageView = UIImageView()
     pageImageView.translatesAutoresizingMaskIntoConstraints = false
+    pageImageView.contentMode = .scaleAspectFit
     
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     
@@ -32,4 +33,10 @@ class PageCell: UITableViewCell {
   }
   
   required init?(coder: NSCoder) { fatalError() }
+}
+
+extension PageCell: PageCellProtocol {
+  func update(with image: UIImage) {
+    pageImageView.image = image
+  }
 }

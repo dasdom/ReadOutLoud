@@ -14,9 +14,7 @@ class PageTests: XCTestCase {
   }
 
   func test_init_takesIndexImageURLAndAudioURL() {
-    let imageURL = URL(string: "image")!
-    let audioURL = URL(string: "audio")!
-    let page = Page(index: 0, imageURL: imageURL, audioURL: audioURL)
+    let page = Page(index: 0)
     
     XCTAssertNotNil(page)
   }

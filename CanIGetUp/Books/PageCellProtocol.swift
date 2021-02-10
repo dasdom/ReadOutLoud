@@ -2,8 +2,8 @@
 //  Copyright © 2021 dasdom. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol PageCellProtocol {
-  func update(with: Page)
+  func update(with: UIImage)
 }

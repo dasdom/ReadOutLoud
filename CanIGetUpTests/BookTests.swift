@@ -16,7 +16,7 @@ class BookTests: XCTestCase {
   func test_addPage_addsPage() {
     let sut = Book(title: "Foo", author: "Bar")
     
-    let page = Page(index: 0, imageURL: imageURL(), audioURL: audioURL())
+    let page = Page(index: 0)
     sut.add(page)
     
     XCTAssertEqual(sut.pageCount, 1)
@@ -25,9 +25,9 @@ class BookTests: XCTestCase {
   func test_addTwoPages_addsTwoPages() {
     let sut = Book(title: "Foo", author: "Bar")
     
-    let page1 = Page(index: 0, imageURL: imageURL(), audioURL: audioURL())
+    let page1 = Page(index: 0)
     sut.add(page1)
-    let page2 = Page(index: 1, imageURL: imageURL(), audioURL: audioURL())
+    let page2 = Page(index: 1)
     sut.add(page2)
     
     XCTAssertEqual(sut.pageCount, 2)
