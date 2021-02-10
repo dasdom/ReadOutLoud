@@ -11,9 +11,9 @@ class BookPagesTableViewControllerTests: XCTestCase {
   private var book: Book!
   
   override func setUpWithError() throws {
-    book = Book(title: "Foo", author: "Bar")
-    book.add(Page(index: 0))
-    book.add(Page(index: 1))
+    book = Book(title: "Foo")
+    book.add(Page())
+    book.add(Page())
     
     sut = BookPagesTableViewController(book: book, allBooks: [book])
   }

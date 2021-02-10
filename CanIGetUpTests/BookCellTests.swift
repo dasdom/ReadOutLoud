@@ -19,13 +19,13 @@ class BookCellTests: XCTestCase {
   
   func test_update_setsImage() {
     sut.imageProvider = MockImageProvider()
-    sut.update(with: Book(title: "Foo", author: "Bar"))
+    sut.update(with: Book(title: "Foo"))
     
     XCTAssertNotNil(sut.imageView.image)
   }
   
   func test_update_setsTitle() {
-    sut.update(with: Book(title: "Foo", author: "Bar"))
+    sut.update(with: Book(title: "Foo"))
     
     XCTAssertEqual(sut.titleLabel.text, "Foo")
   }

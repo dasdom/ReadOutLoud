@@ -10,7 +10,7 @@ class BooksProviderTests: XCTestCase {
   private var book: Book!
   
   override func setUpWithError() throws {
-    book = Book(title: "Foo", author: "Bar")
+    book = Book(title: "Foo")
     FileManager.default.createBooksDiretory(for: book)
   }
   
@@ -20,8 +20,8 @@ class BooksProviderTests: XCTestCase {
 
   func test_save_returnsPage() {
     
-    let page = BooksProvider.save(imageData: Data(), audioData: Data(), inBook: book, forPageIndex: 42)
+    let page = BooksProvider.save(imageData: Data(), audioData: Data(), inBook: book)
     
-    XCTAssertEqual(page?.index, 42)
+    XCTAssertNotNil(page)
   }
 }

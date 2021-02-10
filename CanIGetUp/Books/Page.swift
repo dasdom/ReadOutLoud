@@ -5,5 +5,9 @@
 import Foundation
 
 struct Page: Codable, Equatable {
-  let index: Int
+  let id: UUID
+  
+  init() {
+    id = UUID()
+  }
 }

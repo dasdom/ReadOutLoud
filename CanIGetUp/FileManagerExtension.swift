@@ -47,15 +47,15 @@ extension FileManager {
     return booksURL
   }
   
-  func pageImageURL(for book: Book, pageIndex: Int) -> URL {
+  func pageImageURL(for book: Book, pageId: UUID) -> URL {
     let bookURL = documentsURL().appendingPathComponent("\(book.id)")
-    let pageURL = bookURL.appendingPathComponent("\(pageIndex)_image")
+    let pageURL = bookURL.appendingPathComponent("\(pageId)_image")
     return pageURL
   }
   
-  func pageAudioURL(for book: Book, pageIndex: Int) -> URL {
+  func pageAudioURL(for book: Book, pageId: UUID) -> URL {
     let bookURL = documentsURL().appendingPathComponent("\(book.id)")
-    let pageURL = bookURL.appendingPathComponent("\(pageIndex)_audio")
+    let pageURL = bookURL.appendingPathComponent("\(pageId)_audio")
     return pageURL
   }
 }

@@ -64,7 +64,11 @@ class BookPageInputViewController: UIViewController {
   
   @objc func addImage(_ sender: UIButton) {
     let imagePicker = UIImagePickerController()
+    #if targetEnvironment(simulator)
+    imagePicker.sourceType = .photoLibrary
+    #else
     imagePicker.sourceType = .camera
+    #endif
     imagePicker.delegate = self
     present(imagePicker, animated: true)
   }
@@ -150,7 +154,7 @@ extension BookPageInputViewController {
       return
     }
     
-    if let page = BooksProvider.save(imageData: data, audioData: audioData, inBook: book, forPageIndex: book.pageCount) {
+    if let page = BooksProvider.save(imageData: data, audioData: audioData, inBook: book) {
       book.add(page)
       completion()
     }

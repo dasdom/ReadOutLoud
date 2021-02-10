@@ -41,7 +41,9 @@ class BookPagesTableViewController: UITableViewController {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: PageCell.identifier, for: indexPath)
     
-    if let image = UIImage(contentsOfFile: book.pageImageURL(index: indexPath.row).path), let cell = cell as? PageCellProtocol {
+    if let url = book.pageImageURL(index: indexPath.row),
+       let image = UIImage(contentsOfFile: url.path),
+       let cell = cell as? PageCellProtocol {
       cell.update(with: image)
     }
     
@@ -57,9 +59,12 @@ class BookPagesTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let url = book.pageAudioURL(index: indexPath.row) else {
+      return
+    }
     do {
       try AVAudioSession.sharedInstance().setCategory(.playback)
-      player = try AVAudioPlayer(contentsOf: book.pageAudioURL(index: indexPath.row))
+      player = try AVAudioPlayer(contentsOf: url)
       player?.delegate = self
       player?.play()
     } catch {

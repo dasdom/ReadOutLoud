@@ -58,26 +58,18 @@ class BookDetailsViewController: UIViewController {
     contentView.stackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 20).isActive = true
   }
   
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
 }
 
 // MARK: - Actions
 extension BookDetailsViewController {
   @objc func save(_ sender: UIBarButtonItem) {
-    guard let title = titleTextField.text, let author = authorTextField.text else {
+    guard let title = titleTextField.text
+//          , let author = authorTextField.text
+    else {
       return
     }
     
-    let book = Book(title: title, author: author)
+    let book = Book(title: title)
     
     FileManager.default.createBooksDiretory(for: book)
     guard let image = contentView.coverImageView.image, let data = image.jpegData(compressionQuality: 0.8) else {
@@ -99,7 +91,11 @@ extension BookDetailsViewController {
   
   @objc func addImage(_ sender: UIButton) {
     let imagePicker = UIImagePickerController()
+    #if targetEnvironment(simulator)
     imagePicker.sourceType = .photoLibrary
+    #else
+    imagePicker.sourceType = .camera
+    #endif
     imagePicker.delegate = self
     present(imagePicker, animated: true)
   }
