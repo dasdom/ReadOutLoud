@@ -13,9 +13,9 @@ class BookDetailsViewController: UIViewController {
   private var titleTextField: UITextField {
     return contentView.titleTextField
   }
-  private var authorTextField: UITextField {
-    return contentView.authorTextField
-  }
+//  private var authorTextField: UITextField {
+//    return contentView.authorTextField
+//  }
   private let addCompletion: (Book) -> Void
   
   init(addCompletion: @escaping (Book) -> Void) {
@@ -33,7 +33,7 @@ class BookDetailsViewController: UIViewController {
     contentView.addImageButton.addTarget(self, action: #selector(addImage(_:)), for: .touchUpInside)
     
     contentView.titleTextField.delegate = self
-    contentView.authorTextField.delegate = self
+//    contentView.authorTextField.delegate = self
     
     view = contentView
   }
@@ -110,27 +110,30 @@ extension BookDetailsViewController: UITextFieldDelegate {
     let nsText = text as NSString
     let finalText = nsText.replacingCharacters(in: range, with: string)
     
-    let title: String?
-    let author: String?
-    if textField == titleTextField {
-      title = finalText
-      author = authorTextField.text
-    } else if textField == authorTextField {
-      title = titleTextField.text
-      author = finalText
-    } else {
-      title = nil
-      author = nil
-    }
+//    let title: String?
+//    let author: String?
+//    if textField == titleTextField {
+//      title = finalText
+//      author = authorTextField.text
+//    } else if textField == authorTextField {
+//      title = titleTextField.text
+//      author = finalText
+//    } else {
+//      title = nil
+//      author = nil
+//    }
     
-    updateSaveButton(title: title, author: author)
+    updateSaveButton(title: finalText)
     
     return true
   }
   
-  func updateSaveButton(title: String?, author: String?) {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+  }
+  
+  func updateSaveButton(title: String?) {
     if let title = title, !title.isEmpty,
-       let author = author, !author.isEmpty,
        contentView.coverImageView.image != nil {
       saveButton?.isEnabled = true
     } else {
@@ -146,7 +149,7 @@ extension BookDetailsViewController: UIImagePickerControllerDelegate & UINavigat
         
     contentView.coverImageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
     
-    updateSaveButton(title: titleTextField.text, author: authorTextField.text)
+    updateSaveButton(title: titleTextField.text)
   }
 }
 

@@ -7,10 +7,10 @@ import XCTest
 
 class PageCellTests: XCTestCase {
   
-  var sut: PageCell!
+  var sut: PageTableViewCell!
   
   override func setUpWithError() throws {
-    sut = PageCell()
+    sut = PageTableViewCell()
   }
   
   override func tearDownWithError() throws {

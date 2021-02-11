@@ -25,9 +25,10 @@ class BookPagesTableViewController: UITableViewController {
     super.viewDidLoad()
     
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add(_:)))
-    navigationItem.rightBarButtonItem = addButton
+    let playButton = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(play(_:)))
+    navigationItem.rightBarButtonItems = [addButton, playButton]
     
-    tableView.register(PageCell.self, forCellReuseIdentifier: PageCell.identifier)
+    tableView.register(PageTableViewCell.self, forCellReuseIdentifier: PageTableViewCell.identifier)
     
     title = book.title
   }
@@ -39,11 +40,11 @@ class BookPagesTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    let cell = tableView.dequeueReusableCell(withIdentifier: PageCell.identifier, for: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: PageTableViewCell.identifier, for: indexPath)
     
     if let url = book.pageImageURL(index: indexPath.row),
        let image = UIImage(contentsOfFile: url.path),
-       let cell = cell as? PageCellProtocol {
+       let cell = cell as? PageTableViewCellProtocol {
       cell.update(with: image)
     }
     
@@ -55,7 +56,7 @@ class BookPagesTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    
+    book.removePage(at: indexPath.row)
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -86,6 +87,11 @@ extension BookPagesTableViewController {
     })
     let navigationController = UINavigationController(rootViewController: next)
     present(navigationController, animated: true)
+  }
+  
+  @objc func play(_ sender: UIBarButtonItem) {
+    let next = BookPlayViewController(book: book)
+    navigationController?.pushViewController(next, animated: true)
   }
 }
 

@@ -7,7 +7,7 @@ import UIKit
 class BookDetailsView: UIView {
   
   let titleTextField: UITextField
-  let authorTextField: UITextField
+//  let authorTextField: UITextField
   let coverImageView: UIImageView
   let addImageButton: UIButton
   let stackView: UIStackView
@@ -18,9 +18,9 @@ class BookDetailsView: UIView {
     titleTextField.borderStyle = .bezel
     titleTextField.placeholder = "Title"
     
-    authorTextField = UITextField()
-    authorTextField.borderStyle = .bezel
-    authorTextField.placeholder = "Author"
+//    authorTextField = UITextField()
+//    authorTextField.borderStyle = .bezel
+//    authorTextField.placeholder = "Author"
     
     coverImageView = UIImageView()
     coverImageView.isUserInteractionEnabled = true
@@ -31,7 +31,7 @@ class BookDetailsView: UIView {
     addImageButton.setTitle("Add Image", for: .normal)
     coverImageView.addSubview(addImageButton)
     
-    stackView = UIStackView(arrangedSubviews: [titleTextField, authorTextField, coverImageView])
+    stackView = UIStackView(arrangedSubviews: [titleTextField, coverImageView])
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
     stackView.spacing = 4

@@ -4,7 +4,7 @@
 
 import UIKit
 
-class PageCell: UITableViewCell {
+class PageTableViewCell: UITableViewCell {
   
   let pageImageView: UIImageView
   
@@ -35,7 +35,7 @@ class PageCell: UITableViewCell {
   required init?(coder: NSCoder) { fatalError() }
 }
 
-extension PageCell: PageCellProtocol {
+extension PageTableViewCell: PageTableViewCellProtocol {
   func update(with image: UIImage) {
     pageImageView.image = image
   }

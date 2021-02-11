@@ -51,4 +51,10 @@ class Book: Codable {
     }
     return FileManager.default.pageAudioURL(for: self, pageId: page.id)
   }
+  
+  func removePage(at index: Int) {
+    if pages.count > index {
+      pages.remove(at: index)
+    }
+  }
 }

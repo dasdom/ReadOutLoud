@@ -4,6 +4,6 @@
 
 import UIKit
 
-protocol PageCellProtocol {
+protocol PageTableViewCellProtocol {
   func update(with: UIImage)
 }

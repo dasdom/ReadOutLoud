@@ -5,7 +5,7 @@
 import UIKit
 @testable import CanIGetUp
 
-class MockPageCell: UITableViewCell, PageCellProtocol {
+class MockPageCell: UITableViewCell, PageTableViewCellProtocol {
   
   var lastImageFromUpdate: UIImage?
   

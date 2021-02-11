@@ -33,9 +33,9 @@ class BookPagesTableViewControllerTests: XCTestCase {
     sut.loadViewIfNeeded()
     
     let indexPath = IndexPath(row: 0, section: 0)
-    let cell = sut.tableView.dequeueReusableCell(withIdentifier: PageCell.identifier, for: indexPath)
+    let cell = sut.tableView.dequeueReusableCell(withIdentifier: PageTableViewCell.identifier, for: indexPath)
     
-    XCTAssertTrue(cell is PageCell)
+    XCTAssertTrue(cell is PageTableViewCell)
   }
   
   func test_numberOfRows_isNumberOfPages() {
@@ -50,12 +50,12 @@ class BookPagesTableViewControllerTests: XCTestCase {
     let indexPath = IndexPath(row: 0, section: 0)
     let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath)
     
-    XCTAssertTrue(cell is PageCell)
+    XCTAssertTrue(cell is PageTableViewCell)
   }
   
   func test_cellForRow_callsUpdate() {
     
-    sut.tableView.register(MockPageCell.self, forCellReuseIdentifier: PageCell.identifier)
+    sut.tableView.register(MockPageCell.self, forCellReuseIdentifier: PageTableViewCell.identifier)
     
     let indexPath = IndexPath(row: 0, section: 0)
     let cell = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: indexPath) as! MockPageCell
