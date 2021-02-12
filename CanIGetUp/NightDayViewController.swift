@@ -32,9 +32,9 @@ class NightDayViewController: UIViewController {
     loadTimeSettings()
     updateView()
     
-    UIScreen.main.brightness = 0.1
+//    UIScreen.main.brightness = 0.1
     
-    NotificationCenter.default.addObserver(self, selector: #selector(updateButton), name: hideRaggitButtonChangeNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(updateButton), name: hideButtonChangeNotification, object: nil)
     NotificationCenter.default.addObserver(self, selector: #selector(loadTimeSettings), name: timeSettingChangeNotification, object: nil)
   }
   
@@ -87,6 +87,7 @@ class NightDayViewController: UIViewController {
   
   @objc func updateButton() {
     contentView.rabbitButton.isHidden = UserDefaults.standard.bool(forKey: hideRabbitButtonKey)
+    contentView.booksButton.isHidden = UserDefaults.standard.bool(forKey: hideBooksButtonKey)
   }
   
   @objc func loadTimeSettings() {

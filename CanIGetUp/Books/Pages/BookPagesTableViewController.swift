@@ -57,6 +57,8 @@ class BookPagesTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     book.removePage(at: indexPath.row)
+    BooksProvider.save(books: self.allBooks)
+    tableView.deleteRows(at: [indexPath], with: .automatic)
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -86,6 +88,7 @@ extension BookPagesTableViewController {
       BooksProvider.save(books: self.allBooks)
     })
     let navigationController = UINavigationController(rootViewController: next)
+    navigationController.modalPresentationStyle = .fullScreen
     present(navigationController, animated: true)
   }
   

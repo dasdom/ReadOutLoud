@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F20F0E9724405484005412B7 /* ImageCreditsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E9624405484005412B7 /* ImageCreditsTableViewController.swift */; };
 		F20F0E99244054BA005412B7 /* ImageCredit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E98244054BA005412B7 /* ImageCredit.swift */; };
+		F224B00D25D6BDDD007B3D2B /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224B00C25D6BDDD007B3D2B /* WaveformView.swift */; };
 		F224F38425A8FE8F005F0220 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F38325A8FE8F005F0220 /* BooksProvider.swift */; };
 		F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */; };
 		F24E67CB25D1DFB900A6B1A3 /* PageTableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E67CA25D1DFB900A6B1A3 /* PageTableViewCellProtocol.swift */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		F20F0E9624405484005412B7 /* ImageCreditsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreditsTableViewController.swift; sourceTree = "<group>"; };
 		F20F0E98244054BA005412B7 /* ImageCredit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCredit.swift; sourceTree = "<group>"; };
+		F224B00C25D6BDDD007B3D2B /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		F224F38325A8FE8F005F0220 /* BooksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProvider.swift; sourceTree = "<group>"; };
 		F224F38B25AB2774005F0220 /* CanIGetUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanIGetUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F224F38F25AB2774005F0220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -171,19 +173,11 @@
 		F26CE49B24815C1900B63124 /* Books */ = {
 			isa = PBXGroup;
 			children = (
-				F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */,
-				F2B73A3C259F25ED00F5CA3F /* BookCell.swift */,
-				F26D5FEC25B4B9F10087686F /* BookCellProtocol.swift */,
-				F2B73A42259F434A00F5CA3F /* BookDetailsViewController.swift */,
-				F2B73A45259F437A00F5CA3F /* BookDetailsView.swift */,
-				F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */,
-				F2B73A3F259F414800F5CA3F /* PageTableViewCell.swift */,
-				F24E67CA25D1DFB900A6B1A3 /* PageTableViewCellProtocol.swift */,
-				F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */,
-				F26CE4A024815ECB00B63124 /* BookPageInputView.swift */,
-				F2FE585325D482540080362B /* BookPlayViewController.swift */,
-				F2FE585925D483230080362B /* PageCollectionViewCell.swift */,
-				F2FE585D25D484360080362B /* PageCollectionViewCellProtocol.swift */,
+				F2FE586725D59FB20080362B /* BookCollection */,
+				F2FE586625D59F9F0080362B /* BookInput */,
+				F2FE586425D59F850080362B /* Pages */,
+				F2FE586325D59F690080362B /* PageInput */,
+				F2FE586525D59F8F0080362B /* Play */,
 				F2B73A36259F248700F5CA3F /* Book.swift */,
 				F2B73A39259F251D00F5CA3F /* Page.swift */,
 			);
@@ -238,6 +232,55 @@
 				F2827294233299F8004E94E0 /* Info.plist */,
 			);
 			path = CanIGetUp;
+			sourceTree = "<group>";
+		};
+		F2FE586325D59F690080362B /* PageInput */ = {
+			isa = PBXGroup;
+			children = (
+				F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */,
+				F26CE4A024815ECB00B63124 /* BookPageInputView.swift */,
+				F224B00C25D6BDDD007B3D2B /* WaveformView.swift */,
+			);
+			path = PageInput;
+			sourceTree = "<group>";
+		};
+		F2FE586425D59F850080362B /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */,
+				F2B73A3F259F414800F5CA3F /* PageTableViewCell.swift */,
+				F24E67CA25D1DFB900A6B1A3 /* PageTableViewCellProtocol.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		F2FE586525D59F8F0080362B /* Play */ = {
+			isa = PBXGroup;
+			children = (
+				F2FE585325D482540080362B /* BookPlayViewController.swift */,
+				F2FE585925D483230080362B /* PageCollectionViewCell.swift */,
+				F2FE585D25D484360080362B /* PageCollectionViewCellProtocol.swift */,
+			);
+			path = Play;
+			sourceTree = "<group>";
+		};
+		F2FE586625D59F9F0080362B /* BookInput */ = {
+			isa = PBXGroup;
+			children = (
+				F2B73A42259F434A00F5CA3F /* BookDetailsViewController.swift */,
+				F2B73A45259F437A00F5CA3F /* BookDetailsView.swift */,
+			);
+			path = BookInput;
+			sourceTree = "<group>";
+		};
+		F2FE586725D59FB20080362B /* BookCollection */ = {
+			isa = PBXGroup;
+			children = (
+				F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */,
+				F2B73A3C259F25ED00F5CA3F /* BookCell.swift */,
+				F26D5FEC25B4B9F10087686F /* BookCellProtocol.swift */,
+			);
+			path = BookCollection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F20F0E9724405484005412B7 /* ImageCreditsTableViewController.swift in Sources */,
+				F224B00D25D6BDDD007B3D2B /* WaveformView.swift in Sources */,
 				F2CDF7902440927C00A05AD2 /* AboutTableViewController.swift in Sources */,
 				F2B73A3D259F25ED00F5CA3F /* BookCell.swift in Sources */,
 				F282729F23329DD4004E94E0 /* NightDayView.swift in Sources */,
@@ -584,7 +628,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Q6PD97MRX4;
 				INFOPLIST_FILE = CanIGetUp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -605,7 +649,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Q6PD97MRX4;
 				INFOPLIST_FILE = CanIGetUp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

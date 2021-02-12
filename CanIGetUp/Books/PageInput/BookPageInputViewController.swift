@@ -11,6 +11,8 @@ class BookPageInputViewController: UIViewController {
   private let completion: () -> Void
   private let recorder: AVAudioRecorder
   private var player: AVAudioPlayer?
+  private var timer: Timer?
+  private var powers: [Float] = []
   private var contentView: BookPageInputView {
     return view as! BookPageInputView
   }
@@ -43,8 +45,8 @@ class BookPageInputViewController: UIViewController {
     
     contentView.imageInputButton.addTarget(self, action: #selector(addImage(_:)), for: .touchUpInside)
     contentView.recordPauseButton.addTarget(self, action: #selector(recordPause(_:)), for: .touchUpInside)
-    contentView.stopButton.addTarget(self, action: #selector(stop(_:)), for: .touchUpInside)
-    contentView.playButton.addTarget(self, action: #selector(play(_:)), for: .touchUpInside)
+//    contentView.stopButton.addTarget(self, action: #selector(stop(_:)), for: .touchUpInside)
+//    contentView.playButton.addTarget(self, action: #selector(play(_:)), for: .touchUpInside)
     
     view = contentView
   }
@@ -52,14 +54,16 @@ class BookPageInputViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    NSLayoutConstraint.activate([
-      contentView.stackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
-      contentView.stackView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
-    ])
+    if #available(iOS 11.0, *) {
+    } else {
+      NSLayoutConstraint.activate([
+        contentView.stackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+        contentView.stackView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
+      ])
+    }
     
     let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save(_:)))
     navigationItem.rightBarButtonItem = saveButton
-
   }
   
   @objc func addImage(_ sender: UIButton) {
@@ -75,23 +79,44 @@ class BookPageInputViewController: UIViewController {
   
   @objc func recordPause(_ sender: UIButton) {
     
-    if !recorder.isRecording {
-      print("pause")
+    if false == recorder.isRecording {
+      
+      timer?.invalidate()
+      powers = []
+      timer = Timer.scheduledTimer(withTimeInterval: 1/20.0, repeats: true, block: { timer in
+        self.recorder.updateMeters()
+        let power = self.recorder.averagePower(forChannel: 0)
+        self.powers.append(power)
+        if self.powers.count > 200 {
+          self.powers.removeFirst()
+        }
+        self.contentView.waveformView.values = self.powers
+      })
+      
+      print("record")
       do {
         try AVAudioSession.sharedInstance().setActive(true, options: [])
       } catch {
         print("error: \(error)")
       }
       
-      sender.setTitle("Pause", for: .normal)
+      sender.setImage(UIImage(named: "stop"), for: .normal)
       recorder.record()
-      
+            
     } else {
-      print("record")
       
-      sender.setTitle("Record", for: .normal)
-      recorder.pause()
+      timer?.invalidate()
       
+      print("stop")
+      
+      sender.setImage(UIImage(named: "record"), for: .normal)
+      recorder.stop()
+      
+      do {
+        try AVAudioSession.sharedInstance().setActive(false, options: [])
+      } catch {
+        print("error: \(error)")
+      }
     }
   }
   

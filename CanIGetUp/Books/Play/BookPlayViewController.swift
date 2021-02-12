@@ -71,10 +71,10 @@ class BookPlayViewController: UICollectionViewController {
     return cell
   }
   
-  override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
-    playAudio(for: pageIndex)
-  }
+//  override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//    let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
+//    playAudio(for: pageIndex)
+//  }
   
   func playAudio(for index: Int) {
     print("page: \(index)")
@@ -84,10 +84,20 @@ class BookPlayViewController: UICollectionViewController {
     do {
       try AVAudioSession.sharedInstance().setCategory(.playback)
       player = try AVAudioPlayer(contentsOf: url)
-//      player?.delegate = self
+      player?.delegate = self
       player?.play()
     } catch {
       print("error: \(error)")
     }
+  }
+  
+}
+
+extension BookPlayViewController: AVAudioPlayerDelegate {
+  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    let pageIndex = Int(collectionView.contentOffset.x / collectionView.frame.width)
+    let nextContentOffset = collectionView.contentOffset.x + collectionView.frame.width
+    collectionView.setContentOffset(CGPoint(x: nextContentOffset, y: collectionView.contentOffset.y), animated: true)
+    playAudio(for: pageIndex + 1)
   }
 }
