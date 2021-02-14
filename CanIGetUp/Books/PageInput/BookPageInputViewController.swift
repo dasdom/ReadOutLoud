@@ -24,7 +24,7 @@ class BookPageInputViewController: UIViewController {
     
     do {
       try AVAudioSession.sharedInstance().setCategory(.playAndRecord)
-      recorder = try AVAudioRecorder(url: FileManager.default.audioTestPath(), settings: [AVFormatIDKey: kAudioFormatMPEG4AAC, AVSampleRateKey: 44100.0, AVNumberOfChannelsKey: 2])
+      recorder = try AVAudioRecorder(url: FileManager.default.audioTmpPath(), settings: [AVFormatIDKey: kAudioFormatMPEG4AAC, AVSampleRateKey: 44100.0, AVNumberOfChannelsKey: 2])
     } catch {
       print("error: \(error)")
       fatalError()
@@ -45,8 +45,8 @@ class BookPageInputViewController: UIViewController {
     
     contentView.imageInputButton.addTarget(self, action: #selector(addImage(_:)), for: .touchUpInside)
     contentView.recordPauseButton.addTarget(self, action: #selector(recordPause(_:)), for: .touchUpInside)
-//    contentView.stopButton.addTarget(self, action: #selector(stop(_:)), for: .touchUpInside)
-//    contentView.playButton.addTarget(self, action: #selector(play(_:)), for: .touchUpInside)
+    contentView.doneButton.addTarget(self, action: #selector(done(_:)), for: .touchUpInside)
+    contentView.nextButton.addTarget(self, action: #selector(next(_:)), for: .touchUpInside)
     
     view = contentView
   }
@@ -62,8 +62,10 @@ class BookPageInputViewController: UIViewController {
       ])
     }
     
-    let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save(_:)))
-    navigationItem.rightBarButtonItem = saveButton
+    updateButtons()
+    
+//    let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save(_:)))
+//    navigationItem.rightBarButtonItem = saveButton
   }
   
   @objc func addImage(_ sender: UIButton) {
@@ -117,37 +119,39 @@ class BookPageInputViewController: UIViewController {
       } catch {
         print("error: \(error)")
       }
+      
+      updateButtons()
     }
   }
   
-  @objc func stop(_ sender: UIButton) {
-    
-    print("stop")
-    
-    recorder.stop()
-    
-    do {
-      try AVAudioSession.sharedInstance().setActive(false, options: [])
-    } catch {
-      print("error: \(error)")
-    }
-  }
-  
-  @objc func play(_ sender: UIButton) {
-    
-    print("play")
-    
-    if !recorder.isRecording {
-      do {
-        try AVAudioSession.sharedInstance().setCategory(.playback)
-        player = try AVAudioPlayer(contentsOf: FileManager.default.audioTestPath())
-        player?.delegate = self
-        player?.play()
-      } catch {
-        print("error: \(error)")
-      }
-    }
-  }
+//  @objc func stop(_ sender: UIButton) {
+//
+//    print("stop")
+//
+//    recorder.stop()
+//
+//    do {
+//      try AVAudioSession.sharedInstance().setActive(false, options: [])
+//    } catch {
+//      print("error: \(error)")
+//    }
+//  }
+//
+//  @objc func play(_ sender: UIButton) {
+//
+//    print("play")
+//
+//    if !recorder.isRecording {
+//      do {
+//        try AVAudioSession.sharedInstance().setCategory(.playback)
+//        player = try AVAudioPlayer(contentsOf: FileManager.default.audioTestPath())
+//        player?.delegate = self
+//        player?.play()
+//      } catch {
+//        print("error: \(error)")
+//      }
+//    }
+//  }
 }
 
 extension BookPageInputViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -157,6 +161,8 @@ extension BookPageInputViewController: UIImagePickerControllerDelegate, UINaviga
     dismiss(animated: true)
         
     contentView.imageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+    
+    updateButtons()
   }
 }
 
@@ -169,13 +175,24 @@ extension BookPageInputViewController: AVAudioPlayerDelegate {
 }
 
 extension BookPageInputViewController {
-  @objc func save(_ sender: UIBarButtonItem) {
+  @objc func next(_ sender: UIButton) {
+    save()
     
+    contentView.reset()
+  }
+  
+  @objc func done(_ sender: UIButton) {
+    save()
+    
+    dismiss(animated: true)
+  }
+  
+  func save() {
     guard let image = contentView.imageView.image, let data = image.jpegData(compressionQuality: 0.8) else {
       return
     }
     
-    guard let audioData = try? Data(contentsOf: FileManager.default.audioTestPath()) else {
+    guard let audioData = try? Data(contentsOf: FileManager.default.audioTmpPath()) else {
       return
     }
     
@@ -183,7 +200,13 @@ extension BookPageInputViewController {
       book.add(page)
       completion()
     }
-    
-    dismiss(animated: true)
+  }
+  
+  func updateButtons() {
+    if let _ = contentView.imageView.image, let _ = try? Data(contentsOf: FileManager.default.audioTmpPath()) {
+      contentView.nextButton.isEnabled = true
+    } else {
+      contentView.nextButton.isEnabled = false
+    }
   }
 }

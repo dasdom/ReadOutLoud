@@ -77,7 +77,7 @@ class NightDayViewController: UIViewController {
   }
   
   @objc func openMusic() {
-    UIApplication.shared.openURL(URL(string: "music://")!)
+    UIApplication.shared.open(URL(string: "music://")!, options: [:], completionHandler: nil)
   }
   
   @objc func openBooks() {

@@ -7,10 +7,11 @@ import AVFoundation
 
 private let reuseIdentifier = "Cell"
 
-class BookPlayViewController: UICollectionViewController {
+class BookPlayViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
   let book: Book
   private var player: AVAudioPlayer?
+  private var currentPage: Int = 0
 
   init(book: Book) {
     
@@ -33,23 +34,28 @@ class BookPlayViewController: UICollectionViewController {
     collectionView?.register(PageCollectionViewCell.self, forCellWithReuseIdentifier: PageCollectionViewCell.identifier)
     
     collectionView?.isPagingEnabled = true
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    
-    if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-      flowLayout.itemSize = collectionView.frame
-        .inset(by: collectionView.contentInset)
-        .inset(by: UIEdgeInsets(top: navigationController?.navigationBar.frame.maxY ?? 0, left: 0, bottom: 40, right: 0))
-        .size
-    }
+    collectionView?.isScrollEnabled = false
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
     playAudio(for: 0)
+    
+    UIApplication.shared.isIdleTimerDisabled = true
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    UIApplication.shared.isIdleTimerDisabled = false
+  }
+  
+  
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    let contentOffset = CGFloat(currentPage) * size.width
+    collectionView.setContentOffset(CGPoint(x: contentOffset, y: collectionView.contentOffset.y), animated: true)
+    collectionView.collectionViewLayout.invalidateLayout()
   }
   
   // MARK: UICollectionViewDataSource
@@ -71,10 +77,9 @@ class BookPlayViewController: UICollectionViewController {
     return cell
   }
   
-//  override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//    let pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.width)
-//    playAudio(for: pageIndex)
-//  }
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return collectionView.frame.inset(by: collectionView.safeAreaInsets).size
+  }
   
   func playAudio(for index: Int) {
     print("page: \(index)")
@@ -95,9 +100,15 @@ class BookPlayViewController: UICollectionViewController {
 
 extension BookPlayViewController: AVAudioPlayerDelegate {
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-    let pageIndex = Int(collectionView.contentOffset.x / collectionView.frame.width)
-    let nextContentOffset = collectionView.contentOffset.x + collectionView.frame.width
-    collectionView.setContentOffset(CGPoint(x: nextContentOffset, y: collectionView.contentOffset.y), animated: true)
-    playAudio(for: pageIndex + 1)
+    let width = collectionView.contentSize.width / CGFloat(book.pageCount) //collectionView.frame.inset(by: collectionView.safeAreaInsets).size.width
+    let offset = collectionView.safeAreaInsets.left
+//    let pageIndex = Int(collectionView.contentOffset.x / (width - offset))
+    currentPage = currentPage + 1
+    if currentPage >= book.pageCount {
+      navigationController?.popViewController(animated: true)
+    }
+    let contentOffset = CGFloat(currentPage) * width - offset
+    collectionView.setContentOffset(CGPoint(x: contentOffset, y: collectionView.contentOffset.y), animated: true)
+    playAudio(for: currentPage)
   }
 }

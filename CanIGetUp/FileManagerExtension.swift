@@ -14,8 +14,13 @@ extension FileManager {
     return documentsURL().appendingPathComponent("settings.json")
   }
   
-  func audioTestPath() -> URL {
-    return documentsURL().appendingPathComponent("test_record.m4a")
+  func audioTmpPath() -> URL {
+    return documentsURL().appendingPathComponent("tmp_record.m4a")
+  }
+  
+  func removeTmpAudio() {
+    let url = audioTmpPath()
+    try? removeItem(at: url)
   }
   
   func createBooksDiretory(for book: Book) {

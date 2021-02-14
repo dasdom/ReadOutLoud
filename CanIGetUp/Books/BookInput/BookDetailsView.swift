@@ -43,6 +43,7 @@ class BookDetailsView: UIView {
     addSubview(stackView)
     
     NSLayoutConstraint.activate([
+      stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
       stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
       stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
       stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),

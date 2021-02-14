@@ -10,6 +10,8 @@ class BookPageInputView: UIView {
   let imageInputButton: UIButton
   let recordPauseButton: UIButton
   let waveformView: WaveformView
+  let doneButton: UIButton
+  let nextButton: UIButton
 //  let stopButton: UIButton
 //  let playButton: UIButton
   let stackView: UIStackView
@@ -36,9 +38,19 @@ class BookPageInputView: UIView {
     waveformView = WaveformView()
     waveformView.backgroundColor = .black
     
+    doneButton = UIButton(type: .system)
+    doneButton.setTitle("Done", for: .normal)
+    doneButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+    
+    nextButton = UIButton(type: .system)
+    nextButton.setTitle("Next", for: .normal)
+    nextButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+
     let recordHostView = UIView()
     
-    stackView = UIStackView(arrangedSubviews: [imageView, waveformView, recordHostView])
+    let buttonStackView = UIStackView(arrangedSubviews: [doneButton, recordHostView, nextButton])
+    
+    stackView = UIStackView(arrangedSubviews: [imageView, waveformView, buttonStackView])
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
 
@@ -78,8 +90,11 @@ class BookPageInputView: UIView {
     NSLayoutConstraint.activate(layoutConstraints)
   }
   
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  required init?(coder: NSCoder) { fatalError() }
   
+  func reset() {
+    imageView.image = nil
+    waveformView.values = []
+    FileManager.default.removeTmpAudio()
+  }
 }

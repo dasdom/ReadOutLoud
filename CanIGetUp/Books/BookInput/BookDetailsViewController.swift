@@ -47,17 +47,10 @@ class BookDetailsViewController: UIViewController {
     navigationItem.rightBarButtonItem = saveButton
     saveButton?.isEnabled = false
     
-    let cancelButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(dismiss(_:)))
+    let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismiss(_:)))
     navigationItem.leftBarButtonItem = cancelButton
     
   }
-  
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-    
-    contentView.stackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 20).isActive = true
-  }
-  
 }
 
 // MARK: - Actions
