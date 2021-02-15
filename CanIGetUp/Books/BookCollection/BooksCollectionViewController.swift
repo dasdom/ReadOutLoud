@@ -12,7 +12,7 @@ class BooksCollectionViewController: UICollectionViewController {
     let flowLayout = UICollectionViewFlowLayout()
     
     books = BooksProvider.loadBooks()
-    
+
     super.init(collectionViewLayout: flowLayout)
   }
   
@@ -23,9 +23,8 @@ class BooksCollectionViewController: UICollectionViewController {
     
     collectionView?.register(BookCell.self, forCellWithReuseIdentifier: BookCell.identifier)
     
-    let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add(_:)))
-    navigationItem.rightBarButtonItem = addButton
-        
+    navigationItem.rightBarButtonItems = [editButtonItem]
+    
     title = "Books"
   }
   
@@ -60,7 +59,12 @@ class BooksCollectionViewController: UICollectionViewController {
   // MARK: UICollectionViewDelegate
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let book = books[indexPath.row]
-    let next = BookPagesTableViewController(book: book, allBooks: books)
+    let next: UIViewController
+    if isEditing {
+      next = BookPagesTableViewController(book: book, allBooks: books)
+    } else {
+      next = BookPlayViewController(book: book)
+    }
     navigationController?.pushViewController(next, animated: true)
   }
 }
@@ -75,5 +79,15 @@ extension BooksCollectionViewController {
     }
     let navigationController = UINavigationController(rootViewController: next)
     present(navigationController, animated: true)
+  }
+  
+  override func setEditing(_ editing: Bool, animated: Bool) {
+    super.setEditing(editing, animated: animated)
+    if editing {
+      let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add(_:)))
+      navigationItem.rightBarButtonItems = [addButton, editButtonItem]
+    } else {
+      navigationItem.rightBarButtonItems = [editButtonItem]
+    }
   }
 }

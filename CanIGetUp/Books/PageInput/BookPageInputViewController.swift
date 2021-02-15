@@ -43,7 +43,7 @@ class BookPageInputViewController: UIViewController {
   override func loadView() {
     let contentView = BookPageInputView()
     
-    contentView.imageInputButton.addTarget(self, action: #selector(addImage(_:)), for: .touchUpInside)
+    contentView.imageInputButton.addTarget(self, action: #selector(addImage), for: .touchUpInside)
     contentView.recordPauseButton.addTarget(self, action: #selector(recordPause(_:)), for: .touchUpInside)
     contentView.doneButton.addTarget(self, action: #selector(done(_:)), for: .touchUpInside)
     contentView.nextButton.addTarget(self, action: #selector(next(_:)), for: .touchUpInside)
@@ -63,12 +63,15 @@ class BookPageInputViewController: UIViewController {
     }
     
     updateButtons()
-    
-//    let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save(_:)))
-//    navigationItem.rightBarButtonItem = saveButton
   }
   
-  @objc func addImage(_ sender: UIButton) {
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    addImage()
+  }
+  
+  @objc func addImage() {
     let imagePicker = UIImagePickerController()
     #if targetEnvironment(simulator)
     imagePicker.sourceType = .photoLibrary
@@ -179,6 +182,7 @@ extension BookPageInputViewController {
     save()
     
     contentView.reset()
+    addImage()
   }
   
   @objc func done(_ sender: UIButton) {
