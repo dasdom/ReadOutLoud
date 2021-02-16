@@ -65,12 +65,6 @@ class BookPageInputViewController: UIViewController {
     updateButtons()
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    
-    addImage()
-  }
-  
   @objc func addImage() {
     let imagePicker = UIImagePickerController()
     #if targetEnvironment(simulator)

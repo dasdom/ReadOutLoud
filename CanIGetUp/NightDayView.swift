@@ -16,6 +16,7 @@ class NightDayView: UIView {
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.image = UIImage(named: "day")
     imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
     
     rabbitButton = UIButton(type: .custom)
     rabbitButton.translatesAutoresizingMaskIntoConstraints = false

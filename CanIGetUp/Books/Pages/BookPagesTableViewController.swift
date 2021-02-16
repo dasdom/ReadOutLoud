@@ -10,11 +10,13 @@ class BookPagesTableViewController: UITableViewController {
   var book: Book
   var allBooks: [Book]
   private var player: AVAudioPlayer?
+  private let deleteCompletion: ([Book]) -> Void
 
-  init(book: Book, allBooks: [Book]) {
+  init(book: Book, allBooks: [Book], deleteCompletion: @escaping ([Book]) -> Void) {
     
     self.book = book
     self.allBooks = allBooks
+    self.deleteCompletion = deleteCompletion
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -25,7 +27,7 @@ class BookPagesTableViewController: UITableViewController {
     super.viewDidLoad()
     
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add(_:)))
-    let playButton = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(play(_:)))
+    let playButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trash(_:)))
     navigationItem.rightBarButtonItems = [addButton, playButton]
     
     tableView.register(PageTableViewCell.self, forCellReuseIdentifier: PageTableViewCell.identifier)
@@ -92,9 +94,16 @@ extension BookPagesTableViewController {
     present(next, animated: true)
   }
   
-  @objc func play(_ sender: UIBarButtonItem) {
-    let next = BookPlayViewController(book: book)
-    navigationController?.pushViewController(next, animated: true)
+//  @objc func play(_ sender: UIBarButtonItem) {
+//    let next = BookPlayViewController(book: book)
+//    navigationController?.pushViewController(next, animated: true)
+//  }
+  
+  @objc func trash(_ sender: UIBarButtonItem) {
+    allBooks.removeAll(where: { $0.id == book.id })
+    BooksProvider.save(books: allBooks)
+    deleteCompletion(allBooks)
+    navigationController?.popViewController(animated: true)
   }
 }
 

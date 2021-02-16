@@ -14,6 +14,7 @@
 		F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */; };
 		F24E67CB25D1DFB900A6B1A3 /* PageTableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E67CA25D1DFB900A6B1A3 /* PageTableViewCellProtocol.swift */; };
 		F24E67CF25D1E06C00A6B1A3 /* MockPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E67CE25D1E06C00A6B1A3 /* MockPageCell.swift */; };
+		F25E8C8D25DC706600F316E3 /* AddBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E8C8C25DC706600F316E3 /* AddBookCell.swift */; };
 		F26CE49A24815C1200B63124 /* BooksCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */; };
 		F26CE49D24815C8700B63124 /* BookPagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */; };
 		F26CE49F24815DC700B63124 /* BookPageInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */; };
@@ -76,6 +77,7 @@
 		F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewControllerTests.swift; sourceTree = "<group>"; };
 		F24E67CA25D1DFB900A6B1A3 /* PageTableViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTableViewCellProtocol.swift; sourceTree = "<group>"; };
 		F24E67CE25D1E06C00A6B1A3 /* MockPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPageCell.swift; sourceTree = "<group>"; };
+		F25E8C8C25DC706600F316E3 /* AddBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookCell.swift; sourceTree = "<group>"; };
 		F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewController.swift; sourceTree = "<group>"; };
 		F26CE49C24815C8700B63124 /* BookPagesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPagesTableViewController.swift; sourceTree = "<group>"; };
 		F26CE49E24815DC700B63124 /* BookPageInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPageInputViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				F26CE49924815C1100B63124 /* BooksCollectionViewController.swift */,
 				F2B73A3C259F25ED00F5CA3F /* BookCell.swift */,
 				F26D5FEC25B4B9F10087686F /* BookCellProtocol.swift */,
+				F25E8C8C25DC706600F316E3 /* AddBookCell.swift */,
 			);
 			path = BookCollection;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				F27FA765233952C400F3CD61 /* TimePeriod.swift in Sources */,
 				F2FE585E25D484360080362B /* PageCollectionViewCellProtocol.swift in Sources */,
 				F2B73A3A259F251D00F5CA3F /* Page.swift in Sources */,
+				F25E8C8D25DC706600F316E3 /* AddBookCell.swift in Sources */,
 				F2FB3AF625B4E2F500D60597 /* ImageProvider.swift in Sources */,
 				F28272A52332B6B4004E94E0 /* TimeSetting.swift in Sources */,
 				F2827289233299F0004E94E0 /* AppDelegate.swift in Sources */,

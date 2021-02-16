@@ -12,7 +12,9 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
   let book: Book
   private var player: AVAudioPlayer?
   private var currentPage: Int = 0
-
+  private var displayLink: CADisplayLink? = nil
+  private var progressView: UIProgressView
+  
   init(book: Book) {
     
     self.book = book
@@ -23,7 +25,14 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
     flowLayout.minimumInteritemSpacing = 0
     flowLayout.minimumLineSpacing = 0
     
+    progressView = UIProgressView(progressViewStyle: .bar)
+    progressView.progressTintColor = .white
+    
     super.init(collectionViewLayout: flowLayout)
+    
+    displayLink = CADisplayLink(target: self, selector: #selector(updateProgress))
+    
+    collectionView.addSubview(progressView)
   }
   
   required init?(coder: NSCoder) { fatalError() }
@@ -35,6 +44,8 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
     
     collectionView?.isPagingEnabled = true
     collectionView?.isScrollEnabled = false
+    
+    progressView.frame = CGRect(x: 0, y: 0, width: collectionView.frame.width, height: 20)
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -48,6 +59,10 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
+    player?.stop()
+    player = nil
+    displayLink?.remove(from: .current, forMode: .common)
+    displayLink = nil
     UIApplication.shared.isIdleTimerDisabled = false
   }
   
@@ -56,6 +71,9 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
     let contentOffset = CGFloat(currentPage) * size.width
     collectionView.setContentOffset(CGPoint(x: contentOffset, y: collectionView.contentOffset.y), animated: true)
     collectionView.collectionViewLayout.invalidateLayout()
+    
+    progressView.frame.origin.x = collectionView.contentOffset.x
+    progressView.frame.size.width = size.width
   }
   
   // MARK: UICollectionViewDataSource
@@ -88,14 +106,26 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
     }
     do {
       try AVAudioSession.sharedInstance().setCategory(.playback)
+      player = nil
       player = try AVAudioPlayer(contentsOf: url)
       player?.delegate = self
       player?.play()
+      
+      displayLink?.add(to: .current, forMode: .common)
     } catch {
       print("error: \(error)")
     }
   }
   
+  override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    progressView.frame.origin.x = scrollView.contentOffset.x
+  }
+  
+  @objc func updateProgress() {
+    if let currentTime = player?.currentTime, let total = player?.duration {
+      progressView.progress = Float(currentTime / total)
+    }
+  }
 }
 
 extension BookPlayViewController: AVAudioPlayerDelegate {
@@ -107,7 +137,7 @@ extension BookPlayViewController: AVAudioPlayerDelegate {
     if currentPage >= book.pageCount {
       navigationController?.popViewController(animated: true)
     }
-    let contentOffset = CGFloat(currentPage) * width - offset
+      let contentOffset = CGFloat(currentPage) * width - offset
     collectionView.setContentOffset(CGPoint(x: contentOffset, y: collectionView.contentOffset.y), animated: true)
     playAudio(for: currentPage)
   }

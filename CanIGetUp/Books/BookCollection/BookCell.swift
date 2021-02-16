@@ -11,7 +11,6 @@ class BookCell: UICollectionViewCell {
   
   static var identifier: String {
     let identifier = self.description()
-    print(identifier)
     return identifier
   }
   
