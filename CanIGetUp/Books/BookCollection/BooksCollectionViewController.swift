@@ -6,13 +6,12 @@ import UIKit
 
 class BooksCollectionViewController: UICollectionViewController {
   
-  var books: [Book]
+  var books: [Book] = []
+  var booksToShow: [Book] = []
   
   init() {
     let flowLayout = UICollectionViewFlowLayout()
-    
-    books = BooksProvider.loadBooks()
-
+        
     super.init(collectionViewLayout: flowLayout)
   }
   
@@ -24,12 +23,6 @@ class BooksCollectionViewController: UICollectionViewController {
     collectionView?.register(BookCell.self, forCellWithReuseIdentifier: BookCell.identifier)
     collectionView?.register(AddBookCell.self, forCellWithReuseIdentifier: AddBookCell.identifier)
 
-    let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(settings))
-    let nightButton = UIBarButtonItem(image: UIImage(named: "nightMode"), style: .plain, target: self, action: #selector(night))
-    
-    navigationItem.leftBarButtonItems = [settingsButton, nightButton]
-    navigationItem.rightBarButtonItems = [editButtonItem]
-    
     title = "Books"
     
     collectionView.backgroundColor = .white
@@ -43,54 +36,57 @@ class BooksCollectionViewController: UICollectionViewController {
       let itemHeight = itemWidth
       flowLayout.itemSize = CGSize(width: itemWidth, height: itemHeight)
     }
+    
+    let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(settings))
+    let nightButton = UIBarButtonItem(image: UIImage(named: "nightMode"), style: .plain, target: self, action: #selector(night))
+    let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+    
+    books = BooksProvider.loadBooks()
+
+    if isEditing {
+      navigationItem.rightBarButtonItem = addButton
+      booksToShow = books
+    } else {
+      navigationItem.leftBarButtonItem = nightButton
+      navigationItem.rightBarButtonItem = settingsButton
+      booksToShow = books.filter({ $0.pageCount > 0 })
+    }
+    
+    collectionView.reloadData()
   }
   
   // MARK: UICollectionViewDataSource
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return books.count + 1
+    return booksToShow.count
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-    if indexPath.row >= books.count {
-      
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddBookCell.identifier, for: indexPath)
-      
-      return cell
-      
-    } else {
-      
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.identifier, for: indexPath)
-      
-      let book = books[indexPath.row]
-      print("book.id: \(book.id)")
-      if let cell = cell as? BookCellProtocol {
-        cell.update(with: book)
-      }
-      
-      return cell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCell.identifier, for: indexPath)
+    
+    let book = booksToShow[indexPath.row]
+    print("book.id: \(book.id)")
+    if let cell = cell as? BookCellProtocol {
+      cell.update(with: book)
     }
+    
+    return cell
   }
   
   // MARK: UICollectionViewDelegate
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
-    if indexPath.row >= books.count {
-      add()
+    let book = booksToShow[indexPath.row]
+    let next: UIViewController
+    if isEditing {
+      next = BookPagesTableViewController(book: book, allBooks: booksToShow, deleteCompletion: { books in
+        self.booksToShow = books
+        self.collectionView.reloadData()
+      })
     } else {
-      
-      let book = books[indexPath.row]
-      let next: UIViewController
-      if isEditing {
-        next = BookPagesTableViewController(book: book, allBooks: books, deleteCompletion: { books in
-          self.books = books
-          self.collectionView.reloadData()
-        })
-      } else {
-        next = BookPlayViewController(book: book)
-      }
-      navigationController?.pushViewController(next, animated: true)
+      next = BookPlayViewController(book: book)
     }
+    navigationController?.pushViewController(next, animated: true)
   }
 }
 
@@ -98,16 +94,17 @@ class BooksCollectionViewController: UICollectionViewController {
 extension BooksCollectionViewController {
   @objc func add() {
     let next = BookDetailsViewController { book in
-      self.books.append(book)
+      self.booksToShow.append(book)
       self.collectionView.reloadData()
-      BooksProvider.save(books: self.books)
-      let next = BookPagesTableViewController(book: book, allBooks: self.books, deleteCompletion: { books in
-        self.books = books
+      BooksProvider.save(books: self.booksToShow)
+      let next = BookPagesTableViewController(book: book, allBooks: self.booksToShow, deleteCompletion: { books in
+        self.booksToShow = books
         self.collectionView.reloadData()
       })
       self.navigationController?.pushViewController(next, animated: true)
     }
     let navigationController = UINavigationController(rootViewController: next)
+    navigationController.modalPresentationStyle = .fullScreen
     present(navigationController, animated: true)
   }
     
@@ -117,6 +114,7 @@ extension BooksCollectionViewController {
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
       if let textField = alert.textFields?.first, textField.text == "42" || textField.text == "fourty two" {
         let next = UINavigationController(rootViewController: SettingsTableViewController())
+        next.modalPresentationStyle = .fullScreen
         self.present(next, animated: true)
       }
     }))
@@ -128,13 +126,13 @@ extension BooksCollectionViewController {
     navigationController?.pushViewController(next, animated: true)
   }
   
-  override func setEditing(_ editing: Bool, animated: Bool) {
-    super.setEditing(editing, animated: animated)
-    if editing {
-      let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
-      navigationItem.rightBarButtonItems = [addButton, editButtonItem]
-    } else {
-      navigationItem.rightBarButtonItems = [editButtonItem]
-    }
-  }
+//  override func setEditing(_ editing: Bool, animated: Bool) {
+//    super.setEditing(editing, animated: animated)
+//    if editing {
+//      let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+//      navigationItem.rightBarButtonItems = [addButton, editButtonItem]
+//    } else {
+//      navigationItem.rightBarButtonItems = [editButtonItem]
+//    }
+//  }
 }

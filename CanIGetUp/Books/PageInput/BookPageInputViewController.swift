@@ -65,6 +65,12 @@ class BookPageInputViewController: UIViewController {
     updateButtons()
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    contentView.reset()
+  }
+  
   @objc func addImage() {
     let imagePicker = UIImagePickerController()
     #if targetEnvironment(simulator)
@@ -176,7 +182,8 @@ extension BookPageInputViewController {
     save()
     
     contentView.reset()
-    addImage()
+    updateButtons()
+//    addImage()
   }
   
   @objc func done(_ sender: UIButton) {

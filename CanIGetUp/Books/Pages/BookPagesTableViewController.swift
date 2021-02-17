@@ -89,8 +89,7 @@ extension BookPagesTableViewController {
       self.tableView.reloadData()
       BooksProvider.save(books: self.allBooks)
     })
-//    let navigationController = UINavigationController(rootViewController: next)
-//    navigationController.modalPresentationStyle = .fullScreen
+    next.modalPresentationStyle = .fullScreen
     present(next, animated: true)
   }
   

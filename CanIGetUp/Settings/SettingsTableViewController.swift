@@ -10,6 +10,7 @@ let hideButtonChangeNotification = Notification.Name(rawValue: "hideButtonChange
 let timeSettingChangeNotification = Notification.Name(rawValue: "timeSettingChangeNotification")
 
 private enum SettingsSection : Int, CaseIterable {
+  case books
   case time
   case credits
   case misc
@@ -85,12 +86,14 @@ extension SettingsTableViewController {
     let numberOfRows: Int
     
     switch settingsSection {
-    case .time:
-      numberOfRows = timeSettings.count
-    case .credits:
-      numberOfRows = 1
-    case .misc:
-      numberOfRows = MiscRow.allCases.count
+      case .books:
+        numberOfRows = 1
+      case .time:
+        numberOfRows = timeSettings.count
+      case .credits:
+        numberOfRows = 1
+      case .misc:
+        numberOfRows = MiscRow.allCases.count
     }
     
     return numberOfRows
@@ -105,55 +108,61 @@ extension SettingsTableViewController {
     let cell: UITableViewCell
     
     switch settingsSection {
-    
-    case .time:
       
-      let timeCell = tableView.dequeueReusableCell(withIdentifier: SettingsTimeTableViewCell.identifier, for: indexPath) as! SettingsTimeTableViewCell
+      case .books:
+        
+        cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
+        cell.textLabel?.text = "Books"
+        cell.accessoryType = .disclosureIndicator
       
-      let timeSetting = timeSettings[indexPath.row]
-      timeCell.update(timeSetting: timeSetting) { date, error in
-        if let date = date {
-          timeSetting.time = Time(date: date)
-          self.writeTimeSettings()
-          tableView.reloadRows(at: [indexPath], with: .none)
+      case .time:
+        
+        let timeCell = tableView.dequeueReusableCell(withIdentifier: SettingsTimeTableViewCell.identifier, for: indexPath) as! SettingsTimeTableViewCell
+        
+        let timeSetting = timeSettings[indexPath.row]
+        timeCell.update(timeSetting: timeSetting) { date, error in
+          if let date = date {
+            timeSetting.time = Time(date: date)
+            self.writeTimeSettings()
+            tableView.reloadRows(at: [indexPath], with: .none)
+          }
         }
-      }
-      cell = timeCell
-      
-    case .credits:
-      
-      cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
-      cell.textLabel?.text = "Images"
-      cell.accessoryType = .disclosureIndicator
-     
-    case .misc:
-      
-      guard let miscRow = MiscRow(rawValue: indexPath.row) else {
-        return UITableViewCell()
-      }
-      
-      switch miscRow {
-        case .showRabbitButton:
-          cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
-          cell.textLabel?.text = "Show rabbit button"
-          if hideRabbitButton {
-            cell.accessoryType = .none
-          } else {
-            cell.accessoryType = .checkmark
-          }
-        case .showBooksButton:
-          cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
-          cell.textLabel?.text = "Show books button"
-          if hideBooksButton {
-            cell.accessoryType = .none
-          } else {
-            cell.accessoryType = .checkmark
-          }
-        case .about:
-          cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
-          cell.textLabel?.text = "About"
-          cell.accessoryType = .disclosureIndicator
-      }
+        cell = timeCell
+        
+      case .credits:
+        
+        cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
+        cell.textLabel?.text = "Images"
+        cell.accessoryType = .disclosureIndicator
+        
+      case .misc:
+        
+        guard let miscRow = MiscRow(rawValue: indexPath.row) else {
+          return UITableViewCell()
+        }
+        
+        switch miscRow {
+          case .showRabbitButton:
+            cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
+            cell.textLabel?.text = "Show rabbit button"
+            if hideRabbitButton {
+              cell.accessoryType = .none
+            } else {
+              cell.accessoryType = .checkmark
+            }
+          case .showBooksButton:
+            cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
+            cell.textLabel?.text = "Show books button"
+            if hideBooksButton {
+              cell.accessoryType = .none
+            } else {
+              cell.accessoryType = .checkmark
+            }
+          case .about:
+            cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
+            cell.textLabel?.text = "About"
+            cell.accessoryType = .disclosureIndicator
+        }
     }
     
     return cell
@@ -168,12 +177,14 @@ extension SettingsTableViewController {
     let title: String
     
     switch settingsSection {
-    case .time:
-      title = "Times"
-    case .credits:
-      title = "Credits"
-    case .misc:
-      title = "Misc"
+      case .books:
+        title = "Add books"
+      case .time:
+        title = "Night Mode Times"
+      case .credits:
+        title = "Credits"
+      case .misc:
+        title = "Misc"
     }
     
     return title
@@ -190,6 +201,12 @@ extension SettingsTableViewController {
     }
     
     switch settingsSection {
+      
+      case .books:
+        let next = BooksCollectionViewController()
+        next.isEditing = true
+        navigationController?.pushViewController(next, animated: true)
+      
       case .time:
         let timeSetting = timeSettings[indexPath.row]
         timeSetting.expanded = !timeSetting.expanded
