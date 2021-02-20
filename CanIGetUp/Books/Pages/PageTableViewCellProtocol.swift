@@ -5,5 +5,5 @@
 import UIKit
 
 protocol PageTableViewCellProtocol {
-  func update(with: UIImage)
+  func update(with image: UIImage, durationString: String)
 }

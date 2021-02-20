@@ -6,8 +6,10 @@ import Foundation
 
 struct Page: Codable, Equatable {
   let id: UUID
+  let duration: Double
   
-  init() {
+  init(duration: Double) {
     id = UUID()
+    self.duration = duration
   }
 }

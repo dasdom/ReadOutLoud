@@ -11,6 +11,7 @@ class BooksCollectionViewController: UICollectionViewController {
   
   init() {
     let flowLayout = UICollectionViewFlowLayout()
+    flowLayout.headerReferenceSize = CGSize(width: 200, height: 50)
         
     super.init(collectionViewLayout: flowLayout)
   }
@@ -22,7 +23,9 @@ class BooksCollectionViewController: UICollectionViewController {
     
     collectionView?.register(BookCell.self, forCellWithReuseIdentifier: BookCell.identifier)
     collectionView?.register(AddBookCell.self, forCellWithReuseIdentifier: AddBookCell.identifier)
-
+    collectionView?.register(EmptyBookCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: EmptyBookCollectionHeaderView.identifier)
+    
+    
     title = "Books"
     
     collectionView.backgroundColor = .white
@@ -87,6 +90,13 @@ class BooksCollectionViewController: UICollectionViewController {
       next = BookPlayViewController(book: book)
     }
     navigationController?.pushViewController(next, animated: true)
+  }
+  
+  override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    
+    let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: EmptyBookCollectionHeaderView.identifier, for: indexPath)
+    
+    return headerView
   }
 }
 

@@ -9,10 +9,11 @@ class BookPageInputViewController: UIViewController {
   
   private let book: Book
   private let completion: () -> Void
-  private let recorder: AVAudioRecorder
-  private var player: AVAudioPlayer?
+  private var recorder: AVAudioRecorder?
   private var timer: Timer?
   private var powers: [Float] = []
+  private var duration: Double = 0
+  private var startDate: Date?
   private var contentView: BookPageInputView {
     return view as! BookPageInputView
   }
@@ -22,20 +23,7 @@ class BookPageInputViewController: UIViewController {
     self.book = book
     self.completion = completion
     
-    do {
-      try AVAudioSession.sharedInstance().setCategory(.playAndRecord)
-      recorder = try AVAudioRecorder(url: FileManager.default.audioTmpPath(), settings: [AVFormatIDKey: kAudioFormatMPEG4AAC, AVSampleRateKey: 44100.0, AVNumberOfChannelsKey: 2])
-    } catch {
-      print("error: \(error)")
-      fatalError()
-    }
-    
     super.init(nibName: nil, bundle: nil)
-  
-    recorder.delegate = self
-    recorder.isMeteringEnabled = true
-    
-    recorder.prepareToRecord()
   }
   
   required init?(coder: NSCoder) { fatalError() }
@@ -47,6 +35,8 @@ class BookPageInputViewController: UIViewController {
     contentView.recordPauseButton.addTarget(self, action: #selector(recordPause(_:)), for: .touchUpInside)
     contentView.doneButton.addTarget(self, action: #selector(done(_:)), for: .touchUpInside)
     contentView.nextButton.addTarget(self, action: #selector(next(_:)), for: .touchUpInside)
+    
+    contentView.recordPauseButton.isEnabled = false
     
     view = contentView
   }
@@ -62,13 +52,26 @@ class BookPageInputViewController: UIViewController {
       ])
     }
     
+    let recordingSession = AVAudioSession.sharedInstance()
+    do {
+      try recordingSession.setCategory(.record, mode: .default)
+      recordingSession.requestRecordPermission({ granted in
+        DispatchQueue.main.async {
+          self.contentView.recordPauseButton.isEnabled = granted
+        }
+      })
+    } catch {
+      print("error: \(error)")
+      fatalError()
+    }
+    
     updateButtons()
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
-    contentView.reset()
+    try? AVAudioSession.sharedInstance().setActive(false)
   }
   
   @objc func addImage() {
@@ -84,29 +87,36 @@ class BookPageInputViewController: UIViewController {
   
   @objc func recordPause(_ sender: UIButton) {
     
-    if false == recorder.isRecording {
+    if recorder == nil || false == recorder?.isRecording {
+      
+      do {
+        try AVAudioSession.sharedInstance().setActive(true)
+
+        recorder = try AVAudioRecorder(url: FileManager.default.audioTmpPath(), settings: [AVFormatIDKey: kAudioFormatMPEG4AAC, AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue])
+        recorder?.delegate = self
+        recorder?.isMeteringEnabled = true
+        
+        startDate = Date()
+        recorder?.record()
+      } catch {
+        print("error")
+        return
+      }
       
       timer?.invalidate()
       powers = []
       timer = Timer.scheduledTimer(withTimeInterval: 1/20.0, repeats: true, block: { timer in
-        self.recorder.updateMeters()
-        let power = self.recorder.averagePower(forChannel: 0)
-        self.powers.append(power)
-        if self.powers.count > 200 {
-          self.powers.removeFirst()
+        self.recorder?.updateMeters()
+        if let power = self.recorder?.averagePower(forChannel: 0) {
+          self.powers.append(power)
+          if self.powers.count > 200 {
+            self.powers.removeFirst()
+          }
+          self.contentView.waveformView.values = self.powers
         }
-        self.contentView.waveformView.values = self.powers
       })
       
-      print("record")
-      do {
-        try AVAudioSession.sharedInstance().setActive(true, options: [])
-      } catch {
-        print("error: \(error)")
-      }
-      
       sender.setImage(UIImage(named: "stop"), for: .normal)
-      recorder.record()
             
     } else {
       
@@ -114,16 +124,18 @@ class BookPageInputViewController: UIViewController {
       
       print("stop")
       
+      try? AVAudioSession.sharedInstance().setActive(false)
+
       sender.setImage(UIImage(named: "record"), for: .normal)
-      recorder.stop()
       
-      do {
-        try AVAudioSession.sharedInstance().setActive(false, options: [])
-      } catch {
-        print("error: \(error)")
+      if let startDate = startDate {
+        duration = Date().timeIntervalSince(startDate)
       }
+      recorder?.stop()
       
-      updateButtons()
+      DispatchQueue.main.async {
+        self.updateButtons()
+      }
     }
   }
   
@@ -170,7 +182,13 @@ extension BookPageInputViewController: UIImagePickerControllerDelegate, UINaviga
 }
 
 extension BookPageInputViewController: AVAudioRecorderDelegate {
+  func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+    print("flag: \(flag)")
+  }
   
+  func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
+    print("error: \(error)")
+  }
 }
 
 extension BookPageInputViewController: AVAudioPlayerDelegate {
@@ -183,7 +201,7 @@ extension BookPageInputViewController {
     
     contentView.reset()
     updateButtons()
-//    addImage()
+    addImage()
   }
   
   @objc func done(_ sender: UIButton) {
@@ -193,7 +211,7 @@ extension BookPageInputViewController {
   }
   
   func save() {
-    guard let image = contentView.imageView.image, let data = image.jpegData(compressionQuality: 0.8) else {
+    guard let image = contentView.imageView.image, let data = image.jpegData(compressionQuality: 0.3) else {
       return
     }
     
@@ -201,8 +219,9 @@ extension BookPageInputViewController {
       return
     }
     
-    if let page = BooksProvider.save(imageData: data, audioData: audioData, inBook: book) {
+    if let page = BooksProvider.save(imageData: data, audioData: audioData, duration: duration, inBook: book) {
       book.add(page)
+      FileManager.default.removeTmpAudio()
       completion()
     }
   }

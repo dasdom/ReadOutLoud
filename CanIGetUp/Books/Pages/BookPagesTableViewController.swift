@@ -11,6 +11,13 @@ class BookPagesTableViewController: UITableViewController {
   var allBooks: [Book]
   private var player: AVAudioPlayer?
   private let deleteCompletion: ([Book]) -> Void
+  var formatter: DateComponentsFormatter = {
+    let formatter = DateComponentsFormatter()
+    formatter.allowedUnits = [.minute, .second]
+    formatter.unitsStyle = .positional
+    formatter.zeroFormattingBehavior = .pad
+    return formatter
+  }()
 
   init(book: Book, allBooks: [Book], deleteCompletion: @escaping ([Book]) -> Void) {
     
@@ -47,7 +54,14 @@ class BookPagesTableViewController: UITableViewController {
     if let url = book.pageImageURL(index: indexPath.row),
        let image = UIImage(contentsOfFile: url.path),
        let cell = cell as? PageTableViewCellProtocol {
-      cell.update(with: image)
+      
+      let durationString: String
+      if let duration = book.pageForIndex(indexPath.row)?.duration {
+        durationString = formatter.string(from: duration) ?? ""
+      } else {
+        durationString = ""
+      }
+      cell.update(with: image, durationString: durationString)
     }
     
     return cell
@@ -78,7 +92,7 @@ class BookPagesTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 200
+    return 100
   }
 }
 
@@ -99,10 +113,24 @@ extension BookPagesTableViewController {
 //  }
   
   @objc func trash(_ sender: UIBarButtonItem) {
-    allBooks.removeAll(where: { $0.id == book.id })
-    BooksProvider.save(books: allBooks)
-    deleteCompletion(allBooks)
-    navigationController?.popViewController(animated: true)
+    
+    let title = NSLocalizedString("Remove book", comment: "")
+    let message = NSLocalizedString("Do you really want to delete this book? Deletion cannot be reversed.", comment: "")
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    
+    let removeTitle = NSLocalizedString("Remove", comment: "")
+    alert.addAction(UIAlertAction(title: removeTitle, style: .default, handler: { action in
+      FileManager.default.removeBooksDirectory(for: self.book)
+      self.allBooks.removeAll(where: { $0.id == self.book.id })
+      BooksProvider.save(books: self.allBooks)
+      self.deleteCompletion(self.allBooks)
+      self.navigationController?.popViewController(animated: true)
+    }))
+    
+    let cancelTitle = NSLocalizedString("Cancel", comment: "")
+    alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel, handler: nil))
+    
+    present(alert, animated: true)
   }
 }
 

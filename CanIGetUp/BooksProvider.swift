@@ -25,9 +25,9 @@ struct BooksProvider {
     return []
   }
   
-  static func save(imageData: Data, audioData: Data, inBook book: Book) -> Page? {
+  static func save(imageData: Data, audioData: Data, duration: Double, inBook book: Book) -> Page? {
     do {
-      let page = Page()
+      let page = Page(duration: duration)
       let imageURL = FileManager.default.pageImageURL(for: book, pageId: page.id)
       try imageData.write(to: imageURL)
       

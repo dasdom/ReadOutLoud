@@ -65,7 +65,7 @@ extension BookDetailsViewController {
     let book = Book(title: title)
     
     FileManager.default.createBooksDiretory(for: book)
-    guard let image = contentView.coverImageView.image, let data = image.jpegData(compressionQuality: 0.8) else {
+    guard let image = contentView.coverImageView.image, let data = image.jpegData(compressionQuality: 0.3) else {
       return
     }
     do {
