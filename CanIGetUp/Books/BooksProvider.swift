@@ -4,8 +4,8 @@
 
 import Foundation
 
-struct BooksProvider {
-  static func save(books: [Book]) {
+struct BooksProvider: BooksProviderProtocol {
+    func save(books: [Book]) {
     do {
       let data = try JSONEncoder().encode(books)
       try data.write(to: FileManager.default.booksURL())
@@ -14,7 +14,7 @@ struct BooksProvider {
     }
   }
   
-  static func loadBooks() -> [Book] {
+  func loadBooks() -> [Book] {
     do {
       let data = try Data(contentsOf: FileManager.default.booksURL())
       let books = try JSONDecoder().decode([Book].self, from: data)
@@ -25,7 +25,7 @@ struct BooksProvider {
     return []
   }
   
-  static func save(imageData: Data, audioData: Data, duration: Double, inBook book: Book) -> Page? {
+  func save(imageData: Data, audioData: Data, duration: Double, inBook book: Book) -> Page? {
     do {
       let page = Page(duration: duration)
       let imageURL = FileManager.default.pageImageURL(for: book, pageId: page.id)

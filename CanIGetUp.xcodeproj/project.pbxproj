@@ -12,6 +12,9 @@
 		F224B00D25D6BDDD007B3D2B /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224B00C25D6BDDD007B3D2B /* WaveformView.swift */; };
 		F224F38425A8FE8F005F0220 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F38325A8FE8F005F0220 /* BooksProvider.swift */; };
 		F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */; };
+		F22D832725E2833D00D0A868 /* MockBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22D832625E2833C00D0A868 /* MockBook.swift */; };
+		F241A59625E8FACE0025462A /* BooksProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F241A59525E8FACE0025462A /* BooksProviderProtocol.swift */; };
+		F241A59B25E8FB8D0025462A /* MockBooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F241A59A25E8FB8D0025462A /* MockBooksProvider.swift */; };
 		F24E67CB25D1DFB900A6B1A3 /* PageTableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E67CA25D1DFB900A6B1A3 /* PageTableViewCellProtocol.swift */; };
 		F24E67CF25D1E06C00A6B1A3 /* MockPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24E67CE25D1E06C00A6B1A3 /* MockPageCell.swift */; };
 		F25E8C8D25DC706600F316E3 /* AddBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25E8C8C25DC706600F316E3 /* AddBookCell.swift */; };
@@ -76,6 +79,9 @@
 		F224F38B25AB2774005F0220 /* CanIGetUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanIGetUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F224F38F25AB2774005F0220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksCollectionViewControllerTests.swift; sourceTree = "<group>"; };
+		F22D832625E2833C00D0A868 /* MockBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBook.swift; sourceTree = "<group>"; };
+		F241A59525E8FACE0025462A /* BooksProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProviderProtocol.swift; sourceTree = "<group>"; };
+		F241A59A25E8FB8D0025462A /* MockBooksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBooksProvider.swift; sourceTree = "<group>"; };
 		F24E67CA25D1DFB900A6B1A3 /* PageTableViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTableViewCellProtocol.swift; sourceTree = "<group>"; };
 		F24E67CE25D1E06C00A6B1A3 /* MockPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPageCell.swift; sourceTree = "<group>"; };
 		F25E8C8C25DC706600F316E3 /* AddBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookCell.swift; sourceTree = "<group>"; };
@@ -184,6 +190,8 @@
 				F2FE586525D59F8F0080362B /* Play */,
 				F2B73A36259F248700F5CA3F /* Book.swift */,
 				F2B73A39259F251D00F5CA3F /* Page.swift */,
+				F224F38325A8FE8F005F0220 /* BooksProvider.swift */,
+				F241A59525E8FACE0025462A /* BooksProviderProtocol.swift */,
 			);
 			path = Books;
 			sourceTree = "<group>";
@@ -195,6 +203,8 @@
 				F24E67CE25D1E06C00A6B1A3 /* MockPageCell.swift */,
 				F2FB3B0125B4E46B00D60597 /* MockImageProvider.swift */,
 				F2BF899625C74D31007A8433 /* MockNavigationController.swift */,
+				F22D832625E2833C00D0A868 /* MockBook.swift */,
+				F241A59A25E8FB8D0025462A /* MockBooksProvider.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -227,7 +237,6 @@
 				F26CE49B24815C1900B63124 /* Books */,
 				F20F0E9524405453005412B7 /* Settings */,
 				F28272A82332CB22004E94E0 /* Time.swift */,
-				F224F38325A8FE8F005F0220 /* BooksProvider.swift */,
 				F28272A62332C350004E94E0 /* FileManagerExtension.swift */,
 				F2FB3AF525B4E2F500D60597 /* ImageProvider.swift */,
 				F2FB3AFD25B4E39200D60597 /* ImageProviderProtocol.swift */,
@@ -395,10 +404,12 @@
 				F2FE584825D334400080362B /* PageCellTests.swift in Sources */,
 				F2BF899725C74D31007A8433 /* MockNavigationController.swift in Sources */,
 				F26D5FF125B4DB160087686F /* MockBookCell.swift in Sources */,
+				F241A59B25E8FB8D0025462A /* MockBooksProvider.swift in Sources */,
 				F2FB3B0225B4E46B00D60597 /* MockImageProvider.swift in Sources */,
 				F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */,
 				F2BF899B25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift in Sources */,
 				F24E67CF25D1E06C00A6B1A3 /* MockPageCell.swift in Sources */,
+				F22D832725E2833D00D0A868 /* MockBook.swift in Sources */,
 				F2F289BB25CF3EA200F2A7F3 /* BooksProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +437,7 @@
 				F2B73A37259F248800F5CA3F /* Book.swift in Sources */,
 				F28272A92332CB22004E94E0 /* Time.swift in Sources */,
 				F27FA765233952C400F3CD61 /* TimePeriod.swift in Sources */,
+				F241A59625E8FACE0025462A /* BooksProviderProtocol.swift in Sources */,
 				F2FE585E25D484360080362B /* PageCollectionViewCellProtocol.swift in Sources */,
 				F2B73A3A259F251D00F5CA3F /* Page.swift in Sources */,
 				F25E8C8D25DC706600F316E3 /* AddBookCell.swift in Sources */,
@@ -475,7 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q6PD97MRX4;
 				INFOPLIST_FILE = CanIGetUpTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -496,7 +508,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q6PD97MRX4;
 				INFOPLIST_FILE = CanIGetUpTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

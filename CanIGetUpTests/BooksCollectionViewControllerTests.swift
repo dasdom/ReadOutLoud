@@ -8,31 +8,35 @@ import XCTest
 class BooksCollectionViewControllerTests: XCTestCase {
   
   var sut: BooksCollectionViewController!
+  var mockBooksProvider: MockBooksProvider!
   
   override func setUpWithError() throws {
     sut = BooksCollectionViewController()
+    mockBooksProvider = MockBooksProvider(bookTitles: ["Foo"])
+    sut.booksProvider = mockBooksProvider
+    sut.beginAppearanceTransition(true, animated: false)
+    sut.endAppearanceTransition()
   }
   
   override func tearDownWithError() throws {
     sut = nil
+    mockBooksProvider = nil
   }
  
   func test_numberOfCells_whenOnBookIsAdded() {
-    sut.books = [Book(title: "Foo")]
     
     XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), 1)
   }
   
   func test_numberOfCells_whenThreeBooksAreAdded() {
-    sut.books = [Book(title: "Foo"),
-                 Book(title: "Foo1"),
-                 Book(title: "Foo2")]
+    mockBooksProvider.bookTitles = ["Foo", "Bar", "Baz"]
+    sut.beginAppearanceTransition(true, animated: false)
+    sut.endAppearanceTransition()
     
     XCTAssertEqual(sut.collectionView.numberOfItems(inSection: 0), 3)
   }
   
   func test_cellForRow_returnsBookCell() {
-    sut.books = [Book(title: "Foo")]
     
     let indexPath = IndexPath(item: 0, section: 0)
     let cell = sut.collectionView.dataSource?.collectionView(sut.collectionView, cellForItemAt: indexPath)
@@ -41,7 +45,6 @@ class BooksCollectionViewControllerTests: XCTestCase {
   }
   
   func test_cellForRow_callsUpdate() {
-    sut.books = [Book(title: "Foo")]
     sut.collectionView.register(MockBookCell.self, forCellWithReuseIdentifier: BookCell.identifier)
     
     let indexPath = IndexPath(item: 0, section: 0)
@@ -52,11 +55,10 @@ class BooksCollectionViewControllerTests: XCTestCase {
   
   func test_selectItem_pushesPagesViewController() {
     let mockNavigationController = MockNavigationController(rootViewController: sut)
-    sut.books = [Book(title: "Foo")]
-
+    
     let indexPath = IndexPath(item: 0, section: 0)
     sut.collectionView.delegate?.collectionView?(sut.collectionView, didSelectItemAt: indexPath)
     
-    XCTAssertTrue(mockNavigationController.pushedViewController is BookPagesTableViewController)
+    XCTAssertTrue(mockNavigationController.pushedViewController is BookPlayViewController)
   }
 }

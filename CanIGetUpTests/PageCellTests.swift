@@ -21,7 +21,7 @@ class PageCellTests: XCTestCase {
     let url = Bundle(for: PageCellTests.self).url(forResource: "blume", withExtension: "jpg")!
     let image = UIImage(contentsOfFile: url.path)!
     
-    sut.update(with: image)
+    sut.update(with: image, durationString: "foo")
     
     XCTAssertNotNil(sut.pageImageView.image)
   }

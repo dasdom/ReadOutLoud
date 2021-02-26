@@ -219,7 +219,7 @@ extension BookPageInputViewController {
       return
     }
     
-    if let page = BooksProvider.save(imageData: data, audioData: audioData, duration: duration, inBook: book) {
+    if let page = BooksProvider().save(imageData: data, audioData: audioData, duration: duration, inBook: book) {
       book.add(page)
       FileManager.default.removeTmpAudio()
       completion()

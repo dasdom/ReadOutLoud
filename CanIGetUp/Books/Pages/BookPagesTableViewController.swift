@@ -9,9 +9,10 @@ class BookPagesTableViewController: UITableViewController {
   
   var book: Book
   var allBooks: [Book]
+  lazy var booksProvider: BooksProvider = BooksProvider()
   private var player: AVAudioPlayer?
   private let deleteCompletion: ([Book]) -> Void
-  var formatter: DateComponentsFormatter = {
+  private var formatter: DateComponentsFormatter = {
     let formatter = DateComponentsFormatter()
     formatter.allowedUnits = [.minute, .second]
     formatter.unitsStyle = .positional
@@ -73,7 +74,7 @@ class BookPagesTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     book.removePage(at: indexPath.row)
-    BooksProvider.save(books: self.allBooks)
+    booksProvider.save(books: self.allBooks)
     tableView.deleteRows(at: [indexPath], with: .automatic)
   }
   
@@ -99,9 +100,12 @@ class BookPagesTableViewController: UITableViewController {
 // MARK: - Actions
 extension BookPagesTableViewController {
   @objc func add(_ sender: UIBarButtonItem) {
-    let next = BookPageInputViewController(book: book, completion: {
+    let next = BookPageInputViewController(book: book, completion: { [weak self] in
+      
+      guard let self = self else { return }
+      
       self.tableView.reloadData()
-      BooksProvider.save(books: self.allBooks)
+      self.booksProvider.save(books: self.allBooks)
     })
     next.modalPresentationStyle = .fullScreen
     present(next, animated: true)
@@ -122,7 +126,7 @@ extension BookPagesTableViewController {
     alert.addAction(UIAlertAction(title: removeTitle, style: .default, handler: { action in
       FileManager.default.removeBooksDirectory(for: self.book)
       self.allBooks.removeAll(where: { $0.id == self.book.id })
-      BooksProvider.save(books: self.allBooks)
+      self.booksProvider.save(books: self.allBooks)
       self.deleteCompletion(self.allBooks)
       self.navigationController?.popViewController(animated: true)
     }))

@@ -11,11 +11,11 @@ class BookPagesTableViewControllerTests: XCTestCase {
   private var book: Book!
   
   override func setUpWithError() throws {
-    book = Book(title: "Foo")
+    book = MockBook(title: "Foo")
     book.add(Page())
     book.add(Page())
     
-    sut = BookPagesTableViewController(book: book, allBooks: [book])
+    sut = BookPagesTableViewController(book: book, allBooks: [book], deleteCompletion: { books in } )
   }
   
   override func tearDownWithError() throws {

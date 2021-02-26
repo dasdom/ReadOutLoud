@@ -8,7 +8,7 @@ struct Page: Codable, Equatable {
   let id: UUID
   let duration: Double
   
-  init(duration: Double) {
+  init(duration: Double = 0) {
     id = UUID()
     self.duration = duration
   }

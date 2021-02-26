@@ -20,7 +20,7 @@ class BooksProviderTests: XCTestCase {
 
   func test_save_returnsPage() {
     
-    let page = BooksProvider.save(imageData: Data(), audioData: Data(), inBook: book)
+    let page = BooksProvider().save(imageData: Data(), audioData: Data(), duration: 20, inBook: book)
     
     XCTAssertNotNil(page)
   }

@@ -8,6 +8,7 @@ class BooksCollectionViewController: UICollectionViewController {
   
   var books: [Book] = []
   var booksToShow: [Book] = []
+  lazy var booksProvider: BooksProviderProtocol = BooksProvider()
   
   init() {
     let flowLayout = UICollectionViewFlowLayout()
@@ -44,7 +45,7 @@ class BooksCollectionViewController: UICollectionViewController {
     let nightButton = UIBarButtonItem(image: UIImage(named: "nightMode"), style: .plain, target: self, action: #selector(night))
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
     
-    books = BooksProvider.loadBooks()
+    books = booksProvider.loadBooks()
 
     if isEditing {
       navigationItem.rightBarButtonItem = addButton
@@ -103,10 +104,13 @@ class BooksCollectionViewController: UICollectionViewController {
 // MARK: - Actions
 extension BooksCollectionViewController {
   @objc func add() {
-    let next = BookDetailsViewController { book in
+    let next = BookDetailsViewController { [weak self] book in
+      
+      guard let self = self else { return }
+      
       self.booksToShow.append(book)
       self.collectionView.reloadData()
-      BooksProvider.save(books: self.booksToShow)
+      self.booksProvider.save(books: self.booksToShow)
       let next = BookPagesTableViewController(book: book, allBooks: self.booksToShow, deleteCompletion: { books in
         self.booksToShow = books
         self.collectionView.reloadData()
