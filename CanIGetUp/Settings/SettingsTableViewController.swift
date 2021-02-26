@@ -9,16 +9,16 @@ let hideBooksButtonKey = "hideBooksButtonKey"
 let hideButtonChangeNotification = Notification.Name(rawValue: "hideButtonChangeNotification")
 let timeSettingChangeNotification = Notification.Name(rawValue: "timeSettingChangeNotification")
 
-private enum SettingsSection : Int, CaseIterable {
+enum SettingsSection : Int, CaseIterable {
   case books
   case time
   case credits
   case misc
 }
 
-private enum MiscRow : Int, CaseIterable {
+enum MiscRow : Int, CaseIterable {
   case showRabbitButton
-  case showBooksButton
+//  case showBooksButton
   case about
 }
 
@@ -150,14 +150,14 @@ extension SettingsTableViewController {
             } else {
               cell.accessoryType = .checkmark
             }
-          case .showBooksButton:
-            cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
-            cell.textLabel?.text = "Show books button"
-            if hideBooksButton {
-              cell.accessoryType = .none
-            } else {
-              cell.accessoryType = .checkmark
-            }
+//          case .showBooksButton:
+//            cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
+//            cell.textLabel?.text = "Show books button"
+//            if hideBooksButton {
+//              cell.accessoryType = .none
+//            } else {
+//              cell.accessoryType = .checkmark
+//            }
           case .about:
             cell = tableView.dequeueReusableCell(withIdentifier: "Basic", for: indexPath)
             cell.textLabel?.text = "About"
@@ -226,9 +226,9 @@ extension SettingsTableViewController {
           case .showRabbitButton:
             hideRabbitButton = !hideRabbitButton
             tableView.reloadRows(at: [indexPath], with: .automatic)
-          case .showBooksButton:
-            hideBooksButton = !hideBooksButton
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+//          case .showBooksButton:
+//            hideBooksButton = !hideBooksButton
+//            tableView.reloadRows(at: [indexPath], with: .automatic)
           case .about:
             let next = AboutTableViewController()
             navigationController?.pushViewController(next, animated: true)

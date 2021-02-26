@@ -17,7 +17,7 @@ class NightDayViewController: UIViewController {
     let contentView = NightDayView(frame: UIScreen.main.bounds)
     
     contentView.rabbitButton.addTarget(self, action: #selector(openMusic), for: .touchUpInside)
-    contentView.booksButton.addTarget(self, action: #selector(openBooks), for: .touchUpInside)
+//    contentView.booksButton.addTarget(self, action: #selector(openBooks), for: .touchUpInside)
 
     view = contentView
   }
@@ -87,7 +87,7 @@ class NightDayViewController: UIViewController {
   
   @objc func updateButton() {
     contentView.rabbitButton.isHidden = UserDefaults.standard.bool(forKey: hideRabbitButtonKey)
-    contentView.booksButton.isHidden = UserDefaults.standard.bool(forKey: hideBooksButtonKey)
+//    contentView.booksButton.isHidden = UserDefaults.standard.bool(forKey: hideBooksButtonKey)
   }
   
   @objc func loadTimeSettings() {

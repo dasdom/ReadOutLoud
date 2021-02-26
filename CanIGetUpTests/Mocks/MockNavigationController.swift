@@ -7,9 +7,14 @@ import UIKit
 class MockNavigationController: UINavigationController {
   
   var pushedViewController: UIViewController? = nil
+  var dismissCallCount = 0
   
   override func pushViewController(_ viewController: UIViewController, animated: Bool) {
     pushedViewController = viewController
     super.pushViewController(viewController, animated: false)
+  }
+  
+  override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+    dismissCallCount += 1
   }
 }

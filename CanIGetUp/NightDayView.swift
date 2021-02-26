@@ -8,7 +8,7 @@ class NightDayView: UIView {
   
   let imageView: UIImageView
   let rabbitButton: UIButton
-  let booksButton: UIButton
+//  let booksButton: UIButton
   
   override init(frame: CGRect) {
     
@@ -23,15 +23,15 @@ class NightDayView: UIView {
     rabbitButton.setImage(UIImage(named: "rabbit"), for: .normal)
     rabbitButton.imageView?.contentMode = .scaleAspectFill
     
-    booksButton = UIButton(type: .custom)
-    booksButton.translatesAutoresizingMaskIntoConstraints = false
-    booksButton.setImage(UIImage(named: "books"), for: .normal)
-    booksButton.imageView?.contentMode = .scaleAspectFill
+//    booksButton = UIButton(type: .custom)
+//    booksButton.translatesAutoresizingMaskIntoConstraints = false
+//    booksButton.setImage(UIImage(named: "books"), for: .normal)
+//    booksButton.imageView?.contentMode = .scaleAspectFill
     
     super.init(frame: frame)
     
     addSubview(imageView)
-    addSubview(booksButton)
+//    addSubview(booksButton)
     addSubview(rabbitButton)
     
     NSLayoutConstraint.activate([
@@ -45,14 +45,12 @@ class NightDayView: UIView {
       rabbitButton.widthAnchor.constraint(equalToConstant: 150),
       rabbitButton.heightAnchor.constraint(equalTo: rabbitButton.widthAnchor),
       
-      booksButton.bottomAnchor.constraint(equalTo: bottomAnchor),
-      booksButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-      booksButton.widthAnchor.constraint(equalToConstant: 150),
-      booksButton.heightAnchor.constraint(equalTo: booksButton.widthAnchor),
+//      booksButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+//      booksButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+//      booksButton.widthAnchor.constraint(equalToConstant: 150),
+//      booksButton.heightAnchor.constraint(equalTo: booksButton.widthAnchor),
     ])
   }
   
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  required init?(coder: NSCoder) { fatalError() }
 }
