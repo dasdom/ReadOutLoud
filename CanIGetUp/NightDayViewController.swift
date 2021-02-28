@@ -8,8 +8,9 @@ class NightDayViewController: UIViewController {
   
   var timer: Timer?
   var timeSettings: [TimeSetting] = []
+  var userDefaults: UserDefaults = UserDefaults.standard
   
-  var contentView: NightDayView {
+  private var contentView: NightDayView {
     return view as! NightDayView
   }
   
@@ -25,12 +26,12 @@ class NightDayViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settings(sender:)))
+    let settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settings))
+    navigationItem.rightBarButtonItem = settingsButton
     
     timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(updateView), userInfo: nil, repeats: true)
     
     loadTimeSettings()
-    updateView()
     
 //    UIScreen.main.brightness = 0.1
     
@@ -50,7 +51,7 @@ class NightDayViewController: UIViewController {
     updateView()
   }
   
-  @objc func settings(sender: UIBarButtonItem) {
+  @objc func settings() {
     
     let alert = UIAlertController(title: "Access control", message: "Answer to the Ultimate Question of Life, The Universe, and Everything\n(Let blank for cancel)", preferredStyle: .alert)
     alert.addTextField()

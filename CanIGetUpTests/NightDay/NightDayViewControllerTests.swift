@@ -23,4 +23,37 @@ class NightDayViewControllerTests: XCTestCase {
     
     XCTAssertTrue(sut.view is NightDayView)
   }
+  
+  func test_appearingView_setsRabbitButtonHidden() throws {
+    
+    UserDefaults.standard.setValue(true, forKey: hideRabbitButtonKey)
+    
+    sut.beginAppearanceTransition(true, animated: false)
+    sut.endAppearanceTransition()
+    
+    let nightDayView = try XCTUnwrap(sut.view as? NightDayView)
+    XCTAssertEqual(nightDayView.rabbitButton.isHidden, true)
+  }
+  
+  func test_appearingView_setsRabbitButtonVisible() throws {
+    
+    UserDefaults.standard.setValue(false, forKey: hideRabbitButtonKey)
+    
+    sut.beginAppearanceTransition(true, animated: false)
+    sut.endAppearanceTransition()
+    
+    let nightDayView = try XCTUnwrap(sut.view as? NightDayView)
+    XCTAssertEqual(nightDayView.rabbitButton.isHidden, false)
+  }
+  
+  func test_settingsButton_presentsAlert() throws {
+    
+    UIApplication.shared.windows.first?.rootViewController = sut
+    sut.loadViewIfNeeded()
+    
+    let settingsButton = try XCTUnwrap(sut.navigationItem.rightBarButtonItem)
+    try settingsButton.performAction()
+    
+    XCTAssertTrue(sut.presentedViewController is UIAlertController)
+  }
 }

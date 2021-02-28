@@ -38,9 +38,7 @@ class SettingsTableViewControllerTests: XCTestCase {
     sut.loadViewIfNeeded()
     
     let navigationItem = try XCTUnwrap(sut.navigationItem.rightBarButtonItem)
-    let target = try XCTUnwrap(navigationItem.target as? UIViewController)
-    let action = try XCTUnwrap(navigationItem.action)
-    target.perform(action, with: navigationItem)
+    try navigationItem.performAction()
     
     let spy = try XCTUnwrap(sut as? SpySettingsTableViewController)
     XCTAssertEqual(spy.dismissCallCount, 1)

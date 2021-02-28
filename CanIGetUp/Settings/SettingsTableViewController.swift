@@ -60,12 +60,12 @@ class SettingsTableViewController: UITableViewController {
     tableView.register(SettingsTimeTableViewCell.self, forCellReuseIdentifier: SettingsTimeTableViewCell.identifier)
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Basic")
 
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done(sender:)))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
     
     title = "Settings"
   }
   
-  @objc func done(sender: UIBarButtonItem) {
+  @objc func done() {
     dismiss(animated: true, completion: nil)
   }
 }

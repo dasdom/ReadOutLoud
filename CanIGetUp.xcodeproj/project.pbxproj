@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F20F0E9724405484005412B7 /* ImageCreditsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E9624405484005412B7 /* ImageCreditsTableViewController.swift */; };
 		F20F0E99244054BA005412B7 /* ImageCredit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E98244054BA005412B7 /* ImageCredit.swift */; };
+		F218E5A725EC2F33007C137C /* UIBarButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F218E5A625EC2F33007C137C /* UIBarButtonExtension.swift */; };
 		F224B00D25D6BDDD007B3D2B /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224B00C25D6BDDD007B3D2B /* WaveformView.swift */; };
 		F224F38425A8FE8F005F0220 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F38325A8FE8F005F0220 /* BooksProvider.swift */; };
 		F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */; };
@@ -79,6 +80,7 @@
 /* Begin PBXFileReference section */
 		F20F0E9624405484005412B7 /* ImageCreditsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreditsTableViewController.swift; sourceTree = "<group>"; };
 		F20F0E98244054BA005412B7 /* ImageCredit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCredit.swift; sourceTree = "<group>"; };
+		F218E5A625EC2F33007C137C /* UIBarButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonExtension.swift; sourceTree = "<group>"; };
 		F224B00C25D6BDDD007B3D2B /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		F224F38325A8FE8F005F0220 /* BooksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProvider.swift; sourceTree = "<group>"; };
 		F224F38B25AB2774005F0220 /* CanIGetUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanIGetUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		F218E5AA25EC2F7B007C137C /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F218E5A625EC2F33007C137C /* UIBarButtonExtension.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		F224F38C25AB2774005F0220 /* CanIGetUpTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +191,7 @@
 				F286C19825E9A1500052675C /* NightDay */,
 				F241A5A625E944F40025462A /* Books */,
 				F26D5FF425B4DB790087686F /* Mocks */,
+				F218E5AA25EC2F7B007C137C /* Helper */,
 				F224F38F25AB2774005F0220 /* Info.plist */,
 			);
 			path = CanIGetUpTests;
@@ -447,6 +458,7 @@
 				F241A5AC25E9450F0025462A /* AboutTableViewControllerTests.swift in Sources */,
 				F2BF899725C74D31007A8433 /* MockNavigationController.swift in Sources */,
 				F26D5FF125B4DB160087686F /* MockBookCell.swift in Sources */,
+				F218E5A725EC2F33007C137C /* UIBarButtonExtension.swift in Sources */,
 				F241A59B25E8FB8D0025462A /* MockBooksProvider.swift in Sources */,
 				F2FB3B0225B4E46B00D60597 /* MockImageProvider.swift in Sources */,
 				F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */,
