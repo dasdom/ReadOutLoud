@@ -1,8 +1,7 @@
-# CanIGetUp
+# ReadOutLoud
 
-This is an iOS app that shows a image of a night sky during the night and an image of a sun flower field during the day.
-I use this app on the iPhone my son uses.
-In the morning he can check with this app if it's time to get up without the need to wake me up.
+Take pictures of a childrens book and read the text.
+The child can play back the recording and feel the magic of getting read a book by a loved one.
 
 ## Safty
 
