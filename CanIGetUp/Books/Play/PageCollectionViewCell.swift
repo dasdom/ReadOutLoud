@@ -10,7 +10,7 @@ class PageCollectionViewCell: UICollectionViewCell {
 
   static var identifier: String {
     let identifier = self.description()
-    print(identifier)
+//    print(identifier)
     return identifier
   }
 
@@ -22,6 +22,7 @@ class PageCollectionViewCell: UICollectionViewCell {
     
     super.init(frame: frame)
     
+    contentView.backgroundColor = .black
     contentView.addSubview(pageImageView)
     
     NSLayoutConstraint.activate([

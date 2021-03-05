@@ -19,16 +19,18 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
     
     self.book = book
     
-    let flowLayout = UICollectionViewFlowLayout()
-    flowLayout.scrollDirection = .horizontal
-    flowLayout.sectionInset = .zero
-    flowLayout.minimumInteritemSpacing = 0
-    flowLayout.minimumLineSpacing = 0
+//    let flowLayout = UICollectionViewFlowLayout()
+//    flowLayout.scrollDirection = .horizontal
+//    flowLayout.sectionInset = .zero
+//    flowLayout.minimumInteritemSpacing = 0
+//    flowLayout.minimumLineSpacing = 0
+    
+    let layout = PageStackLayout()
     
     progressView = UIProgressView(progressViewStyle: .bar)
     progressView.progressTintColor = .white
     
-    super.init(collectionViewLayout: flowLayout)
+    super.init(collectionViewLayout: layout)
     
     displayLink = CADisplayLink(target: self, selector: #selector(updateProgress))
     
@@ -100,7 +102,7 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
   }
   
   func playAudio(for index: Int) {
-    print("page: \(index)")
+//    print("page: \(index)")
     guard let url = book.pageAudioURL(index: index) else {
       return
     }
