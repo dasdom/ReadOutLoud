@@ -8,8 +8,10 @@ import AVFoundation
 class BookPageInputViewController: UIViewController {
   
   private let book: Book
+  private let page: Page?
   private let completion: () -> Void
   private var recorder: AVAudioRecorder?
+  private var player: AVAudioPlayer?
   private var timer: Timer?
   private var powers: [Float] = []
   private var duration: Double = 0
@@ -18,9 +20,10 @@ class BookPageInputViewController: UIViewController {
     return view as! BookPageInputView
   }
   
-  init(book: Book, completion: @escaping () -> Void) {
+  init(book: Book, page: Page? = nil, completion: @escaping () -> Void) {
     
     self.book = book
+    self.page = page
     self.completion = completion
     
     super.init(nibName: nil, bundle: nil)
@@ -37,6 +40,21 @@ class BookPageInputViewController: UIViewController {
     contentView.nextButton.addTarget(self, action: #selector(next(_:)), for: .touchUpInside)
     
     contentView.recordPauseButton.isEnabled = false
+    
+    if let page = page, let index = book.indexFor(page: page) {
+      
+      contentView.nextButton.isHidden = true
+      
+      if let imageURL = book.pageImageURL(index: index) {
+        contentView.imageView.image = UIImage(contentsOfFile: imageURL.path)
+      }
+      
+      if let audioURL = book.pageAudioURL(index: index) {
+        contentView.playPauseButton.isEnabled = FileManager.default.fileExists(atPath: audioURL.path)
+      }
+    } else {
+      contentView.nextButton.isHidden = false
+    }
     
     view = contentView
   }
@@ -139,6 +157,27 @@ class BookPageInputViewController: UIViewController {
     }
   }
   
+  @objc func playPause(_ sender: UIButton) {
+    
+    let playerIsPlaying = player?.rate ?? 0 > 0
+    if playerIsPlaying {
+      player?.stop()
+      
+      sender.setImage(UIImage(named: "play"), for: .normal)
+    } else {
+      do {
+        try AVAudioSession.sharedInstance().setCategory(.playback)
+        player = try AVAudioPlayer(contentsOf: FileManager.default.audioTmpPath())
+        player?.delegate = self
+        player?.play()
+        
+        sender.setImage(UIImage(named: "pause"), for: .normal)
+      } catch {
+        print("error: \(error)")
+      }
+    }
+  }
+  
 //  @objc func stop(_ sender: UIButton) {
 //
 //    print("stop")
@@ -215,11 +254,25 @@ extension BookPageInputViewController {
       return
     }
     
-    guard let audioData = try? Data(contentsOf: FileManager.default.audioTmpPath()) else {
+    var audioData = try? Data(contentsOf: FileManager.default.audioTmpPath())
+    
+    if audioData == nil,
+       let page = page,
+       let index = book.indexFor(page: page),
+       let audioURL = book.pageAudioURL(index: index) {
+      
+      audioData = try? Data(contentsOf: audioURL)
+    }
+    
+    guard let unwrappedAudioData = audioData else {
       return
     }
     
-    if let page = BooksProvider().save(imageData: data, audioData: audioData, duration: duration, inBook: book) {
+    if let page = page {
+      _ = BooksProvider().save(imageData: data, audioData: unwrappedAudioData, duration: duration, inBook: book, forPage: page)
+      FileManager.default.removeTmpAudio()
+      completion()
+    } else if let page = BooksProvider().save(imageData: data, audioData: unwrappedAudioData, duration: duration, inBook: book) {
       book.add(page)
       FileManager.default.removeTmpAudio()
       completion()

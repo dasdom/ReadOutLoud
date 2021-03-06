@@ -7,5 +7,5 @@ import Foundation
 protocol BooksProviderProtocol {
   func save(books: [Book])
   func loadBooks() -> [Book]
-  func save(imageData: Data, audioData: Data, duration: Double, inBook: Book) -> Page?
+  func save(imageData: Data, audioData: Data, duration: Double, inBook book: Book, forPage page: Page?) -> Page?
 }

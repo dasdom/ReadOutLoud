@@ -10,7 +10,6 @@ class BookPagesTableViewController: UITableViewController {
   var book: Book
   var allBooks: [Book]
   lazy var booksProvider: BooksProvider = BooksProvider()
-  private var player: AVAudioPlayer?
   private let deleteCompletion: ([Book]) -> Void
   private var formatter: DateComponentsFormatter = {
     let formatter = DateComponentsFormatter()
@@ -79,17 +78,18 @@ class BookPagesTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let url = book.pageAudioURL(index: indexPath.row) else {
-      return
-    }
-    do {
-      try AVAudioSession.sharedInstance().setCategory(.playback)
-      player = try AVAudioPlayer(contentsOf: url)
-      player?.delegate = self
-      player?.play()
-    } catch {
-      print("error: \(error)")
-    }
+    
+    let page = book.pageForIndex(indexPath.row)
+    let next = BookPageInputViewController(book: book, page: page, completion: { [weak self] in
+      
+      guard let self = self else { return }
+      
+      self.tableView.reloadData()
+      self.booksProvider.save(books: self.allBooks)
+    })
+    
+    next.modalPresentationStyle = .fullScreen
+    present(next, animated: true)
   }
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

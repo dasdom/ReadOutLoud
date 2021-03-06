@@ -4,12 +4,11 @@
 
 import Foundation
 
-struct Page: Codable, Equatable {
+class Page: Codable {
   let id: UUID
-  let duration: Double
+  var duration: Double = 0
   
-  init(duration: Double = 0) {
+  init() {
     id = UUID()
-    self.duration = duration
   }
 }

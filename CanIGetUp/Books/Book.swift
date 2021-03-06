@@ -31,6 +31,10 @@ class Book: Codable {
     pages.append(page)
   }
   
+  func indexFor(page: Page) -> Int? {
+    return pages.firstIndex(where: { $0.id == page.id })
+  }
+  
   func pageForIndex(_ index: Int) -> Page? {
     guard pages.count > index else {
       return nil

@@ -8,6 +8,7 @@ class BookPageInputView: UIView {
 
   let imageView: UIImageView
   let imageInputButton: UIButton
+  let playPauseButton: UIButton
   let recordPauseButton: UIButton
   let waveformView: WaveformView
   let doneButton: UIButton
@@ -27,13 +28,19 @@ class BookPageInputView: UIView {
     imageInputButton.setImage(UIImage(named: "plus"), for: .normal)
 //    imageInputButton.setTitle("Take image", for: .normal)
     
+    playPauseButton = UIButton(type: .system)
+    playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+    
     recordPauseButton = UIButton(type: .system)
-    recordPauseButton.translatesAutoresizingMaskIntoConstraints = false
     recordPauseButton.setImage(UIImage(named: "record"), for: .normal)
 //    recordPauseButton.setTitle("Record", for: .normal)
 
 //    let audioControlButtonStackView = UIStackView(arrangedSubviews: [playButton, stopButton, recordPauseButton])
 //    audioControlButtonStackView.distribution = .fillEqually
+    let playRecordStackView = UIStackView(arrangedSubviews: [playPauseButton, recordPauseButton])
+    playRecordStackView.translatesAutoresizingMaskIntoConstraints = false
+    playRecordStackView.distribution = .fillEqually
+    playRecordStackView.spacing = 40
     
     waveformView = WaveformView()
     waveformView.backgroundColor = .black
@@ -59,7 +66,7 @@ class BookPageInputView: UIView {
     backgroundColor = .white
     
     imageView.addSubview(imageInputButton)
-    recordHostView.addSubview(recordPauseButton)
+    recordHostView.addSubview(playRecordStackView)
     addSubview(stackView)
     
     var layoutConstraints = [
@@ -73,11 +80,12 @@ class BookPageInputView: UIView {
       
       waveformView.heightAnchor.constraint(equalToConstant: 80),
       
-      recordPauseButton.topAnchor.constraint(equalTo: recordHostView.topAnchor, constant: 4),
-      recordPauseButton.bottomAnchor.constraint(equalTo: recordHostView.bottomAnchor, constant: 4),
-      recordPauseButton.centerXAnchor.constraint(equalTo: recordHostView.centerXAnchor),
-      recordPauseButton.widthAnchor.constraint(equalToConstant: 50),
-      recordPauseButton.heightAnchor.constraint(equalToConstant: 50),
+      playRecordStackView.topAnchor.constraint(equalTo: recordHostView.topAnchor, constant: 4),
+      playRecordStackView.bottomAnchor.constraint(equalTo: recordHostView.bottomAnchor, constant: 4),
+      playRecordStackView.centerXAnchor.constraint(equalTo: recordHostView.centerXAnchor),
+      
+      playPauseButton.widthAnchor.constraint(equalToConstant: 50),
+      playPauseButton.heightAnchor.constraint(equalToConstant: 50),
     ]
     
     if #available(iOS 11.0, *) {

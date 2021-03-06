@@ -25,9 +25,10 @@ struct BooksProvider: BooksProviderProtocol {
     return []
   }
   
-  func save(imageData: Data, audioData: Data, duration: Double, inBook book: Book) -> Page? {
+  func save(imageData: Data, audioData: Data, duration: Double, inBook book: Book, forPage page: Page? = nil) -> Page? {
     do {
-      let page = Page(duration: duration)
+      let page = page ?? Page()
+      page.duration = duration
       let imageURL = FileManager.default.pageImageURL(for: book, pageId: page.id)
       try imageData.write(to: imageURL)
       

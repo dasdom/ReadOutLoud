@@ -48,6 +48,17 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
     collectionView?.isScrollEnabled = false
     
     progressView.frame = CGRect(x: 0, y: 0, width: collectionView.frame.width, height: 20)
+    
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    let previous = UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(previousPage))
+    let next = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(nextPage))
+    let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    toolbarItems = [previous, spacer, next]
+    navigationController?.setToolbarHidden(false, animated: false)
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -103,6 +114,7 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
   
   func playAudio(for index: Int) {
 //    print("page: \(index)")
+    player?.stop()
     guard let url = book.pageAudioURL(index: index) else {
       return
     }
@@ -128,19 +140,32 @@ class BookPlayViewController: UICollectionViewController, UICollectionViewDelega
       progressView.progress = Float(currentTime / total)
     }
   }
+  
+  func start(at page: Int) {
+    let width = collectionView.contentSize.width / CGFloat(book.pageCount) //collectionView.frame.inset(by: collectionView.safeAreaInsets).size.width
+    let offset = collectionView.safeAreaInsets.left
+    
+    if page >= book.pageCount {
+      navigationController?.popViewController(animated: true)
+    }
+    currentPage = max(page, 0)
+      
+    let contentOffset = CGFloat(currentPage) * width - offset
+    collectionView.setContentOffset(CGPoint(x: contentOffset, y: collectionView.contentOffset.y), animated: true)
+    playAudio(for: currentPage)
+  }
+  
+  @objc func nextPage() {
+    start(at: currentPage + 1)
+  }
+  
+  @objc func previousPage() {
+    start(at: currentPage - 1)
+  }
 }
 
 extension BookPlayViewController: AVAudioPlayerDelegate {
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-    let width = collectionView.contentSize.width / CGFloat(book.pageCount) //collectionView.frame.inset(by: collectionView.safeAreaInsets).size.width
-    let offset = collectionView.safeAreaInsets.left
-//    let pageIndex = Int(collectionView.contentOffset.x / (width - offset))
-    currentPage = currentPage + 1
-    if currentPage >= book.pageCount {
-      navigationController?.popViewController(animated: true)
-    }
-      let contentOffset = CGFloat(currentPage) * width - offset
-    collectionView.setContentOffset(CGPoint(x: contentOffset, y: collectionView.contentOffset.y), animated: true)
-    playAudio(for: currentPage)
+    start(at: currentPage + 1)
   }
 }
