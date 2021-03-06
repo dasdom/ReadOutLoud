@@ -43,6 +43,7 @@
 		F286C19125E955530052675C /* SpySettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286C19025E955530052675C /* SpySettingsTableViewController.swift */; };
 		F286C19525E9A13A0052675C /* NightDayViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F286C19425E9A13A0052675C /* NightDayViewControllerTests.swift */; };
 		F288059B25F27C2A006FAA39 /* PageStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288059A25F27C2A006FAA39 /* PageStackLayout.swift */; };
+		F28805B325F424B6006FAA39 /* BookDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28805B225F424B6006FAA39 /* BookDetailsViewControllerTests.swift */; };
 		F2B73A37259F248800F5CA3F /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A36259F248700F5CA3F /* Book.swift */; };
 		F2B73A3A259F251D00F5CA3F /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A39259F251D00F5CA3F /* Page.swift */; };
 		F2B73A3D259F25ED00F5CA3F /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B73A3C259F25ED00F5CA3F /* BookCell.swift */; };
@@ -119,6 +120,7 @@
 		F286C19025E955530052675C /* SpySettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpySettingsTableViewController.swift; sourceTree = "<group>"; };
 		F286C19425E9A13A0052675C /* NightDayViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightDayViewControllerTests.swift; sourceTree = "<group>"; };
 		F288059A25F27C2A006FAA39 /* PageStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageStackLayout.swift; sourceTree = "<group>"; };
+		F28805B225F424B6006FAA39 /* BookDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		F2B73A36259F248700F5CA3F /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		F2B73A39259F251D00F5CA3F /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		F2B73A3C259F25ED00F5CA3F /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
@@ -206,9 +208,10 @@
 				F2FB3AED25B4E11E00D60597 /* BookCellTests.swift */,
 				F2BF899A25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift */,
 				F2FE584725D334400080362B /* PageCellTests.swift */,
-				F2FE584B25D334E30080362B /* blume.jpg */,
 				F2F289B225CF362000F2A7F3 /* BookTests.swift */,
 				F2F289BA25CF3EA200F2A7F3 /* BooksProviderTests.swift */,
+				F28805B225F424B6006FAA39 /* BookDetailsViewControllerTests.swift */,
+				F2FE584B25D334E30080362B /* blume.jpg */,
 			);
 			path = Books;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				F2FB3B0225B4E46B00D60597 /* MockImageProvider.swift in Sources */,
 				F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */,
 				F2BF899B25C74F6E007A8433 /* BookPagesTableViewControllerTests.swift in Sources */,
+				F28805B325F424B6006FAA39 /* BookDetailsViewControllerTests.swift in Sources */,
 				F286C19525E9A13A0052675C /* NightDayViewControllerTests.swift in Sources */,
 				F24E67CF25D1E06C00A6B1A3 /* MockPageCell.swift in Sources */,
 				F22D832725E2833D00D0A868 /* MockBook.swift in Sources */,

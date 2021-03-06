@@ -7,15 +7,13 @@ import UIKit
 class BookDetailsViewController: UIViewController {
   
   private var saveButton: UIBarButtonItem?
-  private var contentView: BookDetailsView {
+  var contentView: BookDetailsView {
     return view as! BookDetailsView
   }
   private var titleTextField: UITextField {
     return contentView.titleTextField
   }
-//  private var authorTextField: UITextField {
-//    return contentView.authorTextField
-//  }
+
   private let addCompletion: (Book) -> Void
   
   init(addCompletion: @escaping (Book) -> Void) {
@@ -33,7 +31,6 @@ class BookDetailsViewController: UIViewController {
     contentView.addImageButton.addTarget(self, action: #selector(addImage(_:)), for: .touchUpInside)
     
     contentView.titleTextField.delegate = self
-//    contentView.authorTextField.delegate = self
     
     view = contentView
   }
@@ -43,7 +40,7 @@ class BookDetailsViewController: UIViewController {
     
     title = "Add Book"
     
-    saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save(_:)))
+    saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
     navigationItem.rightBarButtonItem = saveButton
     saveButton?.isEnabled = false
     
@@ -55,10 +52,8 @@ class BookDetailsViewController: UIViewController {
 
 // MARK: - Actions
 extension BookDetailsViewController {
-  @objc func save(_ sender: UIBarButtonItem) {
-    guard let title = titleTextField.text
-//          , let author = authorTextField.text
-    else {
+  @objc func save() {
+    guard let title = titleTextField.text, false == title.isEmpty else {
       return
     }
     
@@ -102,19 +97,6 @@ extension BookDetailsViewController: UITextFieldDelegate {
     }
     let nsText = text as NSString
     let finalText = nsText.replacingCharacters(in: range, with: string)
-    
-//    let title: String?
-//    let author: String?
-//    if textField == titleTextField {
-//      title = finalText
-//      author = authorTextField.text
-//    } else if textField == authorTextField {
-//      title = titleTextField.text
-//      author = finalText
-//    } else {
-//      title = nil
-//      author = nil
-//    }
     
     updateSaveButton(title: finalText)
     

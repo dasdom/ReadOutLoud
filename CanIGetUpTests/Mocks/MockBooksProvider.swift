@@ -22,14 +22,14 @@ class MockBooksProvider: BooksProviderProtocol {
     return books(titles: bookTitles)
   }
   
-  func save(imageData: Data, audioData: Data, duration: Double, inBook: Book) -> Page? {
+  func save(imageData: Data, audioData: Data, duration: Double, inBook book: Book, forPage page: Page?) -> Page? {
     return nil
   }
   
   func books(titles: [String]) -> [Book] {
     return titles.map({ title in
       let book = Book(title: title)
-      book.add(Page(duration: 20))
+      book.add(Page())
       return book
     })
   }
