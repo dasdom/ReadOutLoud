@@ -105,6 +105,7 @@ extension BookDetailsViewController: UITextFieldDelegate {
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
+    return false
   }
   
   func updateSaveButton(title: String?) {

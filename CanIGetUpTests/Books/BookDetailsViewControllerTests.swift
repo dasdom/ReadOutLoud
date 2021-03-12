@@ -67,4 +67,49 @@ class BookDetailsViewControllerTests: XCTestCase {
     let coverExists = FileManager.default.fileExists(atPath: coverURL.path)
     XCTAssertEqual(coverExists, true)
   }
+  
+  func test_addImageButton_presentsImagePicker() {
+    let sut = SpyBookDetailsViewController(addCompletion: { _ in })
+    sut.loadViewIfNeeded()
+    UIApplication.shared.windows.first?.rootViewController = sut
+    let button = sut.contentView.addImageButton
+    
+    button.sendActions(for: .touchUpInside)
+    
+    XCTAssertTrue(sut.lastPresented is UIImagePickerController)
+  }
+  
+  func test_insertingText_activatesSaveButton() {
+    sut.loadViewIfNeeded()
+    
+    let path = Bundle(for: BookDetailsViewControllerTests.self).path(forResource: "blume", ofType: "jpg")!
+    sut.contentView.coverImageView.image = UIImage(contentsOfFile: path)
+    let textField = sut.contentView.titleTextField
+    _ = textField.delegate?.textField?(textField, shouldChangeCharactersIn: NSRange(location: 0, length: 0), replacementString: "a")
+    
+    XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.isEnabled, true)
+  }
+  
+  func test_removingText_deactivatesSaveButton() {
+    sut.loadViewIfNeeded()
+    
+    let path = Bundle(for: BookDetailsViewControllerTests.self).path(forResource: "blume", ofType: "jpg")!
+    sut.contentView.coverImageView.image = UIImage(contentsOfFile: path)
+    let textField = sut.contentView.titleTextField
+    textField.text = "a"
+    _ = textField.delegate?.textField?(textField, shouldChangeCharactersIn: NSRange(location: 0, length: 1), replacementString: "")
+    
+    XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.isEnabled, false)
+  }
+  
+  func test_return_resignsFirstResponder() {
+    sut.loadViewIfNeeded()
+    let textField = sut.contentView.titleTextField
+    textField.becomeFirstResponder()
+    
+    let shouldReturn = textField.delegate?.textFieldShouldReturn?(textField)
+    
+    XCTAssertEqual(textField.isFirstResponder, false)
+    XCTAssertEqual(shouldReturn, false)
+  }
 }
