@@ -5,12 +5,17 @@
 import Foundation
 
 class TimeSetting : Codable {
+  let name: String
+  var time: Time
+  var expanded = false
+  
   internal init(name: String, time: Time) {
     self.name = name
     self.time = time
   }
   
-  let name: String
-  var time: Time
-  var expanded = false
+  enum CodingKeys: String, CodingKey {
+    case name
+    case time
+  }
 }

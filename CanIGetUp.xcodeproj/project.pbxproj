@@ -10,6 +10,9 @@
 		F20F0E9724405484005412B7 /* ImageCreditsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E9624405484005412B7 /* ImageCreditsTableViewController.swift */; };
 		F20F0E99244054BA005412B7 /* ImageCredit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20F0E98244054BA005412B7 /* ImageCredit.swift */; };
 		F218E5A725EC2F33007C137C /* UIBarButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F218E5A625EC2F33007C137C /* UIBarButtonExtension.swift */; };
+		F221BCCD25FC0F60004907E4 /* BookPageInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BCCC25FC0F60004907E4 /* BookPageInputViewControllerTests.swift */; };
+		F221BCD125FCDC39004907E4 /* SpyBookPageInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BCD025FCDC39004907E4 /* SpyBookPageInputViewController.swift */; };
+		F221BCD725FD5F62004907E4 /* TimeSettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BCD625FD5F62004907E4 /* TimeSettingTests.swift */; };
 		F224B00D25D6BDDD007B3D2B /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224B00C25D6BDDD007B3D2B /* WaveformView.swift */; };
 		F224F38425A8FE8F005F0220 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F38325A8FE8F005F0220 /* BooksProvider.swift */; };
 		F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */; };
@@ -84,6 +87,9 @@
 		F20F0E9624405484005412B7 /* ImageCreditsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreditsTableViewController.swift; sourceTree = "<group>"; };
 		F20F0E98244054BA005412B7 /* ImageCredit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCredit.swift; sourceTree = "<group>"; };
 		F218E5A625EC2F33007C137C /* UIBarButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonExtension.swift; sourceTree = "<group>"; };
+		F221BCCC25FC0F60004907E4 /* BookPageInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPageInputViewControllerTests.swift; sourceTree = "<group>"; };
+		F221BCD025FCDC39004907E4 /* SpyBookPageInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyBookPageInputViewController.swift; sourceTree = "<group>"; };
+		F221BCD625FD5F62004907E4 /* TimeSettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingTests.swift; sourceTree = "<group>"; };
 		F224B00C25D6BDDD007B3D2B /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		F224F38325A8FE8F005F0220 /* BooksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProvider.swift; sourceTree = "<group>"; };
 		F224F38B25AB2774005F0220 /* CanIGetUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanIGetUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +218,8 @@
 				F2FE584725D334400080362B /* PageCellTests.swift */,
 				F2F289B225CF362000F2A7F3 /* BookTests.swift */,
 				F2F289BA25CF3EA200F2A7F3 /* BooksProviderTests.swift */,
+				F221BCCC25FC0F60004907E4 /* BookPageInputViewControllerTests.swift */,
+				F221BCD025FCDC39004907E4 /* SpyBookPageInputViewController.swift */,
 				F28805B225F424B6006FAA39 /* BookDetailsViewControllerTests.swift */,
 				F227AFDB25F4D83100FC2158 /* SpyBookDetailsViewController.swift */,
 				F2FE584B25D334E30080362B /* blume.jpg */,
@@ -225,6 +233,7 @@
 				F241A5AB25E9450F0025462A /* AboutTableViewControllerTests.swift */,
 				F241A5B425E949D80025462A /* SettingsTableViewControllerTests.swift */,
 				F286C19025E955530052675C /* SpySettingsTableViewController.swift */,
+				F221BCD625FD5F62004907E4 /* TimeSettingTests.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -460,11 +469,13 @@
 			files = (
 				F286C18D25E94EFA0052675C /* MockViewController.swift in Sources */,
 				F2FB3AEE25B4E11E00D60597 /* BookCellTests.swift in Sources */,
+				F221BCD125FCDC39004907E4 /* SpyBookPageInputViewController.swift in Sources */,
 				F2F289B325CF362000F2A7F3 /* BookTests.swift in Sources */,
 				F286C19125E955530052675C /* SpySettingsTableViewController.swift in Sources */,
 				F241A5B525E949D80025462A /* SettingsTableViewControllerTests.swift in Sources */,
 				F2FE584825D334400080362B /* PageCellTests.swift in Sources */,
 				F241A5AC25E9450F0025462A /* AboutTableViewControllerTests.swift in Sources */,
+				F221BCD725FD5F62004907E4 /* TimeSettingTests.swift in Sources */,
 				F2BF899725C74D31007A8433 /* MockNavigationController.swift in Sources */,
 				F26D5FF125B4DB160087686F /* MockBookCell.swift in Sources */,
 				F218E5A725EC2F33007C137C /* UIBarButtonExtension.swift in Sources */,
@@ -476,6 +487,7 @@
 				F286C19525E9A13A0052675C /* NightDayViewControllerTests.swift in Sources */,
 				F24E67CF25D1E06C00A6B1A3 /* MockPageCell.swift in Sources */,
 				F227AFDC25F4D83100FC2158 /* SpyBookDetailsViewController.swift in Sources */,
+				F221BCCD25FC0F60004907E4 /* BookPageInputViewControllerTests.swift in Sources */,
 				F22D832725E2833D00D0A868 /* MockBook.swift in Sources */,
 				F2F289BB25CF3EA200F2A7F3 /* BooksProviderTests.swift in Sources */,
 			);

@@ -6,7 +6,16 @@ import UIKit
 @testable import CanIGetUp
 
 class MockBook: Book {
+  
   override func pageImageURL(index: Int) -> URL? {
     return Bundle(for: MockBook.self).url(forResource: "blume", withExtension: "jpg")
+  }
+  
+  override func pageAudioURL(index: Int) -> URL? {
+    return URL(string: "foo")
+  }
+  
+  override func indexFor(page: Page) -> Int? {
+    return 0
   }
 }

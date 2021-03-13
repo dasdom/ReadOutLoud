@@ -88,12 +88,10 @@ class BookPageInputView: UIView {
       playPauseButton.heightAnchor.constraint(equalToConstant: 50),
     ]
     
-    if #available(iOS 11.0, *) {
-      layoutConstraints.append(contentsOf: [
-        stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
-        stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
-      ])
-    }
+    layoutConstraints.append(contentsOf: [
+      stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+      stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
+    ])
     
     NSLayoutConstraint.activate(layoutConstraints)
   }

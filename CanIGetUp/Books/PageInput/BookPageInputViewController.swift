@@ -16,7 +16,7 @@ class BookPageInputViewController: UIViewController {
   private var powers: [Float] = []
   private var duration: Double = 0
   private var startDate: Date?
-  private var contentView: BookPageInputView {
+  var contentView: BookPageInputView {
     return view as! BookPageInputView
   }
   
@@ -61,14 +61,6 @@ class BookPageInputViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    if #available(iOS 11.0, *) {
-    } else {
-      NSLayoutConstraint.activate([
-        contentView.stackView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
-        contentView.stackView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor)
-      ])
-    }
     
     let recordingSession = AVAudioSession.sharedInstance()
     do {
@@ -177,35 +169,6 @@ class BookPageInputViewController: UIViewController {
       }
     }
   }
-  
-//  @objc func stop(_ sender: UIButton) {
-//
-//    print("stop")
-//
-//    recorder.stop()
-//
-//    do {
-//      try AVAudioSession.sharedInstance().setActive(false, options: [])
-//    } catch {
-//      print("error: \(error)")
-//    }
-//  }
-//
-//  @objc func play(_ sender: UIButton) {
-//
-//    print("play")
-//
-//    if !recorder.isRecording {
-//      do {
-//        try AVAudioSession.sharedInstance().setCategory(.playback)
-//        player = try AVAudioPlayer(contentsOf: FileManager.default.audioTestPath())
-//        player?.delegate = self
-//        player?.play()
-//      } catch {
-//        print("error: \(error)")
-//      }
-//    }
-//  }
 }
 
 extension BookPageInputViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -226,7 +189,7 @@ extension BookPageInputViewController: AVAudioRecorderDelegate {
   }
   
   func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
-    print("error: \(error)")
+    print("error: \(String(describing: error))")
   }
 }
 
