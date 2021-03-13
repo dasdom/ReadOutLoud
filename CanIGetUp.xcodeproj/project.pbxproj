@@ -13,6 +13,7 @@
 		F221BCCD25FC0F60004907E4 /* BookPageInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BCCC25FC0F60004907E4 /* BookPageInputViewControllerTests.swift */; };
 		F221BCD125FCDC39004907E4 /* SpyBookPageInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BCD025FCDC39004907E4 /* SpyBookPageInputViewController.swift */; };
 		F221BCD725FD5F62004907E4 /* TimeSettingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BCD625FD5F62004907E4 /* TimeSettingTests.swift */; };
+		F221BCDB25FD65A0004907E4 /* ImageCreditCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F221BCDA25FD65A0004907E4 /* ImageCreditCellTests.swift */; };
 		F224B00D25D6BDDD007B3D2B /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224B00C25D6BDDD007B3D2B /* WaveformView.swift */; };
 		F224F38425A8FE8F005F0220 /* BooksProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F38325A8FE8F005F0220 /* BooksProvider.swift */; };
 		F224F39825AB27BA005F0220 /* BooksCollectionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F224F39725AB27BA005F0220 /* BooksCollectionViewControllerTests.swift */; };
@@ -90,6 +91,7 @@
 		F221BCCC25FC0F60004907E4 /* BookPageInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookPageInputViewControllerTests.swift; sourceTree = "<group>"; };
 		F221BCD025FCDC39004907E4 /* SpyBookPageInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyBookPageInputViewController.swift; sourceTree = "<group>"; };
 		F221BCD625FD5F62004907E4 /* TimeSettingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingTests.swift; sourceTree = "<group>"; };
+		F221BCDA25FD65A0004907E4 /* ImageCreditCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreditCellTests.swift; sourceTree = "<group>"; };
 		F224B00C25D6BDDD007B3D2B /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		F224F38325A8FE8F005F0220 /* BooksProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksProvider.swift; sourceTree = "<group>"; };
 		F224F38B25AB2774005F0220 /* CanIGetUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanIGetUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -234,6 +236,7 @@
 				F241A5B425E949D80025462A /* SettingsTableViewControllerTests.swift */,
 				F286C19025E955530052675C /* SpySettingsTableViewController.swift */,
 				F221BCD625FD5F62004907E4 /* TimeSettingTests.swift */,
+				F221BCDA25FD65A0004907E4 /* ImageCreditCellTests.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				F2F289B325CF362000F2A7F3 /* BookTests.swift in Sources */,
 				F286C19125E955530052675C /* SpySettingsTableViewController.swift in Sources */,
 				F241A5B525E949D80025462A /* SettingsTableViewControllerTests.swift in Sources */,
+				F221BCDB25FD65A0004907E4 /* ImageCreditCellTests.swift in Sources */,
 				F2FE584825D334400080362B /* PageCellTests.swift in Sources */,
 				F241A5AC25E9450F0025462A /* AboutTableViewControllerTests.swift in Sources */,
 				F221BCD725FD5F62004907E4 /* TimeSettingTests.swift in Sources */,
