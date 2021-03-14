@@ -23,9 +23,7 @@ class BooksCollectionViewController: UICollectionViewController {
     super.viewDidLoad()
     
     collectionView?.register(BookCell.self, forCellWithReuseIdentifier: BookCell.identifier)
-    collectionView?.register(AddBookCell.self, forCellWithReuseIdentifier: AddBookCell.identifier)
     collectionView?.register(EmptyBookCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: EmptyBookCollectionHeaderView.identifier)
-    
     
     title = "Books"
     

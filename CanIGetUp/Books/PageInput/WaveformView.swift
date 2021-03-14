@@ -14,7 +14,7 @@ class WaveformView: UIView {
   
   override func draw(_ rect: CGRect) {
         
-    let maxValue: CGFloat = 50
+//    let maxValue: CGFloat = 50
     let minValue: CGFloat = -46
 //    if let max = values.max() {
 //      maxValue = CGFloat(max) + 50
